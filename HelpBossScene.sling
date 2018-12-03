@@ -1,0 +1,10 @@
+class is SpriteSceneWithEntities imports cape imports cave imports motion #battleScene:
+
+
+func initialize override
+{
+    base.initialize()
+
+    // Add background image.
+    addTextureSpriteForSize(createTextureForImageResource("main-scene"), getReferenceWidth(), getReferenceHeight())
+}

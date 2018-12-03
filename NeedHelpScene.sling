@@ -1,6 +1,7 @@
 class is SpriteSceneWithEntities imports cape imports cave imports motion #battleScene:
 
 var helpMonstersBtnEntity as TextButtonEntity
+var helpBossBtnEntity as TextButtonEntity
 
 func initialize override
 {
@@ -13,14 +14,23 @@ func initialize override
     helpMonstersBtnEntity = TextButtonEntity.forText("Ninja vs Monsters")
     helpMonstersBtnEntity.setBackgroundColor(Color.white())
     addEntity(helpMonstersBtnEntity)
-    helpMonstersBtnEntity.move(getReferenceWidth() * 0.5 - (helpMonstersBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpMonstersBtnEntity.getHeight() * 0.5))
+    helpMonstersBtnEntity.move(getReferenceWidth() * 0.3 - (helpMonstersBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpMonstersBtnEntity.getHeight() * 0.5))
     helpMonstersBtnEntity.setClickHandler(func {
-        pushScene(new HelpMonsters())
+        pushScene(new HelpMonstersScene())
         PRINT "[LOG] Change to Help Monsters Scene"
     })
 
     // Add click sound effect.
     // Add help boss button.
+    helpBossBtnEntity = TextButtonEntity.forText("Ninja vs Boss")
+    helpBossBtnEntity.setBackgroundColor(Color.white())
+    addEntity(helpBossBtnEntity)
+    helpBossBtnEntity.move(getReferenceWidth() * 0.6 - (helpBossBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpBossBtnEntity.getHeight() * 0.5))
+    helpBossBtnEntity.setClickHandler(func {
+        pushScene(new HelpBossScene())
+        PRINT "[LOG] Change to Help Boss Scene"
+    })
+    
     // Add click sound effect.
     // Add close button.
     // Add click sound effect.
