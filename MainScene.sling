@@ -139,7 +139,7 @@ func cleanup override
 	}
 
     removeAllEntities()
-    PRINT "[LOG] Remove all entities"
+    PRINT "[LOG] Remove all entities from main scene"
     removeAllSprites()
-    PRINT "[LOG] Remove all sprites"
+    PRINT "[LOG] Remove all sprites from main scene"
 }

@@ -55,5 +55,10 @@ func cleanup override
     if (stream != null) {
 		stream.stop()
 	}
+
+    removeAllEntities()
+    PRINT "[LOG] Remove all entities from storyline scene"
+    removeAllSprites()
+    PRINT "[LOG] Remove all sprites from storyline scene"
 }
 
