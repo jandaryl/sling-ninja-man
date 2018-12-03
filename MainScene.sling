@@ -1,0 +1,30 @@
+class is SpriteSceneWithEntities imports cape imports cave imports motion #mainScene:
+
+func initialize override
+{
+    base.initialize()
+
+    // Add background music.
+    // Add background image.
+    // Add story line button.
+    // Add click sound effect.
+    // Add play button.
+    // Add click sound effect.
+    // Add need help button.
+    // Add click sound effect.
+}
+
+func onPointerEvent(event as PointerEvent) override
+{
+    base.onPointerEvent(event)
+}
+
+func tick(gameTime as TimeValue, delta as double) override
+{
+	base.tick(gameTime, delta)
+}
+
+func cleanup override
+{
+    //
+}
