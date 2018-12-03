@@ -13,3 +13,8 @@ func initialize override
     // Add click sound effect.
 }
 
+func cleanup override
+{
+    //
+}
+
