@@ -1,7 +1,6 @@
 title = "Ninja Man"
 vendorId = "com.game"
 resources = [
-	"images",
 	"audios"
 ]
 depends = [
