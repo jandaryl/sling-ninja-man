@@ -1,0 +1,15 @@
+title = "Ninja Man"
+vendorId = "com.game"
+resources = [
+	"images",
+	"audios"
+]
+depends = [
+	"cape",
+	"cave",
+	"motion"
+]
+preFilters += "@motion"
+compilerOptions = {
+	"html5.readableCode" : "true"
+}
