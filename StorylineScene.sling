@@ -4,6 +4,12 @@ func initialize override
 {
     base.initialize()
 
+    // Add background image.
     addTextureSpriteForSize(createTextureForImageResource("main-scene"), getReferenceWidth(), getReferenceHeight())
+
+    // Add story words sprite.
+    // Add manual keys sprite.
+    // Add start button.
+    // Add click sound effect.
 }
 
