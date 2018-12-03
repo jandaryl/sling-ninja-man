@@ -1,5 +1,12 @@
 class is SpriteSceneWithEntities imports cape imports cave imports motion #battleScene:
 
+var rulesWordProp as TextProperties
+var rulesWordSprite as TextSprite
+var abilitiesWordProp as TextProperties
+var abilitiesWordSprite as TextSprite
+var okBtnEntity as TextButtonEntity
+var audioManager as AudioManager
+var stream as AudioStream
 
 func initialize override
 {
@@ -9,7 +16,14 @@ func initialize override
     addTextureSpriteForSize(createTextureForImageResource("main-scene"), getReferenceWidth(), getReferenceHeight())
 
     // Add rule boss word sprite.
-    // Add abilities boss word sprite.
-    // Add ok button.
-    // Add the click sound effect.
+    rulesWordProp = TextProperties.forText("Boss, rules description...")
+	rulesWordProp.setTextColor(Color.white())
+	rulesWordProp.setFontSizeRelative(0.025)
+	rulesWordProp.setFontFamily("Fira Code")
+	rulesWordProp.setFontIsItalic(true)
+	rulesWordSprite = addTextSprite(rulesWordProp)
+	rulesWordSprite.setText(rulesWordProp)
+	rulesWordSprite.move(getReferenceWidth() * 0.5 - (rulesWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.25 - (rulesWordSprite.getHeight() * 0.5))
+
 }
+
