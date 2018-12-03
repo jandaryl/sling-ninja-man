@@ -24,7 +24,16 @@ func initialize override
 	storyWordSprite.setText(storyWordProp)
 	storyWordSprite.move(getReferenceWidth() * 0.5 - (storyWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.5 - (storyWordSprite.getHeight() * 0.5))
 
-    
+    // Add start button.
+    okBtnEntity = TextButtonEntity.forText("OK")
+    okBtnEntity.setBackgroundColor(Color.white())
+    addEntity(okBtnEntity)
+    okBtnEntity.move(getReferenceWidth() * 0.5 - (okBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.7 - (okBtnEntity.getHeight() * 0.5))
+    okBtnEntity.setClickHandler(func {
+        pushScene(new MainScene())
+        PRINT "[LOG] Change to Main Scene"
+    })
+
 }
 
 func cleanup override
