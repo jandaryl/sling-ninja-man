@@ -25,5 +25,15 @@ func initialize override
 	rulesWordSprite.setText(rulesWordProp)
 	rulesWordSprite.move(getReferenceWidth() * 0.5 - (rulesWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.25 - (rulesWordSprite.getHeight() * 0.5))
 
+    // Add abilities boss word sprite.
+    abilitiesWordProp = TextProperties.forText("Boss, abilities description...")
+	abilitiesWordProp.setTextColor(Color.white())
+	abilitiesWordProp.setFontSizeRelative(0.025)
+	abilitiesWordProp.setFontFamily("Fira Code")
+	abilitiesWordProp.setFontIsItalic(true)
+	abilitiesWordSprite = addTextSprite(abilitiesWordProp)
+	abilitiesWordSprite.setText(abilitiesWordProp)
+	abilitiesWordSprite.move(getReferenceWidth() * 0.5 - (abilitiesWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.5 - (abilitiesWordSprite.getHeight() * 0.5))
+
 }
 
