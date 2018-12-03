@@ -5,6 +5,7 @@ var audioManager as AudioManager
 var stream as AudioStream
 var gameTitleProp as TextProperties
 var gameTitleSprite as TextSprite
+var storyBtnEntity as TextButtonEntity
 
 func initialize override
 {
@@ -26,7 +27,16 @@ func initialize override
 	gameTitleSprite.setText(gameTitleProp)
 	gameTitleSprite.move(getReferenceWidth() * 0.5 - (gameTitleSprite.getWidth() * 0.5), getReferenceHeight() * 0.3 - (gameTitleSprite.getHeight() * 0.5))
 
-    // Add story line button.
+    // Add story button.
+    storyBtnEntity = TextButtonEntity.forText("Storyline")
+    storyBtnEntity.setBackgroundColor(Color.white())
+    addEntity(storyBtnEntity)
+    storyBtnEntity.move(getReferenceWidth() * 0.3 - (storyBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (storyBtnEntity.getHeight() * 0.5))
+    storyBtnEntity.setClickHandler(func {
+        pushScene(new StorylineScene())
+        PRINT "[LOG] Change to Storyline Scene"
+    })
+
     // Add click sound effect.
     // Add play button.
     // Add click sound effect.
