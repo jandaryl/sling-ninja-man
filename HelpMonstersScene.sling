@@ -7,4 +7,9 @@ func initialize override
 
     // Add background image.
     addTextureSpriteForSize(createTextureForImageResource("main-scene"), getReferenceWidth(), getReferenceHeight())
+
+    // Add rules word sprite.
+    // Add monsters abilities word sprite.
+    // Add ok button.
+    // Add click sound effect.
 }
