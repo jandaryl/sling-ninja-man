@@ -2,6 +2,7 @@ class is SpriteSceneWithEntities imports cape imports cave imports motion #battl
 
 var helpMonstersBtnEntity as TextButtonEntity
 var helpBossBtnEntity as TextButtonEntity
+var backBtnEntity as TextButtonEntity
 
 func initialize override
 {
@@ -14,7 +15,7 @@ func initialize override
     helpMonstersBtnEntity = TextButtonEntity.forText("Ninja vs Monsters")
     helpMonstersBtnEntity.setBackgroundColor(Color.white())
     addEntity(helpMonstersBtnEntity)
-    helpMonstersBtnEntity.move(getReferenceWidth() * 0.3 - (helpMonstersBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpMonstersBtnEntity.getHeight() * 0.5))
+    helpMonstersBtnEntity.move(getReferenceWidth() * 0.4 - (helpMonstersBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpMonstersBtnEntity.getHeight() * 0.5))
     helpMonstersBtnEntity.setClickHandler(func {
         pushScene(new HelpMonstersScene())
         PRINT "[LOG] Change to Help Monsters Scene"
@@ -25,13 +26,21 @@ func initialize override
     helpBossBtnEntity = TextButtonEntity.forText("Ninja vs Boss")
     helpBossBtnEntity.setBackgroundColor(Color.white())
     addEntity(helpBossBtnEntity)
-    helpBossBtnEntity.move(getReferenceWidth() * 0.6 - (helpBossBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpBossBtnEntity.getHeight() * 0.5))
+    helpBossBtnEntity.move(getReferenceWidth() * 0.7 - (helpBossBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpBossBtnEntity.getHeight() * 0.5))
     helpBossBtnEntity.setClickHandler(func {
         pushScene(new HelpBossScene())
         PRINT "[LOG] Change to Help Boss Scene"
     })
-    
+
     // Add click sound effect.
     // Add close button.
+    backBtnEntity = TextButtonEntity.forText("Back")
+    backBtnEntity.setBackgroundColor(Color.white())
+    addEntity(backBtnEntity)
+    backBtnEntity.move(getReferenceWidth() * 0.8 - (backBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.2 - (backBtnEntity.getHeight() * 0.5))
+    backBtnEntity.setClickHandler(func {
+        pushScene(new MainScene())
+        PRINT "[LOG] Change to Main Scene"
+    })
     // Add click sound effect.
 }
