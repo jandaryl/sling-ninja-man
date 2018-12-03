@@ -35,6 +35,20 @@ func initialize override
     addEntity(storyBtnEntity)
     storyBtnEntity.move(getReferenceWidth() * 0.5 - (storyBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (storyBtnEntity.getHeight() * 0.5))
     storyBtnEntity.setClickHandler(func {
+        
+        // Add click sound effect.
+        audioManager = AudioManager.forApplication(context)
+
+        if (audioManager != null) {
+            stream = audioManager.getStreamForResource("main-scene")
+            
+            if (stream != null) {
+                stream.play()
+                stream.setLooping(true)
+                PRINT "[LOG] Click sound effect from Story Button is working"
+            }
+        }
+
         pushScene(new StorylineScene())
         PRINT "[LOG] Change to Storyline Scene"
     })
@@ -45,6 +59,20 @@ func initialize override
     addEntity(startBtnEntity)
     startBtnEntity.move(getReferenceWidth() * 0.5 - (startBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.6 - (startBtnEntity.getHeight() * 0.5))
     startBtnEntity.setClickHandler(func {
+
+        // Add click sound effect.
+        audioManager = AudioManager.forApplication(context)
+
+        if (audioManager != null) {
+            stream = audioManager.getStreamForResource("main-scene")
+            
+            if (stream != null) {
+                stream.play()
+                stream.setLooping(true)
+                PRINT "[LOG] Click sound effect from Start Button is working"
+            }
+        }
+
         pushScene(new BattleScene())
         PRINT "[LOG] Change to Battle Scene"
     })
@@ -55,6 +83,20 @@ func initialize override
     addEntity(helpBtnEntity)
     helpBtnEntity.move(getReferenceWidth() * 0.5 - (helpBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.7 - (helpBtnEntity.getHeight() * 0.5))
     helpBtnEntity.setClickHandler(func {
+                
+        // Add click sound effect.
+        audioManager = AudioManager.forApplication(context)
+
+        if (audioManager != null) {
+            stream = audioManager.getStreamForResource("main-scene")
+            
+            if (stream != null) {
+                stream.play()
+                stream.setLooping(true)
+                PRINT "[LOG] Click sound effect from Need Help Button is working"
+            }
+        }
+
         pushScene(new NeedHelpScene())
         PRINT "[LOG] Change to Need Help Scene from Main Scene"
     })
