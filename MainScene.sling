@@ -48,6 +48,17 @@ func initialize override
         pushScene(new BattleScene())
         PRINT "[LOG] Change to Battle Scene"
     })
+
+    // Add need help button.
+    helpBtnEntity = TextButtonEntity.forText("Need Help?")
+    helpBtnEntity.setBackgroundColor(Color.white())
+    addEntity(helpBtnEntity)
+    helpBtnEntity.move(getReferenceWidth() * 0.5 - (helpBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.7 - (helpBtnEntity.getHeight() * 0.5))
+    helpBtnEntity.setClickHandler(func {
+        pushScene(new NeedHelpScene())
+        PRINT "[LOG] Change to Need Help Scene from Main Scene"
+    })
+
 }
 
 func onPointerEvent(event as PointerEvent) override
