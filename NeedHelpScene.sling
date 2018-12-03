@@ -4,5 +4,13 @@ func initialize override
 {
     base.initialize()
 
+    // Add background image.
     addTextureSpriteForSize(createTextureForImageResource("main-scene"), getReferenceWidth(), getReferenceHeight())
+
+    // Add help monster button.
+    // Add click sound effect.
+    // Add help boss button.
+    // Add click sound effect.
+    // Add close button.
+    // Add click sound effect.
 }
