@@ -137,4 +137,9 @@ func cleanup override
     if (stream != null) {
 		stream.stop()
 	}
+
+    removeAllEntities()
+    PRINT "[LOG] Remove all entities"
+    removeAllSprites()
+    PRINT "[LOG] Remove all sprites"
 }
