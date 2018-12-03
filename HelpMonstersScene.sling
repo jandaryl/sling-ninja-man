@@ -41,8 +41,33 @@ func initialize override
     addEntity(okBtnEntity)
     okBtnEntity.move(getReferenceWidth() * 0.5 - (okBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.7 - (okBtnEntity.getHeight() * 0.5))
     okBtnEntity.setClickHandler(func {
+
+        // Add click sound effect.
+        audioManager = AudioManager.forApplication(context)
+
+        if (audioManager != null) {
+            stream = audioManager.getStreamForResource("main-scene")
+            
+            if (stream != null) {
+                stream.play()
+                stream.setLooping(true)
+                PRINT "[LOG] Click sound effect from Ok Button is working"
+            }
+        }
         pushScene(new MainScene())
         PRINT "[LOG] Change to Main Scene"
     })
 
+}
+
+func cleanup override
+{
+    if (stream != null) {
+		stream.stop()
+	}
+
+    removeAllEntities()
+    PRINT "[LOG] Remove all entities from help monsters scene"
+    removeAllSprites()
+    PRINT "[LOG] Remove all sprites from help monsters scene"
 }
