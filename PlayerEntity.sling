@@ -11,6 +11,8 @@ var moveY as double
 var wallWidth as double
 var x as double
 var y as double
+var audioManager as AudioManager
+var stream as AudioStream
 
 
 func createSprite override as Sprite
@@ -26,6 +28,9 @@ func createSprite override as Sprite
     // wallWidth = 0.6 * layer.getReferenceWidth()
     // x = bgWallSprite.getX()
     // y = bgWallSprite.getY()
+
+    // audioManager = AudioManager.forApplication(context)
+
 
     return(playerSprite)
 }
@@ -59,20 +64,21 @@ func createSprite override as Sprite
 
 func onKeyEvent(event as KeyEvent)
 {	
+    if (event.isKey(KeyEvent.KEY_SPACE)) {
+        PRINT "It is working!"
+    }
+
 	if (event.isKey(KeyEvent.KEY_UP)) {
 
-        // Add walk sound effect.
-        audioManager = AudioManager.forApplication(context)
-
-        if (audioManager != null) {
-            stream = audioManager.getStreamForResource("main-scene")
+        // if (audioManager != null) {
+        //     stream = audioManager.getStreamForResource("main-scene")
             
-            if (stream != null) {
-                stream.play()
-                stream.setLooping(true)
-                PRINT "[LOG] Walk sound effect from KEY UP Button is working"
-            }
-        }
+        //     if (stream != null) {
+        //         stream.play()
+        //         stream.setLooping(true)
+        //         PRINT "[LOG] Walk sound effect from KEY UP Button is working"
+        //     }
+        // }
 
         // if (isInside(playerSprite.getX(), playerSprite.getY(), bgWallSprite.getWidth(), bgWallSprite.getHeight())) {
         //    stopMove()
@@ -88,17 +94,15 @@ func onKeyEvent(event as KeyEvent)
 	if (event.isKey(KeyEvent.KEY_DOWN)) {
 
         // Add walk sound effect.
-        audioManager = AudioManager.forApplication(context)
-
-        if (audioManager != null) {
-            stream = audioManager.getStreamForResource("main-scene")
+        // if (audioManager != null) {
+        //     stream = audioManager.getStreamForResource("main-scene")
             
-            if (stream != null) {
-                stream.play()
-                stream.setLooping(true)
-                PRINT "[LOG] Walk sound effect from KEY DOWN is working"
-            }
-        }
+        //     if (stream != null) {
+        //         stream.play()
+        //         stream.setLooping(true)
+        //         PRINT "[LOG] Walk sound effect from KEY DOWN is working"
+        //     }
+        // }
 
         playerSprite.move(playerSprite.getX(), playerSprite.getY() + 0.005)
         stats()
@@ -108,17 +112,15 @@ func onKeyEvent(event as KeyEvent)
 	if (event.isKey(KeyEvent.KEY_LEFT)) {
 
         // Add walk sound effect.
-        audioManager = AudioManager.forApplication(context)
-
-        if (audioManager != null) {
-            stream = audioManager.getStreamForResource("main-scene")
+        // if (audioManager != null) {
+        //     stream = audioManager.getStreamForResource("main-scene")
             
-            if (stream != null) {
-                stream.play()
-                stream.setLooping(true)
-                PRINT "[LOG] Walk sound effect from KEY LEFT is working"
-            }
-        }       
+        //     if (stream != null) {
+        //         stream.play()
+        //         stream.setLooping(true)
+        //         PRINT "[LOG] Walk sound effect from KEY LEFT is working"
+        //     }
+        // }       
 
         playerSprite.move(playerSprite.getX() - 0.005, playerSprite.getY())
         stats()
@@ -127,17 +129,15 @@ func onKeyEvent(event as KeyEvent)
 	if (event.isKey(KeyEvent.KEY_RIGHT)) {
 
         // Add walk sound effect.
-        audioManager = AudioManager.forApplication(context)
-
-        if (audioManager != null) {
-            stream = audioManager.getStreamForResource("main-scene")
+        // if (audioManager != null) {
+        //     stream = audioManager.getStreamForResource("main-scene")
             
-            if (stream != null) {
-                stream.play()
-                stream.setLooping(true)
-                PRINT "[LOG] Walk sound effect from KEY RIGHT is working"
-            }
-        }
+        //     if (stream != null) {
+        //         stream.play()
+        //         stream.setLooping(true)
+        //         PRINT "[LOG] Walk sound effect from KEY RIGHT is working"
+        //     }
+        // }
 
         playerSprite.move(playerSprite.getX() + 0.005, playerSprite.getY())
         stats()
