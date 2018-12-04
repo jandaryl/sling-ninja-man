@@ -4,6 +4,7 @@ var audioManager as AudioManager
 var bgStream as AudioStream
 var clickStream as AudioStream
 var quitBtnEntity as TextButtonEntity
+var bgWallSprite as TextureSprite
 
 func initialize override
 {
@@ -49,8 +50,10 @@ func initialize override
         PRINT "[LOG] Change to Main Scene"
     })
 
-    // Add the click sound effect.
     // Add the walls sprite.
+  	bgWallSprite = addTextureSpriteForSize(createTextureForImageResource("bg-wall"), 0.6 * getReferenceWidth(), 0.6 * getReferenceHeight())
+	bgWallSprite.move(getReferenceWidth() * 0.5 - (bgWallSprite.getWidth() * 0.5), getReferenceHeight() * 0.5 - (bgWallSprite.getHeight() * 0.5))
+    
     // Add the appearance sound effect.
     // Add the player movement via pointer/keymaps.
     // Add the player sword skill.
