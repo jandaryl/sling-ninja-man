@@ -31,24 +31,6 @@ func initialize override
     quitBtnEntity.setBackgroundColor(Color.white())
     addEntity(quitBtnEntity)
     quitBtnEntity.move(getReferenceWidth() * 0.9 - (quitBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.1 - (quitBtnEntity.getHeight() * 0.5))
-    quitBtnEntity.setClickHandler(func {
-
-        // Add click sound effect.
-        audioManager = AudioManager.forApplication(context)
-
-        if (audioManager != null) {
-            clickStream = audioManager.getStreamForResource("main-scene")
-            
-            if (clickStream != null) {
-                clickStream.play()
-                clickStream.setLooping(true)
-                PRINT "[LOG] Click sound effect from Quit Button is working"
-            }
-        }
-
-        pushScene(new MainScene())
-        PRINT "[LOG] Change to Main Scene"
-    })
 
     // Add the background wall sprite.
     addEntity(bgWallEntity = new BackgroundWallEntity())
@@ -87,6 +69,34 @@ func initialize override
 func getBackgroundWallEntity as BackgroundWallEntity
 {
     return bgWallEntity
+}
+
+func onPointerEvent(event as PointerEvent) override
+{
+    base.onPointerEvent(event)
+    
+	if (event.action == PointerEvent.DOWN) {
+		
+        if (event.isInside(quitBtnEntity.getX(), quitBtnEntity.getY(), quitBtnEntity.getWidth(), quitBtnEntity.getHeight())) {
+            
+            // Add click sound effect.
+            audioManager = AudioManager.forApplication(context)
+
+            if (audioManager != null) {
+                clickStream = audioManager.getStreamForResource("main-scene")
+                
+                if (clickStream != null) {
+                    clickStream.play()
+                    clickStream.setLooping(true)
+                    PRINT "[LOG] Click sound effect from Quit Button is working"
+                }
+            }
+
+            pushScene(new MainScene())
+            PRINT "[LOG] Change to Main Scene"
+        }
+	}
+
 }
 
 func cleanup override

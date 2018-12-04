@@ -1,6 +1,6 @@
-class is SpriteEntity imports motion imports cape imports cave:
+class is SpriteEntity is PointerListener imports motion imports cape imports cave:
 
-var playerSprite as Sprite
+var playerSprite as TextureSprite
 var scene as BattleScene
 var battleScene as BattleScene
 var bgWallSprite as BackgroundWallEntity
@@ -16,4 +16,23 @@ func createSprite override as Sprite
 	playerSprite.move(bgWallSprite.getWidth() * 0.415 - (playerSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.2 - (playerSprite.getHeight() * 0.5))
 
     return(playerSprite)
+}
+
+func onPointerEvent(event as PointerEvent) as boolean
+{
+    
+	if (event.action == PointerEvent.DOWN) {
+		
+        // Add the background boundary limitation.
+        if (event.isInside(bgWallSprite.getX(), bgWallSprite.getY(), bgWallSprite.getWidth(), bgWallSprite.getHeight())) {
+
+            var corX = event.getX() - (playerSprite.getWidth() * 0.5)
+            var corY = event.getY() - (playerSprite.getHeight() * 0.5)
+            
+            playerSprite.move(corX, corY)
+    
+        }
+	}
+
+	return true
 }
