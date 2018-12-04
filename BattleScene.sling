@@ -7,6 +7,7 @@ var quitBtnEntity as TextButtonEntity
 var bgWallSprite as TextureSprite
 var leftBottomWallSprite as TextureSprite
 var playerSprite as TextureSprite
+var bgWallEntity as BackgroundWallEntity
 
 func initialize override
 {
@@ -53,12 +54,14 @@ func initialize override
     })
 
     // Add the background wall sprite.
-  	bgWallSprite = addTextureSpriteForSize(createTextureForImageResource("dark-bg-wall"), 0.6 * getReferenceWidth(), 0.6 * getReferenceHeight())
-	bgWallSprite.move(getReferenceWidth() * 0.5 - (bgWallSprite.getWidth() * 0.5), getReferenceHeight() * 0.5 - (bgWallSprite.getHeight() * 0.5))
+    addEntity(bgWallEntity = new BackgroundWallEntity())
+  	// bgWallSprite = addTextureSpriteForSize(createTextureForImageResource("dark-bg-wall"), 0.6 * getReferenceWidth(), 0.6 * getReferenceHeight())
+	// bgWallSprite.move(getReferenceWidth() * 0.5 - (bgWallSprite.getWidth() * 0.5), getReferenceHeight() * 0.5 - (bgWallSprite.getHeight() * 0.5))
     
     // Add the left bottom wall sprite.
-    leftBottomWallSprite = addTextureSpriteForSize(createTextureForImageResource("wall"), 0.1 * getReferenceWidth(), 0.1 * getReferenceHeight())
-	leftBottomWallSprite.move(bgWallSprite.getWidth() * 0.415 - (leftBottomWallSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.0 - (leftBottomWallSprite.getHeight() * 0.5))
+    addEntity(new LeftBottomWallEntity())
+    // leftBottomWallSprite = addTextureSpriteForSize(createTextureForImageResource("wall"), 0.1 * getReferenceWidth(), 0.1 * getReferenceHeight())
+	// leftBottomWallSprite.move(bgWallSprite.getWidth() * 0.415 - (leftBottomWallSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.0 - (leftBottomWallSprite.getHeight() * 0.5))
 
     // Add the player movement via pointer/keymaps.
     // Add the player sword skill.
@@ -85,6 +88,11 @@ func initialize override
     // Add the boss walk sound effect.
 }
 
+func getBackgroundWallEntity as BackgroundWallEntity
+{
+    return bgWallEntity
+}
+
 func cleanup override
 {
     if (bgStream != null) {
@@ -100,3 +108,4 @@ func cleanup override
     removeAllSprites()
     PRINT "[LOG] Remove all sprites from battle scene"
 }
+

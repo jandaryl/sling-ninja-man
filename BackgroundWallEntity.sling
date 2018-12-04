@@ -1,0 +1,12 @@
+class is SpriteEntity imports motion imports cape imports cave:
+
+var bgWallSprite as Sprite
+
+func createSprite override as Sprite
+{
+    var wallImage = scene.createTextureForImageResource("dark-bg-wall")
+    bgWallSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.6 * layer.getReferenceWidth(), 0.6 * layer.getReferenceHeight()) 
+    bgWallSprite.move(layer.getReferenceWidth() * 0.5 - (bgWallSprite.getWidth() * 0.5), layer.getReferenceHeight() * 0.5 - (bgWallSprite.getHeight() * 0.5))
+    
+    return(bgWallSprite)
+}

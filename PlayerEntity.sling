@@ -1,0 +1,11 @@
+// class is SpriteEntity is KeyListener is PointerListener imports motion imports cave imports cape:
+
+
+// func createSprite override as Sprite
+// {
+// 	screenWidth = layer.getReferenceWidth()
+// 	screenHeight = layer.getReferenceHeight()
+// 	playerSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, scene.createTextureForImageResource("blue-bird"), 0.05 * screenWidth, 0.05 * screenHeight)
+// 	playerSprite.move(bgWallSprite.getWidth() * 0.415 - (playerSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.2 - (playerSprite.getHeight() * 0.5))
+// 	return player
+// }
