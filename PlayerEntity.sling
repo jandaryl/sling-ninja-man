@@ -1,11 +1,19 @@
-// class is SpriteEntity is KeyListener is PointerListener imports motion imports cave imports cape:
+class is SpriteEntity imports motion imports cape imports cave:
 
+var playerSprite as Sprite
+var scene as BattleScene
+var battleScene as BattleScene
+var bgWallSprite as BackgroundWallEntity
 
-// func createSprite override as Sprite
-// {
-// 	screenWidth = layer.getReferenceWidth()
-// 	screenHeight = layer.getReferenceHeight()
-// 	playerSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, scene.createTextureForImageResource("blue-bird"), 0.05 * screenWidth, 0.05 * screenHeight)
-// 	playerSprite.move(bgWallSprite.getWidth() * 0.415 - (playerSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.2 - (playerSprite.getHeight() * 0.5))
-// 	return player
-// }
+func createSprite override as Sprite
+{
+    battleScene = scene
+    bgWallSprite = battleScene.getBackgroundWallEntity()
+
+    var wallImage = scene.createTextureForImageResource("player")
+
+    playerSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.1 * layer.getReferenceWidth(), 0.1 * layer.getReferenceHeight()) 
+	playerSprite.move(bgWallSprite.getWidth() * 0.415 - (playerSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.2 - (playerSprite.getHeight() * 0.5))
+
+    return(playerSprite)
+}

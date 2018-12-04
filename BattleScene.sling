@@ -4,9 +4,6 @@ var audioManager as AudioManager
 var bgStream as AudioStream
 var clickStream as AudioStream
 var quitBtnEntity as TextButtonEntity
-var bgWallSprite as TextureSprite
-var leftBottomWallSprite as TextureSprite
-var playerSprite as TextureSprite
 var bgWallEntity as BackgroundWallEntity
 
 func initialize override
@@ -55,13 +52,12 @@ func initialize override
 
     // Add the background wall sprite.
     addEntity(bgWallEntity = new BackgroundWallEntity())
-  	// bgWallSprite = addTextureSpriteForSize(createTextureForImageResource("dark-bg-wall"), 0.6 * getReferenceWidth(), 0.6 * getReferenceHeight())
-	// bgWallSprite.move(getReferenceWidth() * 0.5 - (bgWallSprite.getWidth() * 0.5), getReferenceHeight() * 0.5 - (bgWallSprite.getHeight() * 0.5))
-    
+ 
     // Add the left bottom wall sprite.
     addEntity(new LeftBottomWallEntity())
-    // leftBottomWallSprite = addTextureSpriteForSize(createTextureForImageResource("wall"), 0.1 * getReferenceWidth(), 0.1 * getReferenceHeight())
-	// leftBottomWallSprite.move(bgWallSprite.getWidth() * 0.415 - (leftBottomWallSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.0 - (leftBottomWallSprite.getHeight() * 0.5))
+
+    // Add the player sprite.
+    addEntity(new PlayerEntity())
 
     // Add the player movement via pointer/keymaps.
     // Add the player sword skill.
