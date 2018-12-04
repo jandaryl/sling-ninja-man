@@ -1,9 +1,17 @@
-class is SpriteEntity is PointerListener imports motion imports cape imports cave:
+class is SpriteEntity is KeyListener imports motion imports cape imports cave:
 
 var playerSprite as TextureSprite
 var scene as BattleScene
 var battleScene as BattleScene
 var bgWallSprite as BackgroundWallEntity
+var corX as double
+var corY as double
+var moveX as double
+var moveY as double
+var wallWidth as double
+var x as double
+var y as double
+
 
 func createSprite override as Sprite
 {
@@ -14,25 +22,154 @@ func createSprite override as Sprite
 
     playerSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.1 * layer.getReferenceWidth(), 0.1 * layer.getReferenceHeight()) 
 	playerSprite.move(bgWallSprite.getWidth() * 0.415 - (playerSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.2 - (playerSprite.getHeight() * 0.5))
+    
+    // wallWidth = 0.6 * layer.getReferenceWidth()
+    // x = bgWallSprite.getX()
+    // y = bgWallSprite.getY()
 
     return(playerSprite)
 }
 
-func onPointerEvent(event as PointerEvent) as boolean
-{
-    
-	if (event.action == PointerEvent.DOWN) {
+// func onPointerEvent(event as PointerEvent) as boolean
+// {
+// 	if (event.action == PointerEvent.DOWN) {
 		
-        // Add the background boundary limitation.
-        if (event.isInside(bgWallSprite.getX(), bgWallSprite.getY(), bgWallSprite.getWidth(), bgWallSprite.getHeight())) {
+// 		corX = event.getX() 
+// 		corY = event.getY()
+// 	}
+// 	return true
+// }
 
-            var corX = event.getX() - (playerSprite.getWidth() * 0.5)
-            var corY = event.getY() - (playerSprite.getHeight() * 0.5)
+// func stopMove
+// {
+//     playerSprite.move(playerSprite.getX(), playerSprite.getY())
+// }
+
+// func isInside(xc as double, yc as double, width as double, height as double) as bool
+// {
+// 	if x >= xc && x < xc+width && y >= yc && y < yc+height:
+// 		return false
+// 	return true
+// }
+
+// func isInsideInWallBackground
+// {
+//     isInside(playerSprite.getX(), playerSprite.getY(), bgWallSprite.getWidth(), bgWallSprite.getHeight())
+// }
+
+func onKeyEvent(event as KeyEvent)
+{	
+	if (event.isKey(KeyEvent.KEY_UP)) {
+
+        // Add walk sound effect.
+        audioManager = AudioManager.forApplication(context)
+
+        if (audioManager != null) {
+            stream = audioManager.getStreamForResource("main-scene")
             
-            playerSprite.move(corX, corY)
-    
+            if (stream != null) {
+                stream.play()
+                stream.setLooping(true)
+                PRINT "[LOG] Walk sound effect from KEY UP Button is working"
+            }
         }
+
+        // if (isInside(playerSprite.getX(), playerSprite.getY(), bgWallSprite.getWidth(), bgWallSprite.getHeight())) {
+        //    stopMove()
+        // }
+        // else {
+            
+            playerSprite.move(playerSprite.getX(), playerSprite.getY() - 0.005)
+            stats()
+        // }
+
 	}
 
-	return true
+	if (event.isKey(KeyEvent.KEY_DOWN)) {
+
+        // Add walk sound effect.
+        audioManager = AudioManager.forApplication(context)
+
+        if (audioManager != null) {
+            stream = audioManager.getStreamForResource("main-scene")
+            
+            if (stream != null) {
+                stream.play()
+                stream.setLooping(true)
+                PRINT "[LOG] Walk sound effect from KEY DOWN is working"
+            }
+        }
+
+        playerSprite.move(playerSprite.getX(), playerSprite.getY() + 0.005)
+        stats()
+
+	}
+
+	if (event.isKey(KeyEvent.KEY_LEFT)) {
+
+        // Add walk sound effect.
+        audioManager = AudioManager.forApplication(context)
+
+        if (audioManager != null) {
+            stream = audioManager.getStreamForResource("main-scene")
+            
+            if (stream != null) {
+                stream.play()
+                stream.setLooping(true)
+                PRINT "[LOG] Walk sound effect from KEY LEFT is working"
+            }
+        }       
+
+        playerSprite.move(playerSprite.getX() - 0.005, playerSprite.getY())
+        stats()
+	}
+
+	if (event.isKey(KeyEvent.KEY_RIGHT)) {
+
+        // Add walk sound effect.
+        audioManager = AudioManager.forApplication(context)
+
+        if (audioManager != null) {
+            stream = audioManager.getStreamForResource("main-scene")
+            
+            if (stream != null) {
+                stream.play()
+                stream.setLooping(true)
+                PRINT "[LOG] Walk sound effect from KEY RIGHT is working"
+            }
+        }
+
+        playerSprite.move(playerSprite.getX() + 0.005, playerSprite.getY())
+        stats()
+  
+	}
+	else {
+		PRINT("Unhandled key event: `" .. event.getStringValue() .. "'")
+	}
 }
+
+
+// func tick(gameTime as TimeValue, delta as double) override
+// {
+// 	base.tick(gameTime, delta)
+
+// 	// The first monster will follow the playerSprite.
+// 	moveX -= (moveX - corX) * 0.0001
+// 	moveY -= (moveY - corY) * 0.0001
+
+// 	playerSprite.move(moveX, moveY)
+// }
+
+func stats
+{
+    PRINT("Background Wall Sprite width is - " .. String.asString(wallWidth))
+    PRINT("Background Wall Sprite width is - " .. String.asString(bgWallSprite.getWidth()))
+    PRINT("Background Wall Sprite height is - " .. String.asString(bgWallSprite.getHeight()))
+    PRINT("Background Wall Sprite X is - " .. String.asString(bgWallSprite.getX()))
+    PRINT("Background Wall Sprite Y is - " .. String.asString(bgWallSprite.getY()))
+    PRINT("Player Sprite width is - " .. String.asString(playerSprite.getWidth()))
+    PRINT("Player Sprite height is - " .. String.asString(playerSprite.getHeight()))
+    PRINT("Player Sprite X is - " .. String.asString(playerSprite.getX()))
+    PRINT("Player Sprite Y is - " .. String.asString(playerSprite.getY()))
+}
+
