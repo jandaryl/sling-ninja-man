@@ -2,21 +2,36 @@ class is SpriteEntity imports motion imports cave imports cape:
 
 var screenWidth as double
 var screenHeight as double
-var playerStandMidSprite as TextureSprite
+var playerSlashMidSprite as TextureSprite
 var fadeTimer = 0 as int
 var battleScene as BattleScene
 var scene as BattleScene
 var playerEntity as PlayerEntity
+var leftBottomWallSprite as LeftBottomWallEntity
 
 func createSprite override as Sprite
 {	
 	battleScene = scene
 
+	leftBottomWallSprite = battleScene.getLeftBottomWall()
+
 	var monsterImage = scene.createTextureForImageResource("slash-mid")
 	screenHeight = layer.getReferenceHeight()
 	screenWidth = layer.getReferenceWidth()
-	playerStandMidSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, monsterImage, 0.10 * screenWidth, 0.10 * screenHeight)
-	return playerStandMidSprite
+	playerSlashMidSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, monsterImage, 0.10 * screenWidth, 0.10 * screenHeight)
+	return playerSlashMidSprite
+}
+
+func stats
+{
+    PRINT("Left Bottom Wall Sprite width is - " .. String.asString(leftBottomWallSprite.getWidth()))
+    PRINT("Left Bottom Wall Sprite height is - " .. String.asString(leftBottomWallSprite.getHeight()))
+    PRINT("Left Bottom Wall Sprite X is - " .. String.asString(leftBottomWallSprite.getX()))
+    PRINT("Left Bottom Wall Sprite Y is - " .. String.asString(leftBottomWallSprite.getY()))
+	PRINT("Left Bottom Wall Sprite width is - " .. String.asString(playerEntity.getWidth()))
+    PRINT("Left Bottom Wall Sprite height is - " .. String.asString(playerEntity.getHeight()))
+    PRINT("Left Bottom Wall Sprite X is - " .. String.asString(playerEntity.getX()))
+    PRINT("Left Bottom Wall Sprite Y is - " .. String.asString(playerEntity.getY()))
 }
 
 func tick(gameTime as TimeValue, delta as double) override
@@ -27,17 +42,15 @@ func tick(gameTime as TimeValue, delta as double) override
 	PRINT("Fade Timer is - " .. String.asString(fadeTimer))
 
 	if (fadeTimer == 10) {
-		playerStandMidSprite.setAlpha(0.0)
+		playerSlashMidSprite.setAlpha(0.0)
 		battleScene.addEntity(playerEntity = new PlayerEntity())
-		playerEntity.move(playerStandMidSprite.getX(), playerStandMidSprite.getY())
+
+		if (playerEntity.getX() > leftBottomWallSprite.getWidth() || playerEntity.getY() > leftBottomWallSprite.getHeight()) {
+			leftBottomWallSprite.setAlpha(0.0)
+		}
+		
+		playerEntity.move(playerSlashMidSprite.getX(), playerSlashMidSprite.getY())
+		stats()
 	}
 
-}
-
-func cleanup override
-{
-	layer.removeSprite(playerStandMidSprite)
-	layer.removeSprite(playerEntity)
-	removeFromContainer()
-	PRINT "[LOG] Remove the sprites from player slash mid entity scene"
 }

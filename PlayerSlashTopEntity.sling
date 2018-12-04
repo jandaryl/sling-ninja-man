@@ -34,10 +34,4 @@ func tick(gameTime as TimeValue, delta as double) override
 
 }
 
-func cleanup override
-{
-	layer.removeSprite(playerSlashTopSprite)
-	layer.removeSprite(playerSlashMidEntity)
-	removeFromContainer()
-	PRINT "[LOG] Remove the sprites from player slash top entity scene"
-}
+ 

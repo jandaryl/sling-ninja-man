@@ -213,12 +213,3 @@ func stats
     PRINT("Player Sprite X is - " .. String.asString(playerSprite.getX()))
     PRINT("Player Sprite Y is - " .. String.asString(playerSprite.getY()))
 }
-
-
-func cleanup override
-{
-	layer.removeSprite(playerStandUpEntity)
-    layer.removeSprite(playerSprite)
-    removeFromContainer()
-    PRINT "[LOG] Remove the sprites from player entity scene"
-}   
