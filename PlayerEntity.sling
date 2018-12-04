@@ -9,10 +9,11 @@ var corY as double
 var moveX as double
 var moveY as double
 var wallWidth as double
-var x as double
-var y as double
-var audioManager as AudioManager
-var stream as AudioStream
+// var x as double
+// var y as double
+// var audioManager as AudioManager
+// var stream as AudioStream
+var playerStandUpEntity as PlayerStandUpEntity
 
 
 func createSprite override as Sprite
@@ -22,7 +23,7 @@ func createSprite override as Sprite
 
     var wallImage = scene.createTextureForImageResource("player")
 
-    playerSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.1 * layer.getReferenceWidth(), 0.1 * layer.getReferenceHeight()) 
+    playerSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.07 * layer.getReferenceWidth(), 0.07 * layer.getReferenceHeight()) 
 	playerSprite.move(bgWallSprite.getWidth() * 0.415 - (playerSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.2 - (playerSprite.getHeight() * 0.5))
     
     // wallWidth = 0.6 * layer.getReferenceWidth()
@@ -62,10 +63,29 @@ func createSprite override as Sprite
 //     isInside(playerSprite.getX(), playerSprite.getY(), bgWallSprite.getWidth(), bgWallSprite.getHeight())
 // }
 
+func slashSkillAnimate
+{
+    layer.removeSprite(playerSprite)
+    battleScene.addEntity(playerStandUpEntity = new PlayerStandUpEntity())
+    playerStandUpEntity.move(playerSprite.getX(), playerSprite.getY())
+    PRINT "The slash skill animate is working from player entity."
+}
+
 func onKeyEvent(event as KeyEvent)
 {	
     if (event.isKey(KeyEvent.KEY_SPACE)) {
-        PRINT "It is working!"
+        
+        // if (audioManager != null) {
+        //     stream = audioManager.getStreamForResource("main-scene")
+            
+        //     if (stream != null) {
+        //         stream.play()
+        //         stream.setLooping(true)
+        //         PRINT "[LOG] Slash sound effect from KEY SPACE Button is working"
+        //     }
+        // }
+
+        slashSkillAnimate()
     }
 
 	if (event.isKey(KeyEvent.KEY_UP)) {
@@ -173,3 +193,10 @@ func stats
     PRINT("Player Sprite Y is - " .. String.asString(playerSprite.getY()))
 }
 
+
+func cleanup override
+{
+	layer.removeSprite(playerStandUpEntity)
+    layer.removeSprite(playerSprite)
+    PRINT "[LOG] Remove the sprites from player entity scene"
+}   

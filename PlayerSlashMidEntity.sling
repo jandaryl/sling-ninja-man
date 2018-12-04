@@ -1,0 +1,42 @@
+class is SpriteEntity imports motion imports cave imports cape:
+
+var screenWidth as double
+var screenHeight as double
+var playerStandMidSprite as TextureSprite
+var fadeTimer = 0 as int
+var battleScene as BattleScene
+var scene as BattleScene
+var playerEntity as PlayerEntity
+
+func createSprite override as Sprite
+{	
+	battleScene = scene
+
+	var monsterImage = scene.createTextureForImageResource("stand-up")
+	screenHeight = layer.getReferenceHeight()
+	screenWidth = layer.getReferenceWidth()
+	playerStandMidSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, monsterImage, 0.10 * screenWidth, 0.10 * screenHeight)
+	return playerStandMidSprite
+}
+
+func tick(gameTime as TimeValue, delta as double) override
+{
+	base.tick(gameTime, delta)
+
+	fadeTimer++
+	PRINT("Fade Timer is - " .. String.asString(fadeTimer))
+
+	if (fadeTimer == 10) {
+		playerStandMidSprite.setAlpha(0.0)
+		battleScene.addEntity(playerEntity = new PlayerEntity())
+		playerEntity.move(playerStandMidSprite.getX(), playerStandMidSprite.getY())
+	}
+
+}
+
+func cleanup override
+{
+	layer.removeSprite(playerStandMidSprite)
+	layer.removeSprite(playerEntity)
+	PRINT "[LOG] Remove the sprites from player slash mid entity scene"
+}
