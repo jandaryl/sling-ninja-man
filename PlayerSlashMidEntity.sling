@@ -12,7 +12,7 @@ func createSprite override as Sprite
 {	
 	battleScene = scene
 
-	var monsterImage = scene.createTextureForImageResource("stand-up")
+	var monsterImage = scene.createTextureForImageResource("slash-mid")
 	screenHeight = layer.getReferenceHeight()
 	screenWidth = layer.getReferenceWidth()
 	playerStandMidSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, monsterImage, 0.10 * screenWidth, 0.10 * screenHeight)
@@ -38,5 +38,6 @@ func cleanup override
 {
 	layer.removeSprite(playerStandMidSprite)
 	layer.removeSprite(playerEntity)
+	removeFromContainer()
 	PRINT "[LOG] Remove the sprites from player slash mid entity scene"
 }

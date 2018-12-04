@@ -38,5 +38,6 @@ func cleanup override
 {
 	layer.removeSprite(playerStandUpSprite)
 	layer.removeSprite(playerSlashTopEntity)
+	removeFromContainer()
 	PRINT "[LOG] Remove the sprites from player stand up entity scene"
 }

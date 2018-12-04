@@ -14,6 +14,9 @@ var wallWidth as double
 // var audioManager as AudioManager
 // var stream as AudioStream
 var playerStandUpEntity as PlayerStandUpEntity
+// var isBombPlanted as boolean
+// var playerBombEntity as PlayerBombEntity
+
 
 
 func createSprite override as Sprite
@@ -87,6 +90,22 @@ func onKeyEvent(event as KeyEvent)
 
         slashSkillAnimate()
     }
+
+    
+    // if (event.isKey(KeyEvent.KEY_TAB)) {
+        
+    //     // if (audioManager != null) {
+    //     //     stream = audioManager.getStreamForResource("main-scene")
+            
+    //     //     if (stream != null) {
+    //     //         stream.play()
+    //     //         stream.setLooping(true)
+    //     //         PRINT "[LOG] Bomb sound effect from KEY TAB Button is working"
+    //     //     }
+    //     // }
+
+    //     isBombPlanted = true
+    // }
 
 	if (event.isKey(KeyEvent.KEY_UP)) {
 
@@ -169,16 +188,18 @@ func onKeyEvent(event as KeyEvent)
 }
 
 
-// func tick(gameTime as TimeValue, delta as double) override
-// {
-// 	base.tick(gameTime, delta)
+func tick(gameTime as TimeValue, delta as double) override
+{
+	base.tick(gameTime, delta)
 
-// 	// The first monster will follow the playerSprite.
-// 	moveX -= (moveX - corX) * 0.0001
-// 	moveY -= (moveY - corY) * 0.0001
+    // if (isBombPlanted == true)  {
+    //     battleScene.addEntity(playerBombEntity = new PlayerBombEntity())
+    //     playerBombEntity.move(playerSprite.getX(), playerSprite.getY())
+    //     PRINT "The bomb skill animate is working from battle scene."
+    //     isBombPlanted = false
+    // }
 
-// 	playerSprite.move(moveX, moveY)
-// }
+}
 
 func stats
 {
@@ -198,5 +219,6 @@ func cleanup override
 {
 	layer.removeSprite(playerStandUpEntity)
     layer.removeSprite(playerSprite)
+    removeFromContainer()
     PRINT "[LOG] Remove the sprites from player entity scene"
 }   
