@@ -1,10 +1,25 @@
 class is SpriteSceneWithEntities imports cape imports cave imports motion #battleScene:
 
+var audioManager as AudioManager
+var stream as AudioStream
+
 func initialize override
 {
     base.initialize()
 
     // Add the background music.
+    audioManager = AudioManager.forApplication(context)
+
+    if (audioManager != null) {
+        stream = audioManager.getStreamForResource("main-scene")
+        
+        if (stream != null) {
+            stream.play()
+            stream.setLooping(true)
+            PRINT "[LOG] Background music is working"
+        }
+    }
+
     // Add the background image.
     addTextureSpriteForSize(createTextureForImageResource("main-scene"), getReferenceWidth(), getReferenceHeight())
 
@@ -37,3 +52,9 @@ func initialize override
     // Add the boss walk sound effect.
 }
 
+func cleanup override
+{
+    if (stream != null) {
+		stream.stop()
+	}
+}
