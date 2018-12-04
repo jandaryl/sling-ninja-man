@@ -2,6 +2,7 @@ class is SpriteSceneWithEntities imports cape imports cave imports motion #battl
 
 var audioManager as AudioManager
 var stream as AudioStream
+var quitBtnEntity as TextButtonEntity
 
 func initialize override
 {
@@ -24,6 +25,15 @@ func initialize override
     addTextureSpriteForSize(createTextureForImageResource("main-scene"), getReferenceWidth(), getReferenceHeight())
 
     // Add the quit button.
+    quitBtnEntity = TextButtonEntity.forText("Quit")
+    quitBtnEntity.setBackgroundColor(Color.white())
+    addEntity(quitBtnEntity)
+    quitBtnEntity.move(getReferenceWidth() * 0.9 - (quitBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.1 - (quitBtnEntity.getHeight() * 0.5))
+    quitBtnEntity.setClickHandler(func {
+        pushScene(new MainScene())
+        PRINT "[LOG] Change to Main Scene"
+    })
+
     // Add the click sound effect.
     // Add the walls sprite.
     // Add the appearance sound effect.
@@ -57,4 +67,9 @@ func cleanup override
     if (stream != null) {
 		stream.stop()
 	}
+
+    removeAllEntities()
+    PRINT "[LOG] Remove all entities from battle scene"
+    removeAllSprites()
+    PRINT "[LOG] Remove all sprites from battle scene"
 }
