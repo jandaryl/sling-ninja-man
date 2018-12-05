@@ -44,6 +44,18 @@ func initialize override
 
     // Add the background wall sprite.
     addEntity(bgWallEntity = new BackgroundWallEntity())
+
+    // Add the torch sprites.
+    addEntity(new TorchEntity())
+    addEntity(new Torch2Entity())
+    addEntity(new Torch3Entity())
+    addEntity(new Torch4Entity())
+    addEntity(new Torch5Entity())
+    addEntity(new Torch6Entity())
+    addEntity(new Torch7Entity())
+    addEntity(new Torch8Entity())
+    addEntity(new Torch9Entity())
+    addEntity(new Torch10Entity())
  
     // Add the left bottom wall sprite.
     addEntity(leftBottomWall = new LeftBottomWallEntity())

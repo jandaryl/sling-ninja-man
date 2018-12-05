@@ -1,0 +1,19 @@
+class is SpriteEntity imports motion imports cape imports cave:
+
+var torch9Sprite as Sprite
+var scene as BattleScene
+var battleScene as BattleScene
+var bgWallSprite as BackgroundWallEntity
+
+func createSprite override as Sprite
+{
+    battleScene = scene
+    bgWallSprite = battleScene.getBackgroundWallEntity()
+
+    var wallImage = scene.createTextureForImageResource("torch")
+
+    torch9Sprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.1 * layer.getReferenceWidth(), 0.1 * layer.getReferenceHeight()) 
+    torch9Sprite.move(bgWallSprite.getWidth() * 1.0 - (torch9Sprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.25 - (torch9Sprite.getHeight() * 0.5))
+   
+    return(torch9Sprite)
+}
