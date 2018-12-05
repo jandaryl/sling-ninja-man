@@ -1,0 +1,37 @@
+class is SpriteEntity is KeyListener imports motion imports cape imports cave:
+
+var bossSprite as Sprite
+var scene as BattleScene
+var battleScene as BattleScene
+var bgWallSprite as BackgroundWallEntity
+var smallFireEntity as BossSmallFireEntity
+
+func createSprite override as Sprite
+{
+    battleScene = scene
+    bgWallSprite = battleScene.getBackgroundWallEntity()
+
+    var wallImage = scene.createTextureForImageResource("boss-stand")
+
+    bossSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.13 * layer.getReferenceWidth(), 0.13 * layer.getReferenceHeight()) 
+   	bossSprite.move(bgWallSprite.getWidth() * 1.2 - (bossSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 0.85 - (bossSprite.getHeight() * 0.5))
+  
+    return(bossSprite)
+}
+
+func fireSkillAnimate
+{
+    layer.removeSprite(bossSprite)
+    battleScene.addEntity(smallFireEntity = new BossSmallFireEntity())
+    smallFireEntity.move(bossSprite.getX(), bossSprite.getY())
+    smallFireEntity.setTrueAnimate()
+    layer.removeSprite(smallFireEntity)
+    PRINT "The fire skill animate is working from boss entity."
+}
+
+func onKeyEvent(event as KeyEvent)
+{	
+    if (event.isKey(KeyEvent.KEY_TAB)) {
+        fireSkillAnimate()
+    }
+}

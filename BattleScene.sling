@@ -15,6 +15,7 @@ var timeBattleProp as TextProperties
 var timeBattleSprite as TextSprite
 var wallHealth = 100 as int
 var timer = 1000 as int
+var bossSprite as BossEntity
 
 func initialize override
 {
@@ -62,6 +63,9 @@ func initialize override
 
     // Add the player sprite.
     addEntity(playerSprite = new PlayerEntity())
+
+    // Add the boss sprite.
+    addEntity(bossSprite = new BossEntity())
 
     playerHealthProp = TextProperties.forText("Player Health : 100")
 	playerHealthProp.setTextColor(Color.white())
@@ -132,6 +136,11 @@ func getBackgroundWallEntity as BackgroundWallEntity
 func getLeftBottomWall as LeftBottomWallEntity
 {
     return leftBottomWall
+}
+
+func getBossSpriteEntity as BossEntity
+{
+    return bossSprite
 }
 
 func setWallHealth

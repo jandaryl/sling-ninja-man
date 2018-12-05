@@ -1,0 +1,39 @@
+class is SpriteEntity imports motion imports cave imports cape:
+
+var screenWidth as double
+var screenHeight as double
+var bossBigFireSprite as TextureSprite
+var fadeTimer = 0 as int
+var battleScene as BattleScene
+var scene as BattleScene
+var bossEntity as BossEntity
+
+func createSprite override as Sprite
+{	
+	battleScene = scene
+    bossEntity = battleScene.getBossSpriteEntity()
+    
+	var fireImage = scene.createTextureForImageResource("big-fire")
+	screenHeight = layer.getReferenceHeight()
+	screenWidth = layer.getReferenceWidth()
+	bossBigFireSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, fireImage, 0.17 * screenWidth, 0.17 * screenHeight)
+	return bossBigFireSprite
+}
+
+func tick(gameTime as TimeValue, delta as double) override
+{
+	base.tick(gameTime, delta)
+
+    fadeTimer++
+	PRINT("Fade Timer is - " .. String.asString(fadeTimer))
+
+
+	if (fadeTimer == 10) {
+        layer.removeSprite(bossBigFireSprite)
+        battleScene.removeEntity(bossEntity)
+        // TODO: handle collision
+		battleScene.addEntity(bossEntity = new BossEntity())
+		bossEntity.move(bossBigFireSprite.getX(), bossBigFireSprite.getY())
+	}
+
+}
