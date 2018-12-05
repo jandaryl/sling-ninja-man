@@ -11,8 +11,8 @@ func initialize override
 {
     base.initialize()
 
-    // Add background image.
-    addTextureSpriteForSize(createTextureForImageResource("main-scene"), getReferenceWidth(), getReferenceHeight())
+    // Add moving background image.
+    addEntity(new MovingBackgroundEntity())
 
     // Add story words sprite.
     storyWordProp = TextProperties.forText("Ninja Man, story line...")

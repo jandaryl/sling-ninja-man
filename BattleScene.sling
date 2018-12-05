@@ -7,6 +7,14 @@ var quitBtnEntity as TextButtonEntity
 var bgWallEntity as BackgroundWallEntity
 var playerSprite as PlayerEntity
 var leftBottomWall as LeftBottomWallEntity
+var bossHealthProp as TextProperties
+var bossHealthSprite as TextSprite
+var playerHealthProp as TextProperties
+var playerHealthSprite as TextSprite
+var timeBattleProp as TextProperties
+var timeBattleSprite as TextSprite
+var wallHealth = 100 as int
+var timer = 1000 as int
 
 func initialize override
 {
@@ -25,8 +33,8 @@ func initialize override
         }
     }
 
-    // Add the background image.
-    addTextureSpriteForSize(createTextureForImageResource("main-scene"), getReferenceWidth(), getReferenceHeight())
+    // Add the moving background image.
+    addEntity(new MovingBackgroundEntity())
 
     // Add the quit button.
     quitBtnEntity = TextButtonEntity.forText("Quit")
@@ -42,6 +50,37 @@ func initialize override
 
     // Add the player sprite.
     addEntity(playerSprite = new PlayerEntity())
+
+    playerHealthProp = TextProperties.forText("Player Health : 100")
+	playerHealthProp.setTextColor(Color.white())
+	playerHealthProp.setFontSizeRelative(0.025)
+	playerHealthProp.setFontFamily("Fira Code")
+	playerHealthProp.setFontIsItalic(true)
+
+	playerHealthSprite = addTextSprite(playerHealthProp)
+	playerHealthSprite.setText(playerHealthProp)
+	playerHealthSprite.move(0.0, getReferenceHeight() - playerHealthSprite.getHeight())
+
+    timeBattleProp = TextProperties.forText("Time Limit 1000")
+	timeBattleProp.setTextColor(Color.white())
+	timeBattleProp.setFontSizeRelative(0.02)
+	timeBattleProp.setFontFamily("Fira Code")
+	timeBattleProp.setFontIsItalic(true)
+
+	timeBattleSprite = addTextSprite(timeBattleProp)
+	timeBattleSprite.setText(timeBattleProp)
+	timeBattleSprite.move(getReferenceWidth() * 0.5 - (timeBattleSprite.getWidth() * 0.5), getReferenceHeight() * 0.07 - (timeBattleSprite.getHeight() * 0.5))
+
+
+    bossHealthProp = TextProperties.forText("Wall Health : 100")
+	bossHealthProp.setTextColor(Color.white())
+	bossHealthProp.setFontSizeRelative(0.025)
+	bossHealthProp.setFontFamily("Fira Code")
+	bossHealthProp.setFontIsItalic(true)
+
+	bossHealthSprite = addTextSprite(bossHealthProp)
+	bossHealthSprite.setText(bossHealthProp)
+	bossHealthSprite.move(0.7, getReferenceHeight() - bossHealthSprite.getHeight())
 
     // Add the player movement via pointer/keymaps.
     // Add the player sword skill animation.
@@ -68,6 +107,11 @@ func initialize override
     // Add the boss walk sound effect.
 }
 
+func getPlayerSpriteEntity as PlayerEntity
+{
+    return playerSprite
+}
+
 func getBackgroundWallEntity as BackgroundWallEntity
 {
     return bgWallEntity
@@ -76,6 +120,30 @@ func getBackgroundWallEntity as BackgroundWallEntity
 func getLeftBottomWall as LeftBottomWallEntity
 {
     return leftBottomWall
+}
+
+func setWallHealth
+{
+    if (wallHealth >= 0) {
+        bossHealthProp.setText("Wall Health: " .. String.forInteger(wallHealth -= 10))
+	    bossHealthSprite.setText(bossHealthProp)
+    }
+
+    if (wallHealth <= 0) {
+        removeSprite(bossHealthSprite)
+    }
+}
+
+func setTimeLimit
+{
+    if (timer >= 0) {
+        timeBattleProp.setText("Time Limit " .. String.forInteger(timer--))
+	    timeBattleSprite.setText(timeBattleProp)
+    }
+
+    if (timer <= 0) {
+        removeSprite(timeBattleSprite)
+    }
 }
 
 func onPointerEvent(event as PointerEvent) override
@@ -106,6 +174,33 @@ func onPointerEvent(event as PointerEvent) override
 
 }
 
+
+func tick(gameTime as TimeValue, delta as double) override
+{
+	base.tick(gameTime, delta)
+
+    setTimeLimit()
+
+    if (timer == 0) {
+        pushScene(new GameOverScene())
+    }
+
+    if (wallHealth <= 80) {
+        leftBottomWall.setAlpha(0.80)
+    }
+
+    if (wallHealth <= 40) {
+        leftBottomWall.setAlpha(0.40)
+    }
+
+    if (wallHealth <= 20) {
+        leftBottomWall.setAlpha(0.20)
+    }
+
+    if (wallHealth <= 0) {
+        removeEntity(leftBottomWall)
+    }
+}
 
 
 func cleanup override

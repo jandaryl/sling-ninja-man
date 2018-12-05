@@ -1,0 +1,48 @@
+class is SpriteSceneWithEntities imports cape imports cave imports motion #gameOverScene:
+
+var scene as BattleScene
+var battleScene as BattleScene
+var gameOverSprite as Sprite
+var scoreProp as TextProperties
+var scoreSprite as TextSprite
+var yourScore = 0 as int
+
+func initialize override
+{
+    base.initialize()
+
+	battleScene = scene
+
+	addEntity(new MovingBackgroundEntity())
+
+    var gameOverProp = TextProperties.forText("Game Over!")
+        gameOverProp.setTextColor(Color.white())
+        gameOverProp.setFontSizeRelative(0.075)
+        gameOverProp.setFontFamily("Fira Code")
+        gameOverSprite = addTextSprite(gameOverProp)
+        gameOverSprite.move(getReferenceWidth() * 0.5 - (gameOverSprite.getWidth() * 0.5), getReferenceHeight() * 0.2 - (gameOverSprite.getHeight() * 0.5))
+        
+	var playAgainBtnEntity = TextButtonEntity.forText("Play Again!")
+	    playAgainBtnEntity.setBackgroundColor(Color.white())
+	    addEntity(playAgainBtnEntity)
+	    playAgainBtnEntity.move(getReferenceWidth() * 0.5 - (playAgainBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (playAgainBtnEntity.getHeight() * 0.5))
+	    playAgainBtnEntity.setClickHandler(func {
+			PRINT "Change to Main Scene"
+			pushScene(new MainScene())
+	    })
+
+    scoreProp = TextProperties.forText("Your Score : " .. String.forInteger(yourScore))
+	scoreProp.setTextColor(Color.white())
+	scoreProp.setFontSizeRelative(0.05)
+	scoreProp.setFontFamily("Fira Code")
+	scoreProp.setFontIsItalic(true)
+
+	scoreSprite = addTextSprite(scoreProp)
+	scoreSprite.setText(scoreProp)
+	scoreSprite.move(0.0, getReferenceHeight() - scoreSprite.getHeight())
+}
+
+func cleanup override
+{
+	removeAllSprites()
+}

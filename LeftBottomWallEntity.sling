@@ -4,6 +4,7 @@ var leftBottomWallSprite as Sprite
 var scene as BattleScene
 var battleScene as BattleScene
 var bgWallSprite as BackgroundWallEntity
+var wallHealth = 100 as int
 
 func createSprite override as Sprite
 {
@@ -13,7 +14,13 @@ func createSprite override as Sprite
     var wallImage = scene.createTextureForImageResource("wall")
 
     leftBottomWallSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.1 * layer.getReferenceWidth(), 0.1 * layer.getReferenceHeight()) 
-   	leftBottomWallSprite.move(bgWallSprite.getWidth() * 0.415 - (leftBottomWallSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.0 - (leftBottomWallSprite.getHeight() * 0.5))
+   	// leftBottomWallSprite.move(bgWallSprite.getWidth() * 0.415 - (leftBottomWallSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.0 - (leftBottomWallSprite.getHeight() * 0.5))
+   	leftBottomWallSprite.move(bgWallSprite.getWidth() * 0.7 - (leftBottomWallSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 0.7 - (leftBottomWallSprite.getHeight() * 0.5))
 
-    return(bgWallSprite)
+    return(leftBottomWallSprite)
+}
+
+func slashSkillEffect
+{
+    wallHealth -= 10
 }

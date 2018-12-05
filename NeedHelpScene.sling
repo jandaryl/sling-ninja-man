@@ -1,73 +1,87 @@
 class is SpriteSceneWithEntities imports cape imports cave imports motion #battleScene:
 
-var helpMonstersBtnEntity as TextButtonEntity
-var helpBossBtnEntity as TextButtonEntity
-var backBtnEntity as TextButtonEntity
+// var helpMonstersBtnEntity as TextButtonEntity
+// var helpBossBtnEntity as TextButtonEntity
+var needHelpWordSprite as TextSprite
+var okBtnEntity as TextButtonEntity
 var audioManager as AudioManager
 var stream as AudioStream
+var storyWordProp as TextProperties
+var storyWordSprite as TextSprite
 
 func initialize override
 {
     base.initialize()
 
-    // Add background image.
-    addTextureSpriteForSize(createTextureForImageResource("main-scene"), getReferenceWidth(), getReferenceHeight())
+    // Add background moving image.
+    addEntity(new MovingBackgroundEntity())
 
-    // Add help monster button.
-    helpMonstersBtnEntity = TextButtonEntity.forText("Ninja vs Monsters")
-    helpMonstersBtnEntity.setBackgroundColor(Color.white())
-    addEntity(helpMonstersBtnEntity)
-    helpMonstersBtnEntity.move(getReferenceWidth() * 0.4 - (helpMonstersBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpMonstersBtnEntity.getHeight() * 0.5))
-    helpMonstersBtnEntity.setClickHandler(func {
+    // // Add help monster button.
+    // helpMonstersBtnEntity = TextButtonEntity.forText("Ninja vs Monsters")
+    // helpMonstersBtnEntity.setBackgroundColor(Color.white())
+    // addEntity(helpMonstersBtnEntity)
+    // helpMonstersBtnEntity.move(getReferenceWidth() * 0.4 - (helpMonstersBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpMonstersBtnEntity.getHeight() * 0.5))
+    // helpMonstersBtnEntity.setClickHandler(func {
 
-        // Add click sound effect.
-        audioManager = AudioManager.forApplication(context)
+    //     // Add click sound effect.
+    //     audioManager = AudioManager.forApplication(context)
 
-        if (audioManager != null) {
-            stream = audioManager.getStreamForResource("main-scene")
+    //     if (audioManager != null) {
+    //         stream = audioManager.getStreamForResource("main-scene")
             
-            if (stream != null) {
-                stream.play()
-                stream.setLooping(true)
-                PRINT "[LOG] Click sound effect from Help Monsters Button is working"
-            }
-        }
-        pushScene(new HelpMonstersScene())
-        PRINT "[LOG] Change to Help Monsters Scene"
-    })
+    //         if (stream != null) {
+    //             stream.play()
+    //             stream.setLooping(true)
+    //             PRINT "[LOG] Click sound effect from Help Monsters Button is working"
+    //         }
+    //     }
+    //     pushScene(new HelpMonstersScene())
+    //     PRINT "[LOG] Change to Help Monsters Scene"
+    // })
 
-    // Add help boss button.
-    helpBossBtnEntity = TextButtonEntity.forText("Ninja vs Boss")
-    helpBossBtnEntity.setBackgroundColor(Color.white())
-    addEntity(helpBossBtnEntity)
-    helpBossBtnEntity.move(getReferenceWidth() * 0.7 - (helpBossBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpBossBtnEntity.getHeight() * 0.5))
-    helpBossBtnEntity.setClickHandler(func {
+    // // Add help boss button.
+    // helpBossBtnEntity = TextButtonEntity.forText("Ninja vs Boss")
+    // helpBossBtnEntity.setBackgroundColor(Color.white())
+    // addEntity(helpBossBtnEntity)
+    // helpBossBtnEntity.move(getReferenceWidth() * 0.7 - (helpBossBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpBossBtnEntity.getHeight() * 0.5))
+    // helpBossBtnEntity.setClickHandler(func {
 
-        // Add click sound effect.
-        audioManager = AudioManager.forApplication(context)
+    //     // Add click sound effect.
+    //     audioManager = AudioManager.forApplication(context)
 
-        if (audioManager != null) {
-            stream = audioManager.getStreamForResource("main-scene")
+    //     if (audioManager != null) {
+    //         stream = audioManager.getStreamForResource("main-scene")
             
-            if (stream != null) {
-                stream.play()
-                stream.setLooping(true)
-                PRINT "[LOG] Click sound effect from Help Boss Button is working"
-            }
-        }
+    //         if (stream != null) {
+    //             stream.play()
+    //             stream.setLooping(true)
+    //             PRINT "[LOG] Click sound effect from Help Boss Button is working"
+    //         }
+    //     }
 
-        pushScene(new HelpBossScene())
-        PRINT "[LOG] Change to Help Boss Scene"
-    })
+    //     pushScene(new HelpBossScene())
+    //     PRINT "[LOG] Change to Help Boss Scene"
+    // })
+
+     // Add story words sprite.
+    storyWordProp = TextProperties.forText("Ninja vs Boss, instruction...")
+	storyWordProp.setTextColor(Color.white())
+	storyWordProp.setFontSizeRelative(0.05)
+	storyWordProp.setFontFamily("Fira Code")
+	storyWordProp.setFontIsItalic(true)
+	storyWordSprite = addTextSprite(storyWordProp)
+	storyWordSprite.setText(storyWordProp)
+	storyWordSprite.move(getReferenceWidth() * 0.5 - (storyWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.5 - (storyWordSprite.getHeight() * 0.5))
+
 
     // Add back button.
-    backBtnEntity = TextButtonEntity.forText("Back")
-    backBtnEntity.setBackgroundColor(Color.white())
-    addEntity(backBtnEntity)
-    backBtnEntity.move(getReferenceWidth() * 0.8 - (backBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.2 - (backBtnEntity.getHeight() * 0.5))
-    backBtnEntity.setClickHandler(func {
-                
-        // Add click sound effect.
+    okBtnEntity = TextButtonEntity.forText("OK")
+    okBtnEntity.setBackgroundColor(Color.white())
+    addEntity(okBtnEntity)
+    okBtnEntity.move(getReferenceWidth() * 0.5 - (okBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.7 - (okBtnEntity.getHeight() * 0.5))
+    okBtnEntity.setClickHandler(func {
+           
+         // Add click sound effect.
         audioManager = AudioManager.forApplication(context)
 
         if (audioManager != null) {
@@ -76,7 +90,7 @@ func initialize override
             if (stream != null) {
                 stream.play()
                 stream.setLooping(true)
-                PRINT "[LOG] Click sound effect from Back Button is working"
+                PRINT "[LOG] Click sound effect from Ok Button is working"
             }
         }
 

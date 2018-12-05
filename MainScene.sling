@@ -17,7 +17,7 @@ func initialize override
     backgroundMusic = false // set true will play the music but consume your memory.
    
     // Add background image.
-    addTextureSpriteForSize(createTextureForImageResource("main-scene"), getReferenceWidth(), getReferenceHeight())
+    addEntity(new MovingBackgroundEntity())
 
     // Add the title of the game.
     gameTitleProp = TextProperties.forText("Ninja Man")

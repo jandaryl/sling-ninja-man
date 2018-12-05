@@ -27,11 +27,12 @@ func tick(gameTime as TimeValue, delta as double) override
 	PRINT("Fade Timer is - " .. String.asString(fadeTimer))
 
 	if (fadeTimer == 10) {
-		playerSlashTopSprite.setAlpha(0.0)
+		layer.removeSprite(playerSlashTopSprite)
 		battleScene.addEntity(playerSlashMidEntity = new PlayerSlashMidEntity())
 		playerSlashMidEntity.move(playerSlashTopSprite.getX(), playerSlashTopSprite.getY())
 	}
 
 }
+
 
  

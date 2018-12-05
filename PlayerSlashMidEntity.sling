@@ -14,6 +14,7 @@ func createSprite override as Sprite
 	battleScene = scene
 
 	leftBottomWallSprite = battleScene.getLeftBottomWall()
+	playerEntity = battleScene.getPlayerSpriteEntity()
 
 	var monsterImage = scene.createTextureForImageResource("slash-mid")
 	screenHeight = layer.getReferenceHeight()
@@ -23,6 +24,15 @@ func createSprite override as Sprite
 }
 
 
+func itCollideToWall as boolean
+{
+    if (playerSlashMidSprite.getX() < leftBottomWallSprite.getX() + leftBottomWallSprite.getWidth() && playerSlashMidSprite.getX() + playerSlashMidSprite.getWidth() > leftBottomWallSprite.getX() && playerSlashMidSprite.getY() < leftBottomWallSprite.getY() + leftBottomWallSprite.getHeight() && playerSlashMidSprite.getHeight() + playerSlashMidSprite.getY() > leftBottomWallSprite.getY()) {
+        return true
+		PRINT "It collide to the wall!"
+    }
+    return false
+}
+
 func tick(gameTime as TimeValue, delta as double) override
 {
 	base.tick(gameTime, delta)
@@ -31,14 +41,15 @@ func tick(gameTime as TimeValue, delta as double) override
 	PRINT("Fade Timer is - " .. String.asString(fadeTimer))
 
 	if (fadeTimer == 10) {
-		playerSlashMidSprite.setAlpha(0.0)
+		layer.removeSprite(playerSlashMidSprite)
+		battleScene.removeEntity(playerEntity)
 		battleScene.addEntity(playerEntity = new PlayerEntity())
-
-		if (playerEntity.getX() > leftBottomWallSprite.getX() || playerEntity.getY() > leftBottomWallSprite.getY()) {
-			leftBottomWallSprite.setAlpha(0.75)
+  
+		if (itCollideToWall()) {
+			battleScene.setWallHealth()
 		}
-
 		playerEntity.move(playerSlashMidSprite.getX(), playerSlashMidSprite.getY())
+		layer.removeSprite(leftBottomWallSprite)
 	}
 
 }

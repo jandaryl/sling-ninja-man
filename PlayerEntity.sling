@@ -10,13 +10,17 @@ var corY as double
 var moveX as double
 var moveY as double
 var wallWidth as double
-// var x as double
-// var y as double
+var x as double
+var y as double
 // var audioManager as AudioManager
 // var stream as AudioStream
 var playerStandUpEntity as PlayerStandUpEntity
 // var isBombPlanted as boolean
 // var playerBombEntity as PlayerBombEntity
+// var spriteX = 0.0
+// var spriteY = 0.0
+// var speedX = 0.005
+// var speedY = 0.005
 
 
 
@@ -32,8 +36,8 @@ func createSprite override as Sprite
 	playerSprite.move(bgWallSprite.getWidth() * 0.415 - (playerSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.2 - (playerSprite.getHeight() * 0.5))
     
     // wallWidth = 0.6 * layer.getReferenceWidth()
-    // x = bgWallSprite.getX()
-    // y = bgWallSprite.getY()
+    x = bgWallSprite.getX()
+    y = bgWallSprite.getY()
 
     // audioManager = AudioManager.forApplication(context)
 
@@ -54,21 +58,21 @@ func onPointerEvent(event as PointerEvent) as boolean
 	return false
 }
 
-// func stopMove
-// {
-//     playerSprite.move(playerSprite.getX(), playerSprite.getY())
-// }
+func stopMove
+{
+    playerSprite.move(playerSprite.getX(), playerSprite.getY())
+}
 
 // func isInside(xc as double, yc as double, width as double, height as double) as bool
 // {
 // 	if x >= xc && x < xc+width && y >= yc && y < yc+height:
-// 		return false
-// 	return true
+// 		return true
+// 	return false
 // }
 
 // func isInsideInWallBackground
 // {
-//     isInside(playerSprite.getX(), playerSprite.getY(), bgWallSprite.getWidth(), bgWallSprite.getHeight())
+//     isInside(playerSprite.getX(), playerSprite.getY(), layer.getReferenceWidth() * 0.5 - (bgWallSprite.getWidth() * 0.5), layer.getReferenceHeight() * 0.5 - (bgWallSprite.getHeight() * 0.5))
 // }
 
 func slashSkillAnimate
@@ -78,6 +82,32 @@ func slashSkillAnimate
     playerStandUpEntity.move(playerSprite.getX(), playerSprite.getY())
     PRINT "The slash skill animate is working from player entity."
 }
+
+func isCollide as boolean
+{
+    if (playerSprite.getX() < bgWallSprite.getX() + (0.6 * layer.getReferenceWidth()) && playerSprite.getX() + playerSprite.getWidth() > bgWallSprite.getX() && playerSprite.getY() < bgWallSprite.getY() + (0.6 * layer.getReferenceHeight()) && playerSprite.getHeight() + playerSprite.getY() > bgWallSprite.getY()) {
+        return true
+    }
+    return false
+}
+
+func isCollideToWall as boolean
+{
+    if (playerSprite.getX() < leftBottomWallSprite.getX() + leftBottomWallSprite.getWidth() && playerSprite.getX() + playerSprite.getWidth() > leftBottomWallSprite.getX() && playerSprite.getY() < leftBottomWallSprite.getY() + leftBottomWallSprite.getHeight() && playerSprite.getHeight() + playerSprite.getY() > leftBottomWallSprite.getY()) {
+        return true
+        PRINT "Hit the wall"
+    }
+    return false
+}
+
+// func checkCollision
+// {
+//     if (isCollideToWall) {
+//         stopMove()
+//     }
+// }
+
+
 
 func onKeyEvent(event as KeyEvent)
 {	
@@ -124,13 +154,23 @@ func onKeyEvent(event as KeyEvent)
         //     }
         // }
 
-        // if (isInside(playerSprite.getX(), playerSprite.getY(), bgWallSprite.getWidth(), bgWallSprite.getHeight())) {
-        //    stopMove()
+        // if (isInsideInWallBackground()) {
+        // //    stopMove()
+        //     PRINT "Is inside is working!"
         // }
+
         // else {
-            
+
+        if (isCollide()) {
             playerSprite.move(playerSprite.getX(), playerSprite.getY() - 0.005)
             stats()
+            PRINT "It collide to background wall!"
+            // checkCollision()
+        }  
+        else {
+            stopMove()
+        }
+
         // }
 
 	}
@@ -148,8 +188,15 @@ func onKeyEvent(event as KeyEvent)
         //     }
         // }
 
-        playerSprite.move(playerSprite.getX(), playerSprite.getY() + 0.005)
-        stats()
+        if (isCollide()) {
+            playerSprite.move(playerSprite.getX(), playerSprite.getY() + 0.005)
+            stats()
+            PRINT "It collide to background wall!"
+            // checkCollision()
+        }  
+        else {
+            stopMove()
+        }
 
 	}
 
@@ -164,10 +211,16 @@ func onKeyEvent(event as KeyEvent)
         //         stream.setLooping(true)
         //         PRINT "[LOG] Walk sound effect from KEY LEFT is working"
         //     }
-        // }       
-
-        playerSprite.move(playerSprite.getX() - 0.005, playerSprite.getY())
-        stats()
+        // }    
+        if (isCollide()) {
+            playerSprite.move(playerSprite.getX() - 0.005, playerSprite.getY())
+            stats()
+            PRINT "It collide to background wall!"
+            // checkCollision()
+        }  
+        else {
+            stopMove()
+        }
 	}
 
 	if (event.isKey(KeyEvent.KEY_RIGHT)) {
@@ -183,8 +236,17 @@ func onKeyEvent(event as KeyEvent)
         //     }
         // }
 
-        playerSprite.move(playerSprite.getX() + 0.005, playerSprite.getY())
-        stats()
+
+        if (isCollide()) {
+            playerSprite.move(playerSprite.getX() + 0.005, playerSprite.getY())
+            stats()
+            PRINT "It collide to background wall!"
+            // checkCollision()
+        }  
+        else {
+            stopMove()
+        }
+
   
 	}
 	else {
@@ -192,19 +254,6 @@ func onKeyEvent(event as KeyEvent)
 	}
 }
 
-
-func tick(gameTime as TimeValue, delta as double) override
-{
-	base.tick(gameTime, delta)
-
-    // if (isBombPlanted == true)  {
-    //     battleScene.addEntity(playerBombEntity = new PlayerBombEntity())
-    //     playerBombEntity.move(playerSprite.getX(), playerSprite.getY())
-    //     PRINT "The bomb skill animate is working from battle scene."
-    //     isBombPlanted = false
-    // }
-
-}
 
 func stats
 {
@@ -221,4 +270,6 @@ func stats
     PRINT("Player Sprite height is - " .. String.asString(playerSprite.getHeight()))
     PRINT("Player Sprite X is - " .. String.asString(playerSprite.getX()))
     PRINT("Player Sprite Y is - " .. String.asString(playerSprite.getY()))
+    PRINT("Layer Reference Height is - " .. String.asString(layer.getReferenceHeight()))
+    PRINT("Layer Reference Width is - " .. String.asString(layer.getReferenceWidth()))
 }
