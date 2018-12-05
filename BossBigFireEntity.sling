@@ -16,7 +16,7 @@ func createSprite override as Sprite
 	var fireImage = scene.createTextureForImageResource("big-fire")
 	screenHeight = layer.getReferenceHeight()
 	screenWidth = layer.getReferenceWidth()
-	bossBigFireSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, fireImage, 0.17 * screenWidth, 0.17 * screenHeight)
+	bossBigFireSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, fireImage, 0.17 * screenWidth, 0.16 * screenHeight)
 	return bossBigFireSprite
 }
 
