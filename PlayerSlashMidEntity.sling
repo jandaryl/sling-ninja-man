@@ -22,17 +22,6 @@ func createSprite override as Sprite
 	return playerSlashMidSprite
 }
 
-func stats
-{
-    PRINT("Left Bottom Wall Sprite width is - " .. String.asString(leftBottomWallSprite.getWidth()))
-    PRINT("Left Bottom Wall Sprite height is - " .. String.asString(leftBottomWallSprite.getHeight()))
-    PRINT("Left Bottom Wall Sprite X is - " .. String.asString(leftBottomWallSprite.getX()))
-    PRINT("Left Bottom Wall Sprite Y is - " .. String.asString(leftBottomWallSprite.getY()))
-	PRINT("Left Bottom Wall Sprite width is - " .. String.asString(playerEntity.getWidth()))
-    PRINT("Left Bottom Wall Sprite height is - " .. String.asString(playerEntity.getHeight()))
-    PRINT("Left Bottom Wall Sprite X is - " .. String.asString(playerEntity.getX()))
-    PRINT("Left Bottom Wall Sprite Y is - " .. String.asString(playerEntity.getY()))
-}
 
 func tick(gameTime as TimeValue, delta as double) override
 {
@@ -45,12 +34,11 @@ func tick(gameTime as TimeValue, delta as double) override
 		playerSlashMidSprite.setAlpha(0.0)
 		battleScene.addEntity(playerEntity = new PlayerEntity())
 
-		if (playerEntity.getX() > leftBottomWallSprite.getWidth() || playerEntity.getY() > leftBottomWallSprite.getHeight()) {
-			leftBottomWallSprite.setAlpha(0.0)
+		if (playerEntity.getX() > leftBottomWallSprite.getX() || playerEntity.getY() > leftBottomWallSprite.getY()) {
+			leftBottomWallSprite.setAlpha(0.75)
 		}
-		
+
 		playerEntity.move(playerSlashMidSprite.getX(), playerSlashMidSprite.getY())
-		stats()
 	}
 
 }

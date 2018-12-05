@@ -1,9 +1,10 @@
-class is SpriteEntity is KeyListener imports motion imports cape imports cave:
+class is SpriteEntity is KeyListener is PointerListener imports motion imports cape imports cave:
 
 var playerSprite as TextureSprite
 var scene as BattleScene
 var battleScene as BattleScene
 var bgWallSprite as BackgroundWallEntity
+var leftBottomWallSprite as LeftBottomWallEntity
 var corX as double
 var corY as double
 var moveX as double
@@ -23,6 +24,7 @@ func createSprite override as Sprite
 {
     battleScene = scene
     bgWallSprite = battleScene.getBackgroundWallEntity()
+    leftBottomWallSprite = battleScene.getLeftBottomWall()
 
     var wallImage = scene.createTextureForImageResource("player")
 
@@ -39,15 +41,18 @@ func createSprite override as Sprite
     return(playerSprite)
 }
 
-// func onPointerEvent(event as PointerEvent) as boolean
-// {
-// 	if (event.action == PointerEvent.DOWN) {
+func onPointerEvent(event as PointerEvent) as boolean
+{
+	if (event.action == PointerEvent.DOWN) {
 		
-// 		corX = event.getX() 
-// 		corY = event.getY()
-// 	}
-// 	return true
-// }
+		var corX = event.getX() - (playerSprite.getWidth() * 0.5)
+		var corY = event.getY() - (playerSprite.getHeight() * 0.5)
+		
+		playerSprite.move(corX, corY)
+	}
+
+	return false
+}
 
 // func stopMove
 // {
@@ -208,6 +213,10 @@ func stats
     PRINT("Background Wall Sprite height is - " .. String.asString(bgWallSprite.getHeight()))
     PRINT("Background Wall Sprite X is - " .. String.asString(bgWallSprite.getX()))
     PRINT("Background Wall Sprite Y is - " .. String.asString(bgWallSprite.getY()))
+    PRINT("Left Bottom Wall Sprite width is - " .. String.asString(leftBottomWallSprite.getWidth()))
+    PRINT("Left Bottom Wall Sprite height is - " .. String.asString(leftBottomWallSprite.getHeight()))
+    PRINT("Left Bottom Wall Sprite X is - " .. String.asString(leftBottomWallSprite.getX()))
+    PRINT("Left Bottom Wall Sprite Y is - " .. String.asString(leftBottomWallSprite.getY()))
     PRINT("Player Sprite width is - " .. String.asString(playerSprite.getWidth()))
     PRINT("Player Sprite height is - " .. String.asString(playerSprite.getHeight()))
     PRINT("Player Sprite X is - " .. String.asString(playerSprite.getX()))
