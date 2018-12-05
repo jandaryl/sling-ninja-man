@@ -30,6 +30,7 @@ func tick(gameTime as TimeValue, delta as double) override
 		layer.removeSprite(playerSlashTopSprite)
 		battleScene.addEntity(playerSlashMidEntity = new PlayerSlashMidEntity())
 		playerSlashMidEntity.move(playerSlashTopSprite.getX(), playerSlashTopSprite.getY())
+		layer.removeSprite(playerSlashMidEntity)
 	}
 
 }

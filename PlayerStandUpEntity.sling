@@ -7,6 +7,7 @@ var fadeTimer = 0 as int
 var battleScene as BattleScene
 var scene as BattleScene
 var playerSlashTopEntity as PlayerSlashTopEntity
+var isAnimate as  boolean
 
 func createSprite override as Sprite
 {	
@@ -19,17 +20,21 @@ func createSprite override as Sprite
 	return playerStandUpSprite
 }
 
+func setTrueAnimate 
+{
+	isAnimate = true
+}
+
 func tick(gameTime as TimeValue, delta as double) override
 {
 	base.tick(gameTime, delta)
 
-	fadeTimer++
-	PRINT("Fade Timer is - " .. String.asString(fadeTimer))
-
-	if (fadeTimer == 10) {
+	if (isAnimate == true) {
 		layer.removeSprite(playerStandUpSprite)
 		battleScene.addEntity(playerSlashTopEntity = new PlayerSlashTopEntity())
 		playerSlashTopEntity.move(playerStandUpSprite.getX(), playerStandUpSprite.getY())
+		layer.removeSprite(playerSlashTopEntity)
+		isAnimate = false
 	}
 
 }

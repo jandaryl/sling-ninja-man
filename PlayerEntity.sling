@@ -80,6 +80,8 @@ func slashSkillAnimate
     layer.removeSprite(playerSprite)
     battleScene.addEntity(playerStandUpEntity = new PlayerStandUpEntity())
     playerStandUpEntity.move(playerSprite.getX(), playerSprite.getY())
+    playerStandUpEntity.setTrueAnimate()
+    layer.removeSprite(playerStandUpEntity)
     PRINT "The slash skill animate is working from player entity."
 }
 
