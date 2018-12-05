@@ -30,9 +30,9 @@ func createSprite override as Sprite
     bgWallSprite = battleScene.getBackgroundWallEntity()
     leftBottomWallSprite = battleScene.getLeftBottomWall()
 
-    var wallImage = scene.createTextureForImageResource("player")
+    var imgPlayer = scene.createTextureForImageResource("player")
 
-    playerSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.07 * layer.getReferenceWidth(), 0.07 * layer.getReferenceHeight()) 
+    playerSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, imgPlayer, 0.09 * layer.getReferenceWidth(), 0.09 * layer.getReferenceHeight()) 
 	playerSprite.move(bgWallSprite.getWidth() * 0.415 - (playerSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 1.2 - (playerSprite.getHeight() * 0.5))
     
     // wallWidth = 0.6 * layer.getReferenceWidth()

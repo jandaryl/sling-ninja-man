@@ -15,7 +15,7 @@ func createSprite override as Sprite
 	var monsterImage = scene.createTextureForImageResource("stand-up")
 	screenHeight = layer.getReferenceHeight()
 	screenWidth = layer.getReferenceWidth()
-	playerStandUpSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, monsterImage, 0.10 * screenWidth, 0.10 * screenHeight)
+	playerStandUpSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, monsterImage, 0.12 * screenWidth, 0.12 * screenHeight)
 	return playerStandUpSprite
 }
 

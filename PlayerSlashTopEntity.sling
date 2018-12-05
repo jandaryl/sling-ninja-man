@@ -15,7 +15,7 @@ func createSprite override as Sprite
 	var monsterImage = scene.createTextureForImageResource("slash-top")
 	screenHeight = layer.getReferenceHeight()
 	screenWidth = layer.getReferenceWidth()
-	playerSlashTopSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, monsterImage, 0.10 * screenWidth, 0.10 * screenHeight)
+	playerSlashTopSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, monsterImage, 0.12 * screenWidth, 0.12 * screenHeight)
 	return playerSlashTopSprite
 }
 
