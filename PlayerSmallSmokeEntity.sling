@@ -1,0 +1,40 @@
+class is SpriteEntity imports motion imports cave imports cape:
+
+var screenWidth as double
+var screenHeight as double
+var playerSmallSmokeSprite as TextureSprite
+var battleScene as BattleScene
+var scene as BattleScene
+var fadeTimer = 0 as int
+var jumpEntity as PlayerJumpEntity
+
+func createSprite override as Sprite
+{	
+	battleScene = scene
+
+	var smokeImg = scene.createTextureForImageResource("small-smoke")
+	screenHeight = layer.getReferenceHeight()
+	screenWidth = layer.getReferenceWidth()
+	playerSmallSmokeSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, smokeImg, 0.09 * screenWidth, 0.09 * screenHeight)
+	return playerSmallSmokeSprite
+}
+
+func tick(gameTime as TimeValue, delta as double) override
+{
+	base.tick(gameTime, delta)
+    fadeTimer++
+
+    if (fadeTimer == 10) {
+        playerSmallSmokeSprite.setAlpha(0.5)
+    }   
+
+    if (fadeTimer == 20) {
+        // playerSmallSmokeSprite.setAlpha(0.0)
+        // battleScene.addEntity(jumpEntity = new PlayerJumpEntity())
+        // jumpEntity.move(playerSmallSmokeSprite.getX(), playerSmallSmokeSprite.getY())
+        // battleScene.removeSprite(jumpEntity)
+        layer.removeSprite(playerSmallSmokeSprite)
+    }
+
+}
+ 

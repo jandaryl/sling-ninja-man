@@ -21,8 +21,7 @@ var playerStandUpEntity as PlayerStandUpEntity
 // var spriteY = 0.0
 // var speedX = 0.005
 // var speedY = 0.005
-
-
+var mediumSmokeEntity as PlayerMediumSmokeEntity
 
 func createSprite override as Sprite
 {
@@ -49,10 +48,14 @@ func onPointerEvent(event as PointerEvent) as boolean
 {
 	if (event.action == PointerEvent.DOWN) {
 		
-		var corX = event.getX() - (playerSprite.getWidth() * 0.5)
+	    var corX = event.getX() - (playerSprite.getWidth() * 0.5)
 		var corY = event.getY() - (playerSprite.getHeight() * 0.5)
 		
-		playerSprite.move(corX, corY)
+        battleScene.addEntity(mediumSmokeEntity = new PlayerMediumSmokeEntity())
+        mediumSmokeEntity.move(playerSprite.getX(), playerSprite.getY())
+        battleScene.removeSprite(mediumSmokeEntity)
+
+        playerSprite.move(corX, corY)
 	}
 
 	return false

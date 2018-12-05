@@ -1,0 +1,38 @@
+class is SpriteEntity imports motion imports cave imports cape:
+
+var screenWidth as double
+var screenHeight as double
+var playerJumpSprite as TextureSprite
+var battleScene as BattleScene
+var scene as BattleScene
+var fadeTimer = 0 as int
+var playerEntity as PlayerEntity
+
+func createSprite override as Sprite
+{	
+	battleScene = scene
+
+	var smokeImg = scene.createTextureForImageResource("jump")
+	screenHeight = layer.getReferenceHeight()
+	screenWidth = layer.getReferenceWidth()
+	playerJumpSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, smokeImg, 0.09 * screenWidth, 0.09 * screenHeight)
+	return playerJumpSprite
+}
+
+func tick(gameTime as TimeValue, delta as double) override
+{
+	base.tick(gameTime, delta)
+    fadeTimer++
+
+    if (fadeTimer == 10) {
+        playerJumpSprite.setAlpha(0.75)
+    }
+
+    if (fadeTimer == 20) {
+        playerJumpSprite.setAlpha(0.0)
+        battleScene.addEntity(playerEntity = new PlayerEntity())
+        playerEntity.move(playerJumpSprite.getX(), playerJumpSprite.getY())
+        battleScene.removeSprite(playerJumpSprite)
+    }
+
+}
