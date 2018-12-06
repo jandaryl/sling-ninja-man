@@ -8,7 +8,7 @@ var scene as BattleScene
 var playerSlashTopEntity as PlayerSlashTopEntity
 var isAnimate as  boolean
 
-func createSprite override as Sprite
+func createSprite override as Sprite 
 {	
 	battleScene = scene
 
