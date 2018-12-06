@@ -6,7 +6,6 @@ var clickStream as AudioStream
 var quitBtnEntity as TextButtonEntity
 var bgWallEntity as BackgroundWallEntity
 var playerSprite as PlayerEntity
-var leftBottomWall as LeftBottomWallEntity
 var bossHealthProp as TextProperties
 var bossHealthSprite as TextSprite
 var bossHealth = 1000 as int
@@ -118,11 +117,6 @@ func getPlayerSpriteEntity as PlayerEntity
 func getBackgroundWallEntity as BackgroundWallEntity
 {
     return bgWallEntity
-}
-
-func getLeftBottomWall as LeftBottomWallEntity
-{
-    return leftBottomWall
 }
 
 func getBossSpriteEntity as BossEntity

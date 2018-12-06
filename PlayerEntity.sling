@@ -4,7 +4,6 @@ var playerSprite as TextureSprite
 var scene as BattleScene
 var battleScene as BattleScene
 var bgWallSprite as BackgroundWallEntity
-var leftBottomWallSprite as LeftBottomWallEntity
 var wallWidth as double
 var playerStandUpEntity as PlayerStandUpEntity
 var mediumSmokeEntity as PlayerMediumSmokeEntity
@@ -12,9 +11,8 @@ var isTrueTeleport as boolean
 
 func createSprite override as Sprite
 {
-    battleScene = scene
+    battleScene = scene 
     bgWallSprite = battleScene.getBackgroundWallEntity()
-    leftBottomWallSprite = battleScene.getLeftBottomWall()
 
     var imgPlayer = scene.createTextureForImageResource("player")
 
@@ -76,14 +74,7 @@ func isCollide as boolean
     return false
 }
 
-func isCollideToWall as boolean
-{
-    if (playerSprite.getX() < leftBottomWallSprite.getX() + leftBottomWallSprite.getWidth() && playerSprite.getX() + playerSprite.getWidth() > leftBottomWallSprite.getX() && playerSprite.getY() < leftBottomWallSprite.getY() + leftBottomWallSprite.getHeight() && playerSprite.getHeight() + playerSprite.getY() > leftBottomWallSprite.getY()) {
-        return true
-        PRINT "Hit the wall"
-    }
-    return false
-}
+
 
 func onKeyEvent(event as KeyEvent)
 {	
@@ -159,10 +150,6 @@ func stats
     PRINT("Background Wall Sprite height is - " .. String.asString(bgWallSprite.getHeight()))
     PRINT("Background Wall Sprite X is - " .. String.asString(bgWallSprite.getX()))
     PRINT("Background Wall Sprite Y is - " .. String.asString(bgWallSprite.getY()))
-    PRINT("Left Bottom Wall Sprite width is - " .. String.asString(leftBottomWallSprite.getWidth()))
-    PRINT("Left Bottom Wall Sprite height is - " .. String.asString(leftBottomWallSprite.getHeight()))
-    PRINT("Left Bottom Wall Sprite X is - " .. String.asString(leftBottomWallSprite.getX()))
-    PRINT("Left Bottom Wall Sprite Y is - " .. String.asString(leftBottomWallSprite.getY()))
     PRINT("Player Sprite width is - " .. String.asString(playerSprite.getWidth()))
     PRINT("Player Sprite height is - " .. String.asString(playerSprite.getHeight()))
     PRINT("Player Sprite X is - " .. String.asString(playerSprite.getX()))
