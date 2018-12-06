@@ -6,7 +6,6 @@ var playerSmallSmokeSprite as TextureSprite
 var battleScene as BattleScene
 var scene as BattleScene
 var fadeTimer = 0 as int
-var jumpEntity as PlayerJumpEntity
 
 func createSprite override as Sprite
 {	

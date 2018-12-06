@@ -15,7 +15,6 @@ var playerHealthSprite as TextSprite
 var playerHealth = 100 as int
 var timeBattleProp as TextProperties
 var timeBattleSprite as TextSprite
-var wallHealth = 100 as int
 var timer = 10000 as int
 var bossSprite as BossEntity
 var countTeleportSprite as TextSprite

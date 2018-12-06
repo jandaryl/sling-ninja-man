@@ -1,6 +1,5 @@
 class is SpriteSceneWithEntities imports cape imports cave imports motion #battleScene:
 
-var needHelpWordSprite as TextSprite
 var okBtnEntity as TextButtonEntity
 var audioManager as AudioManager
 var stream as AudioStream

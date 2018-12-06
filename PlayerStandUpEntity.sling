@@ -3,7 +3,6 @@ class is SpriteEntity imports motion imports cave imports cape:
 var screenWidth as double
 var screenHeight as double
 var playerStandUpSprite as TextureSprite
-var fadeTimer = 0 as int
 var battleScene as BattleScene
 var scene as BattleScene
 var playerSlashTopEntity as PlayerSlashTopEntity
