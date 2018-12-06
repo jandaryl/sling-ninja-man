@@ -9,14 +9,15 @@ var playerSprite as PlayerEntity
 var leftBottomWall as LeftBottomWallEntity
 var bossHealthProp as TextProperties
 var bossHealthSprite as TextSprite
+var bossHealth = 1000 as int
 var playerHealthProp as TextProperties
 var playerHealthSprite as TextSprite
+var playerHealth = 100 as int
 var timeBattleProp as TextProperties
 var timeBattleSprite as TextSprite
 var wallHealth = 100 as int
 var timer = 10000 as int
 var bossSprite as BossEntity
-var bossHealth = 1000 as int
 var countTeleportSprite as TextSprite
 var countTeleportProp as TextProperties
 var countTeleport = 100 as int
@@ -181,6 +182,42 @@ func decreaseBossHealthBy100
     }
 }
 
+func decreasePlayerHealthBy10
+{
+    if (playerHealth >= 0) {
+        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 10))
+	    playerHealthSprite.setText(playerHealthProp)
+    }
+
+    if (playerHealth <= 0) {
+        removeSprite(playerHealthSprite)
+    }
+}
+
+func decreasePlayerHealthBy15
+{
+    if (playerHealth >= 0) {
+        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 15))
+	    playerHealthSprite.setText(playerHealthProp)
+    }
+
+    if (playerHealth <= 0) {
+        removeSprite(playerHealthSprite)
+    }
+}
+
+func decreasePlayerHealthBy20
+{
+    if (playerHealth >= 0) {
+        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 20))
+	    playerHealthSprite.setText(playerHealthProp)
+    }
+
+    if (playerHealth <= 0) {
+        removeSprite(playerHealthSprite)
+    }
+}
+
 func setTimeLimit
 {
     if (timer >= 0) {
@@ -264,6 +301,23 @@ func tick(gameTime as TimeValue, delta as double) override
     if (bossHealth <= 0) {
         removeEntity(bossSprite)
     }
+
+    if (playerHealth <= 75) {
+        playerSprite.setAlpha(0.75)
+    }
+
+    if (playerHealth <= 50) {
+        playerSprite.setAlpha(0.50)
+    }
+
+    if (playerHealth <= 25) {
+        playerSprite.setAlpha(0.25)
+    }
+
+    if (playerHealth <= 0) {
+        removeEntity(playerSprite)
+    }
+    
 }
 
 

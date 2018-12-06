@@ -28,7 +28,7 @@ func isHitTheBoss as boolean
 {
     if (playerSlashMidSprite.getX() < bossSprite.getX() + bossSprite.getWidth() && playerSlashMidSprite.getX() + playerSlashMidSprite.getWidth() > bossSprite.getX() && playerSlashMidSprite.getY() < bossSprite.getY() + bossSprite.getHeight() && playerSlashMidSprite.getHeight() + playerSlashMidSprite.getY() > bossSprite.getY()) {
         return true
-		PRINT "It collide to the wall!"
+		PRINT "It collide to the boss!"
     }
     return false
 }
