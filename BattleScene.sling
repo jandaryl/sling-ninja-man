@@ -14,8 +14,12 @@ var playerHealthSprite as TextSprite
 var timeBattleProp as TextProperties
 var timeBattleSprite as TextSprite
 var wallHealth = 100 as int
-var timer = 1000 as int
+var timer = 10000 as int
 var bossSprite as BossEntity
+var bossHealth = 1000 as int
+var countTeleportSprite as TextSprite
+var countTeleportProp as TextProperties
+var countTeleport = 100 as int
 
 func initialize override
 {
@@ -59,7 +63,7 @@ func initialize override
     addEntity(new Torch10Entity())
  
     // Add the left bottom wall sprite.
-    addEntity(leftBottomWall = new LeftBottomWallEntity())
+    // addEntity(leftBottomWall = new LeftBottomWallEntity())
 
     // Add the player sprite.
     addEntity(playerSprite = new PlayerEntity())
@@ -88,7 +92,7 @@ func initialize override
 	timeBattleSprite.move(getReferenceWidth() * 0.5 - (timeBattleSprite.getWidth() * 0.5), getReferenceHeight() * 0.07 - (timeBattleSprite.getHeight() * 0.5))
 
 
-    bossHealthProp = TextProperties.forText("Wall Health : 100")
+    bossHealthProp = TextProperties.forText("Boss Health : 1000")
 	bossHealthProp.setTextColor(Color.white())
 	bossHealthProp.setFontSizeRelative(0.025)
 	bossHealthProp.setFontFamily("Fira Code")
@@ -97,6 +101,16 @@ func initialize override
 	bossHealthSprite = addTextSprite(bossHealthProp)
 	bossHealthSprite.setText(bossHealthProp)
 	bossHealthSprite.move(0.7, getReferenceHeight() - bossHealthSprite.getHeight())
+
+    countTeleportProp = TextProperties.forText("Teleport : 100")
+	countTeleportProp.setTextColor(Color.white())
+	countTeleportProp.setFontSizeRelative(0.02)
+	countTeleportProp.setFontFamily("Fira Code")
+	countTeleportProp.setFontIsItalic(true)
+
+	countTeleportSprite = addTextSprite(countTeleportProp)   
+	countTeleportSprite.setText(countTeleportProp)
+	countTeleportSprite.move(0.0, 0.25)
 
     // Add the player movement via pointer/keymaps.
     // Add the player sword skill animation.
@@ -143,14 +157,26 @@ func getBossSpriteEntity as BossEntity
     return bossSprite
 }
 
-func setWallHealth
+func decreaseBossHealthBy50
 {
-    if (wallHealth >= 0) {
-        bossHealthProp.setText("Wall Health: " .. String.forInteger(wallHealth -= 10))
+    if (bossHealth >= 0) {
+        bossHealthProp.setText("Boss Health: " .. String.forInteger(bossHealth -= 50))
 	    bossHealthSprite.setText(bossHealthProp)
     }
 
-    if (wallHealth <= 0) {
+    if (bossHealth <= 0) {
+        removeSprite(bossHealthSprite)
+    }
+}
+
+func decreaseBossHealthBy100
+{
+    if (bossHealth >= 0) {
+        bossHealthProp.setText("Boss Health: " .. String.forInteger(bossHealth -= 100))
+	    bossHealthSprite.setText(bossHealthProp)
+    }
+
+    if (bossHealth <= 0) {
         removeSprite(bossHealthSprite)
     }
 }
@@ -164,6 +190,19 @@ func setTimeLimit
 
     if (timer <= 0) {
         removeSprite(timeBattleSprite)
+    }
+}
+
+func setTeleportLimit
+{
+    if (countTeleport >= 0) {
+        countTeleportProp.setText("Teleport : " .. String.forInteger(countTeleport-=1))
+	    countTeleportSprite.setText(countTeleportProp)
+    }
+
+    if (countTeleport <= 0) {
+        countTeleportProp.setText("Teleport : 0")
+	    countTeleportSprite.setText(countTeleportProp)
     }
 }
 
@@ -202,24 +241,28 @@ func tick(gameTime as TimeValue, delta as double) override
 
     setTimeLimit()
 
+    if (countTeleport > 0) {
+        playerSprite.setTrueTeleport()
+    }
+
     if (timer == 0) {
         pushScene(new GameOverScene())
     }
 
-    if (wallHealth <= 80) {
-        leftBottomWall.setAlpha(0.80)
+    if (bossHealth <= 800) {
+        bossSprite.setAlpha(0.80)
     }
 
-    if (wallHealth <= 40) {
-        leftBottomWall.setAlpha(0.40)
+    if (bossHealth <= 400) {
+        bossSprite.setAlpha(0.40)
     }
 
-    if (wallHealth <= 20) {
-        leftBottomWall.setAlpha(0.20)
+    if (bossHealth <= 200) {
+        bossSprite.setAlpha(0.20)
     }
 
-    if (wallHealth <= 0) {
-        removeEntity(leftBottomWall)
+    if (bossHealth <= 0) {
+        removeEntity(bossSprite)
     }
 }
 

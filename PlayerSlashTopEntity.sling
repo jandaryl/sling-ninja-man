@@ -7,16 +7,27 @@ var fadeTimer = 0 as int
 var battleScene as BattleScene
 var scene as BattleScene
 var playerSlashMidEntity as PlayerSlashMidEntity
+var bossSprite as BossEntity
 
 func createSprite override as Sprite
 {	
 	battleScene = scene
+	bossSprite = battleScene.getBossSpriteEntity()
 
 	var monsterImage = scene.createTextureForImageResource("slash-top")
 	screenHeight = layer.getReferenceHeight()
 	screenWidth = layer.getReferenceWidth()
 	playerSlashTopSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, monsterImage, 0.12 * screenWidth, 0.12 * screenHeight)
 	return playerSlashTopSprite
+}
+
+func isHitTheBoss as boolean
+{
+    if (playerSlashTopSprite.getX() < bossSprite.getX() + bossSprite.getWidth() && playerSlashTopSprite.getX() + playerSlashTopSprite.getWidth() > bossSprite.getX() && playerSlashTopSprite.getY() < bossSprite.getY() + bossSprite.getHeight() && playerSlashTopSprite.getHeight() + playerSlashTopSprite.getY() > bossSprite.getY()) {
+        return true
+		PRINT "It collide to the wall!"
+    }
+    return false
 }
 
 func tick(gameTime as TimeValue, delta as double) override
@@ -28,6 +39,11 @@ func tick(gameTime as TimeValue, delta as double) override
 
 	if (fadeTimer == 10) {
 		layer.removeSprite(playerSlashTopSprite)
+
+		if (isHitTheBoss()) {
+			battleScene.decreaseBossHealthBy50()
+		}
+
 		battleScene.addEntity(playerSlashMidEntity = new PlayerSlashMidEntity())
 		playerSlashMidEntity.move(playerSlashTopSprite.getX(), playerSlashTopSprite.getY())
 		layer.removeSprite(playerSlashMidEntity)

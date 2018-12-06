@@ -22,6 +22,8 @@ var playerStandUpEntity as PlayerStandUpEntity
 // var speedX = 0.005
 // var speedY = 0.005
 var mediumSmokeEntity as PlayerMediumSmokeEntity
+var isTrueTeleport as boolean
+// var isTrueSlash as boolean
 
 func createSprite override as Sprite
 {
@@ -44,22 +46,38 @@ func createSprite override as Sprite
     return(playerSprite)
 }
 
+
+func setTrueTeleport
+{
+    isTrueTeleport = true
+}
+
+// func setTrueSlash
+// {
+//     isTrueSlash = true
+// }
+
 func onPointerEvent(event as PointerEvent) as boolean
 {
 	if (event.action == PointerEvent.DOWN) {
 		
-	    var corX = event.getX() - (playerSprite.getWidth() * 0.5)
-		var corY = event.getY() - (playerSprite.getHeight() * 0.5)
-		
-        battleScene.addEntity(mediumSmokeEntity = new PlayerMediumSmokeEntity())
-        mediumSmokeEntity.move(playerSprite.getX(), playerSprite.getY())
-        battleScene.removeSprite(mediumSmokeEntity)
+        if (isTrueTeleport == true) {
+            var corX = event.getX() - (playerSprite.getWidth() * 0.5)
+            var corY = event.getY() - (playerSprite.getHeight() * 0.5)
+            
+            battleScene.addEntity(mediumSmokeEntity = new PlayerMediumSmokeEntity())
+            mediumSmokeEntity.move(playerSprite.getX(), playerSprite.getY())
+            battleScene.removeSprite(mediumSmokeEntity)
 
-        playerSprite.move(corX, corY)
+            playerSprite.move(corX, corY)
+            battleScene.setTeleportLimit()
+            isTrueTeleport = false
+        }
 	}
 
 	return false
 }
+
 
 func stopMove
 {
@@ -80,7 +98,8 @@ func stopMove
 
 func slashSkillAnimate
 {
-    layer.removeSprite(playerSprite)
+    // layer.removeSprite(playerSprite)
+    playerSprite.setAlpha(0.0)
     battleScene.addEntity(playerStandUpEntity = new PlayerStandUpEntity())
     playerStandUpEntity.move(playerSprite.getX(), playerSprite.getY())
     playerStandUpEntity.setTrueAnimate()
@@ -127,8 +146,12 @@ func onKeyEvent(event as KeyEvent)
         //         PRINT "[LOG] Slash sound effect from KEY SPACE Button is working"
         //     }
         // }
-
-        slashSkillAnimate()
+        // if (isTrueSlash == true) {
+            slashSkillAnimate()
+        //     battleScene.setSlashLimit()
+        //     isTrueSlash = false
+        // }
+        
     }
 
     
