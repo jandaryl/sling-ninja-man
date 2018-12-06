@@ -41,7 +41,7 @@ func tick(gameTime as TimeValue, delta as double) override
 		layer.removeSprite(bossMediumFireSprite)
 	        
 		if (isHitThePlayer()) { 
-			battleScene.decreasePlayerHealthBy15()
+			battleScene.decreasePlayerHealthBy25()
 		}
 
 		battleScene.addEntity(bigFireEntity = new BossBigFireEntity())

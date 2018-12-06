@@ -42,7 +42,7 @@ func tick(gameTime as TimeValue, delta as double) override
 	if (isAnimate == true) {
 
 		if (isHitThePlayer()) {
-			battleScene.decreasePlayerHealthBy10()
+			battleScene.decreasePlayerHealthBy25()
 		}
 
 		layer.removeSprite(bossSmallFireSprite)

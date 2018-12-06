@@ -45,7 +45,7 @@ func tick(gameTime as TimeValue, delta as double) override
 
 		if (isHitTheBoss()) {
 			battleScene.decreaseBossHealthBy100()
-		}
+		}	
 
 		playerEntity.move(playerSlashMidSprite.getX(), playerSlashMidSprite.getY())
 		playerEntity.setAlpha(1.0)

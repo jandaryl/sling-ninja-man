@@ -182,34 +182,10 @@ func decreaseBossHealthBy100
     }
 }
 
-func decreasePlayerHealthBy10
+func decreasePlayerHealthBy25
 {
     if (playerHealth >= 0) {
-        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 10))
-	    playerHealthSprite.setText(playerHealthProp)
-    }
-
-    if (playerHealth <= 0) {
-        removeSprite(playerHealthSprite)
-    }
-}
-
-func decreasePlayerHealthBy15
-{
-    if (playerHealth >= 0) {
-        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 15))
-	    playerHealthSprite.setText(playerHealthProp)
-    }
-
-    if (playerHealth <= 0) {
-        removeSprite(playerHealthSprite)
-    }
-}
-
-func decreasePlayerHealthBy20
-{
-    if (playerHealth >= 0) {
-        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 20))
+        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 25))
 	    playerHealthSprite.setText(playerHealthProp)
     }
 
@@ -286,32 +262,16 @@ func tick(gameTime as TimeValue, delta as double) override
         pushScene(new GameOverScene())
     }
 
-    if (bossHealth <= 800) {
-        bossSprite.setAlpha(0.80)
-    }
-
-    if (bossHealth <= 400) {
-        bossSprite.setAlpha(0.40)
-    }
-
-    if (bossHealth <= 200) {
-        bossSprite.setAlpha(0.20)
+    if (bossHealth <= 500) {
+        bossSprite.setAlpha(0.50)
     }
 
     if (bossHealth <= 0) {
         removeEntity(bossSprite)
     }
 
-    if (playerHealth <= 75) {
-        playerSprite.setAlpha(0.75)
-    }
-
     if (playerHealth <= 50) {
         playerSprite.setAlpha(0.50)
-    }
-
-    if (playerHealth <= 25) {
-        playerSprite.setAlpha(0.25)
     }
 
     if (playerHealth <= 0) {

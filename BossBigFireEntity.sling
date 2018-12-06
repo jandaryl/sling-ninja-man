@@ -44,7 +44,7 @@ func tick(gameTime as TimeValue, delta as double) override
         battleScene.removeEntity(bossEntity)
         
 		if (isHitThePlayer()) { 
-			battleScene.decreasePlayerHealthBy20()
+			battleScene.decreasePlayerHealthBy25()
 		}
 
 		battleScene.addEntity(bossEntity = new BossEntity())
