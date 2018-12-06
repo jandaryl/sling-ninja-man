@@ -12,7 +12,7 @@ var bossHealthSprite as TextSprite
 var bossHealth = 1000 as int
 var playerHealthProp as TextProperties
 var playerHealthSprite as TextSprite
-var playerHealth = 100 as int
+var playerHealth = 1000 as int
 var timeBattleProp as TextProperties
 var timeBattleSprite as TextSprite
 var timer = 10000 as int

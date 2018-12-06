@@ -74,7 +74,7 @@ func slashSkillAnimate
 
 func isCollide as boolean
 {
-    if (playerSprite.getX() < boundaryWallSprite.getX() + (0.6 * layer.getReferenceWidth()) && playerSprite.getX() + playerSprite.getWidth() > boundaryWallSprite.getX() && playerSprite.getY() < boundaryWallSprite.getY() + (0.6 * layer.getReferenceHeight()) && playerSprite.getHeight() + playerSprite.getY() > boundaryWallSprite.getY()) {
+    if (playerSprite.getX() < boundaryWallSprite.getX() + (0.53 * layer.getReferenceWidth()) && playerSprite.getX() + playerSprite.getWidth() > boundaryWallSprite.getX() && playerSprite.getY() < boundaryWallSprite.getY() + (0.53 * layer.getReferenceHeight()) && playerSprite.getHeight() + playerSprite.getY() > boundaryWallSprite.getY()) {
         return true
     }
     return false
