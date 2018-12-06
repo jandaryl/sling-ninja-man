@@ -5,13 +5,7 @@ var scene as BattleScene
 var battleScene as BattleScene
 var bgWallSprite as BackgroundWallEntity
 var leftBottomWallSprite as LeftBottomWallEntity
-var corX as double
-var corY as double
-var moveX as double
-var moveY as double
 var wallWidth as double
-var x as double
-var y as double
 var playerStandUpEntity as PlayerStandUpEntity
 var mediumSmokeEntity as PlayerMediumSmokeEntity
 var isTrueTeleport as boolean

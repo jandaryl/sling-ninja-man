@@ -241,6 +241,7 @@ func tick(gameTime as TimeValue, delta as double) override
 
     if (bossHealth <= 0) {
         removeEntity(bossSprite)
+        pushScene(new CongratsScene())
     }
 
     if (playerHealth <= 50) {
@@ -249,6 +250,7 @@ func tick(gameTime as TimeValue, delta as double) override
 
     if (playerHealth <= 0) {
         removeEntity(playerSprite)
+        pushScene(new GameOverScene())
     }
     
 }
