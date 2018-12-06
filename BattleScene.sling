@@ -15,7 +15,7 @@ var playerHealthSprite as TextSprite
 var playerHealth = 1000 as int
 var timeBattleProp as TextProperties
 var timeBattleSprite as TextSprite
-var timer = 10000 as int
+var timer = 3100 as int
 var bossSprite as BossEntity
 var countTeleportSprite as TextSprite
 var countTeleportProp as TextProperties
@@ -81,7 +81,7 @@ func initialize override
 	playerHealthSprite.setText(playerHealthProp)
 	playerHealthSprite.move(0.0, getReferenceHeight() - playerHealthSprite.getHeight())
 
-    timeBattleProp = TextProperties.forText("Time Limit 1000")
+    timeBattleProp = TextProperties.forText("Time Limit 00 : 30")
 	timeBattleProp.setTextColor(Color.white())
 	timeBattleProp.setFontSizeRelative(0.02)
 	timeBattleProp.setFontFamily("Fira Code")
@@ -172,7 +172,7 @@ func decreasePlayerHealthBy25
 func setTimeLimit
 {
     if (timer >= 0) {
-        timeBattleProp.setText("Time Limit " .. String.forInteger(timer--))
+        timeBattleProp.setText("Time Limit 00 : " .. String.forInteger((timer-- / 100) % 60))
 	    timeBattleSprite.setText(timeBattleProp)
     }
 
