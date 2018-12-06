@@ -31,15 +31,15 @@ func initialize override
 			pushScene(new MainScene())
 	    })
 
-    scoreProp = TextProperties.forText("Your Score : " .. String.forInteger(yourScore))
-	scoreProp.setTextColor(Color.white())
-	scoreProp.setFontSizeRelative(0.05)
-	scoreProp.setFontFamily("Fira Code")
-	scoreProp.setFontIsItalic(true)
+    // scoreProp = TextProperties.forText("Your Score : " .. String.forInteger(yourScore))
+	// scoreProp.setTextColor(Color.white())
+	// scoreProp.setFontSizeRelative(0.05)
+	// scoreProp.setFontFamily("Fira Code")
+	// scoreProp.setFontIsItalic(true)
 
-	scoreSprite = addTextSprite(scoreProp)
-	scoreSprite.setText(scoreProp)
-	scoreSprite.move(0.0, getReferenceHeight() - scoreSprite.getHeight())
+	// scoreSprite = addTextSprite(scoreProp)
+	// scoreSprite.setText(scoreProp)
+	// scoreSprite.move(0.0, getReferenceHeight() - scoreSprite.getHeight())
 }
 
 func cleanup override

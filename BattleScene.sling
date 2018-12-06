@@ -246,6 +246,11 @@ func tick(gameTime as TimeValue, delta as double) override
         pushScene(new GameOverScene())
     }
     
+    PRINT("Boss Sprite static Y is - from battle scene " .. String.asString(bossSprite.getX()))
+	PRINT("Boss Sprite static X is - from battle scene " .. String.asString(bossSprite.getY()))
+    PRINT("Player Sprite static Y is - from battle scene " .. String.asString(playerSprite.getX()))
+	PRINT("Player Sprite static X is - from battle scene " .. String.asString(playerSprite.getY()))
+    
 }
 
 

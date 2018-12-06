@@ -5,11 +5,16 @@ var scene as BattleScene
 var battleScene as BattleScene
 var bgWallSprite as BackgroundWallEntity
 var smallFireEntity as BossSmallFireEntity
+var playerSprite as PlayerEntity
+var fireTimer = 0  as int
+var moveX as double
+var moveY as double
 
 func createSprite override as Sprite
 {
     battleScene = scene
     bgWallSprite = battleScene.getBackgroundWallEntity()
+    playerSprite = battleScene.getPlayerSpriteEntity()
 
     var wallImage = scene.createTextureForImageResource("boss-stand")
 
@@ -21,7 +26,8 @@ func createSprite override as Sprite
 
 func fireSkillAnimate
 {
-    layer.removeSprite(bossSprite)
+    // layer.removeSprite(bossSprite)
+    bossSprite.setAlpha(0.0)
     battleScene.addEntity(smallFireEntity = new BossSmallFireEntity())
     smallFireEntity.move(bossSprite.getX(), bossSprite.getY())
     smallFireEntity.setTrueAnimate()
@@ -29,9 +35,59 @@ func fireSkillAnimate
     PRINT "The fire skill animate is working from boss entity."
 }
 
+func detectThePlayer as boolean
+{
+    if (playerSprite.getX() < bossSprite.getX() + bossSprite.getWidth() && playerSprite.getX() + playerSprite.getWidth() > bossSprite.getX() && playerSprite.getY() < bossSprite.getY() + bossSprite.getHeight() && playerSprite.getHeight() + playerSprite.getY() > bossSprite.getY()) {
+        return true
+		PRINT "It collide to the wall!"
+    }
+    return false
+}
+
+func getCurrentX as double
+{
+    return moveX
+}
+
+func getCurrentY as double
+{
+    return moveY
+}
+
 func onKeyEvent(event as KeyEvent)
 {	
     if (event.isKey(KeyEvent.KEY_TAB)) {
         fireSkillAnimate()
+    }
+}
+
+func tick(gameTime as TimeValue, delta as double) override
+{
+	base.tick(gameTime, delta)
+
+	// Get the coordinate of the first monster.
+	moveX = bossSprite.getX()
+	moveY = bossSprite.getY()
+
+	// Get the player coordinate.
+	var corX = playerSprite.getX() 
+	var corY = playerSprite.getY()
+
+	// The first monster will follow the player.
+	moveX -= (moveX - corX) * 0.008
+	moveY -= (moveY - corY) * 0.008
+	bossSprite.move(moveX, moveY)
+
+	PRINT "Boss is running.."
+    
+    if (detectThePlayer()) {
+
+        fireTimer++
+        PRINT("Fire Timer is " .. String.asString(fireTimer))
+
+        if (fireTimer == 50) {
+            fireSkillAnimate()
+            fireTimer =  0
+        }
     }
 }
