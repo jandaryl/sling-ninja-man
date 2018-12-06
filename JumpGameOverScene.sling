@@ -1,0 +1,35 @@
+class is SpriteSceneWithEntities imports cape imports cave imports motion #gameOverScene:
+
+var scene as BattleScene
+var battleScene as BattleScene
+var jumpGameOverSprite as Sprite
+
+func initialize override
+{
+    base.initialize()
+
+	battleScene = scene
+
+	addEntity(new MovingBackgroundEntity())
+
+    var jumpGameOverProp = TextProperties.forText("Don't jump from the sky!")
+        jumpGameOverProp.setTextColor(Color.white())
+        jumpGameOverProp.setFontSizeRelative(0.05)
+        jumpGameOverProp.setFontFamily("Fira Code")
+        jumpGameOverSprite = addTextSprite(jumpGameOverProp)
+        jumpGameOverSprite.move(getReferenceWidth() * 0.5 - (jumpGameOverSprite.getWidth() * 0.5), getReferenceHeight() * 0.2 - (jumpGameOverSprite.getHeight() * 0.5))
+        
+	var okBtnEntity = TextButtonEntity.forText("Ok")
+	    okBtnEntity.setBackgroundColor(Color.white())
+	    addEntity(okBtnEntity)
+	    okBtnEntity.move(getReferenceWidth() * 0.5 - (okBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (okBtnEntity.getHeight() * 0.5))
+	    okBtnEntity.setClickHandler(func {
+			PRINT "Change to Main Scene"
+			pushScene(new MainScene())
+	    })
+}
+
+func cleanup override
+{
+	removeAllSprites()
+}

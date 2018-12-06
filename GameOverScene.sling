@@ -3,9 +3,6 @@ class is SpriteSceneWithEntities imports cape imports cave imports motion #gameO
 var scene as BattleScene
 var battleScene as BattleScene
 var gameOverSprite as Sprite
-var scoreProp as TextProperties
-var scoreSprite as TextSprite
-var yourScore = 0 as int
 
 func initialize override
 {
@@ -30,16 +27,6 @@ func initialize override
 			PRINT "Change to Main Scene"
 			pushScene(new MainScene())
 	    })
-
-    // scoreProp = TextProperties.forText("Your Score : " .. String.forInteger(yourScore))
-	// scoreProp.setTextColor(Color.white())
-	// scoreProp.setFontSizeRelative(0.05)
-	// scoreProp.setFontFamily("Fira Code")
-	// scoreProp.setFontIsItalic(true)
-
-	// scoreSprite = addTextSprite(scoreProp)
-	// scoreSprite.setText(scoreProp)
-	// scoreSprite.move(0.0, getReferenceHeight() - scoreSprite.getHeight())
 }
 
 func cleanup override

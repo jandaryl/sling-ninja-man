@@ -5,6 +5,7 @@ var bgStream as AudioStream
 var clickStream as AudioStream
 var quitBtnEntity as TextButtonEntity
 var bgWallEntity as BackgroundWallEntity
+var boundaryWall as BoundaryWallEntity
 var playerSprite as PlayerEntity
 var bossHealthProp as TextProperties
 var bossHealthSprite as TextSprite
@@ -48,6 +49,9 @@ func initialize override
 
     // Add the background wall sprite.
     addEntity(bgWallEntity = new BackgroundWallEntity())
+
+    // Add the boundary wall sprite.
+    addEntity(boundaryWall = new BoundaryWallEntity())
 
     // Add the torch sprites.
     addEntity(new TorchEntity())
@@ -119,6 +123,11 @@ func getBackgroundWallEntity as BackgroundWallEntity
     return bgWallEntity
 }
 
+func getBoundaryWallEntity as BoundaryWallEntity
+{
+    return boundaryWall
+}
+
 func getBossSpriteEntity as BossEntity
 {
     return bossSprite
@@ -151,7 +160,7 @@ func decreaseBossHealthBy100
 func decreasePlayerHealthBy25
 {
     if (playerHealth >= 0) {
-        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 25))
+        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 10))
 	    playerHealthSprite.setText(playerHealthProp)
     }
 
@@ -183,6 +192,11 @@ func setTeleportLimit
         countTeleportProp.setText("Teleport : 0")
 	    countTeleportSprite.setText(countTeleportProp)
     }
+}
+
+func gotoJumpGameOver
+{
+    pushScene(new JumpGameOverScene())
 }
 
 func onPointerEvent(event as PointerEvent) override
@@ -250,8 +264,7 @@ func tick(gameTime as TimeValue, delta as double) override
 	PRINT("Boss Sprite static X is - from battle scene " .. String.asString(bossSprite.getY()))
     PRINT("Player Sprite static Y is - from battle scene " .. String.asString(playerSprite.getX()))
 	PRINT("Player Sprite static X is - from battle scene " .. String.asString(playerSprite.getY()))
-    
-}
+    }
 
 
 func cleanup override

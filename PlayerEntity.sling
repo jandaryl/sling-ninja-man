@@ -4,6 +4,7 @@ var playerSprite as TextureSprite
 var scene as BattleScene
 var battleScene as BattleScene
 var bgWallSprite as BackgroundWallEntity
+var boundaryWallSprite as BoundaryWallEntity
 var wallWidth as double
 var playerStandUpEntity as PlayerStandUpEntity
 var mediumSmokeEntity as PlayerMediumSmokeEntity
@@ -13,6 +14,7 @@ func createSprite override as Sprite
 {
     battleScene = scene 
     bgWallSprite = battleScene.getBackgroundWallEntity()
+    boundaryWallSprite = battleScene.getBoundaryWallEntity()
 
     var imgPlayer = scene.createTextureForImageResource("player")
 
@@ -43,6 +45,10 @@ func onPointerEvent(event as PointerEvent) as boolean
             playerSprite.move(corX, corY)
             battleScene.setTeleportLimit()
             isTrueTeleport = false
+
+            if (isCollide() == false) {
+                battleScene.gotoJumpGameOver()
+            }
         }
 	}
 
@@ -68,7 +74,7 @@ func slashSkillAnimate
 
 func isCollide as boolean
 {
-    if (playerSprite.getX() < bgWallSprite.getX() + (0.6 * layer.getReferenceWidth()) && playerSprite.getX() + playerSprite.getWidth() > bgWallSprite.getX() && playerSprite.getY() < bgWallSprite.getY() + (0.6 * layer.getReferenceHeight()) && playerSprite.getHeight() + playerSprite.getY() > bgWallSprite.getY()) {
+    if (playerSprite.getX() < boundaryWallSprite.getX() + (0.6 * layer.getReferenceWidth()) && playerSprite.getX() + playerSprite.getWidth() > boundaryWallSprite.getX() && playerSprite.getY() < boundaryWallSprite.getY() + (0.6 * layer.getReferenceHeight()) && playerSprite.getHeight() + playerSprite.getY() > boundaryWallSprite.getY()) {
         return true
     }
     return false
@@ -92,7 +98,7 @@ func onKeyEvent(event as KeyEvent)
             // checkCollision()
         }  
         else {
-            stopMove()
+            battleScene.gotoJumpGameOver()
         }
 
 	}
@@ -105,7 +111,7 @@ func onKeyEvent(event as KeyEvent)
             PRINT "It collide to background wall!"
         }  
         else {
-            stopMove()
+            battleScene.gotoJumpGameOver()
         }
 
 	}
@@ -119,7 +125,7 @@ func onKeyEvent(event as KeyEvent)
             // checkCollision()
         }  
         else {
-            stopMove()
+            battleScene.gotoJumpGameOver()
         }
 	}
 
@@ -132,7 +138,7 @@ func onKeyEvent(event as KeyEvent)
             PRINT "It collide to background wall!"
         }  
         else {
-            stopMove()
+            battleScene.gotoJumpGameOver()
         }
 
   
