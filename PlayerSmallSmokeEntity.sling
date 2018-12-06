@@ -29,10 +29,6 @@ func tick(gameTime as TimeValue, delta as double) override
     }   
 
     if (fadeTimer == 20) {
-        // playerSmallSmokeSprite.setAlpha(0.0)
-        // battleScene.addEntity(jumpEntity = new PlayerJumpEntity())
-        // jumpEntity.move(playerSmallSmokeSprite.getX(), playerSmallSmokeSprite.getY())
-        // battleScene.removeSprite(jumpEntity)
         layer.removeSprite(playerSmallSmokeSprite)
     }
 

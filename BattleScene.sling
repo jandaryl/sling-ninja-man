@@ -63,9 +63,6 @@ func initialize override
     addEntity(new Torch9Entity())
     addEntity(new Torch10Entity())
  
-    // Add the left bottom wall sprite.
-    // addEntity(leftBottomWall = new LeftBottomWallEntity())
-
     // Add the player sprite.
     addEntity(playerSprite = new PlayerEntity())
 
@@ -112,30 +109,6 @@ func initialize override
 	countTeleportSprite = addTextSprite(countTeleportProp)   
 	countTeleportSprite.setText(countTeleportProp)
 	countTeleportSprite.move(0.0, 0.25)
-
-    // Add the player movement via pointer/keymaps.
-    // Add the player sword skill animation.
-    // Add the slash sound effect.
-    // Add the player bomb skill.
-    // Add the explosion sound effect.
-    // Add the player scoring.
-    // Add the score count effect.
-    // Add the player teleport skill.
-    // Add the player health.
-    // Add the player fading out.
-    // Add the last sound effect.
-    // Add the monster sprite.
-    // Add the monster detection skill.
-    // Add the monster movement.
-    // Add the monster walk sound effect.
-    // Add the monster shoot skill.
-    // Add the monster health.
-    // Add the monster fading out.
-    // Add the boss sprite.
-    // Add the boss detection skill.
-    // Add the boss anger sound effect.
-    // Add the boss movement.
-    // Add the boss walk sound effect.
 }
 
 func getPlayerSpriteEntity as PlayerEntity

@@ -1,7 +1,5 @@
 class is SpriteSceneWithEntities imports cape imports cave imports motion #battleScene:
 
-// var helpMonstersBtnEntity as TextButtonEntity
-// var helpBossBtnEntity as TextButtonEntity
 var needHelpWordSprite as TextSprite
 var okBtnEntity as TextButtonEntity
 var audioManager as AudioManager
@@ -15,53 +13,6 @@ func initialize override
 
     // Add background moving image.
     addEntity(new MovingBackgroundEntity())
-
-    // // Add help monster button.
-    // helpMonstersBtnEntity = TextButtonEntity.forText("Ninja vs Monsters")
-    // helpMonstersBtnEntity.setBackgroundColor(Color.white())
-    // addEntity(helpMonstersBtnEntity)
-    // helpMonstersBtnEntity.move(getReferenceWidth() * 0.4 - (helpMonstersBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpMonstersBtnEntity.getHeight() * 0.5))
-    // helpMonstersBtnEntity.setClickHandler(func {
-
-    //     // Add click sound effect.
-    //     audioManager = AudioManager.forApplication(context)
-
-    //     if (audioManager != null) {
-    //         stream = audioManager.getStreamForResource("main-scene")
-            
-    //         if (stream != null) {
-    //             stream.play()
-    //             stream.setLooping(true)
-    //             PRINT "[LOG] Click sound effect from Help Monsters Button is working"
-    //         }
-    //     }
-    //     pushScene(new HelpMonstersScene())
-    //     PRINT "[LOG] Change to Help Monsters Scene"
-    // })
-
-    // // Add help boss button.
-    // helpBossBtnEntity = TextButtonEntity.forText("Ninja vs Boss")
-    // helpBossBtnEntity.setBackgroundColor(Color.white())
-    // addEntity(helpBossBtnEntity)
-    // helpBossBtnEntity.move(getReferenceWidth() * 0.7 - (helpBossBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (helpBossBtnEntity.getHeight() * 0.5))
-    // helpBossBtnEntity.setClickHandler(func {
-
-    //     // Add click sound effect.
-    //     audioManager = AudioManager.forApplication(context)
-
-    //     if (audioManager != null) {
-    //         stream = audioManager.getStreamForResource("main-scene")
-            
-    //         if (stream != null) {
-    //             stream.play()
-    //             stream.setLooping(true)
-    //             PRINT "[LOG] Click sound effect from Help Boss Button is working"
-    //         }
-    //     }
-
-    //     pushScene(new HelpBossScene())
-    //     PRINT "[LOG] Change to Help Boss Scene"
-    // })
 
      // Add story words sprite.
     storyWordProp = TextProperties.forText("Ninja vs Boss, instruction...")

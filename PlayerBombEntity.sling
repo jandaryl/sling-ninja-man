@@ -3,10 +3,9 @@ class is SpriteEntity imports motion imports cave imports cape:
 var screenWidth as double
 var screenHeight as double
 var playerBombSprite as TextureSprite
-var fadeTimer = 0 as int
 var battleScene as BattleScene
 var scene as BattleScene
-var playerEntity as PlayerEntity
+
 
 func createSprite override as Sprite
 {	
@@ -23,6 +22,5 @@ func createSprite override as Sprite
 func cleanup override
 {
 	layer.removeSprite(playerBombSprite)
-	// layer.removeSprite(playerEntity)
 	PRINT "[LOG] Remove the sprites from player stand up entity scene"
 }

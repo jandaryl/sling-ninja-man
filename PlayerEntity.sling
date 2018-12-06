@@ -12,18 +12,9 @@ var moveY as double
 var wallWidth as double
 var x as double
 var y as double
-// var audioManager as AudioManager
-// var stream as AudioStream
 var playerStandUpEntity as PlayerStandUpEntity
-// var isBombPlanted as boolean
-// var playerBombEntity as PlayerBombEntity
-// var spriteX = 0.0
-// var spriteY = 0.0
-// var speedX = 0.005
-// var speedY = 0.005
 var mediumSmokeEntity as PlayerMediumSmokeEntity
 var isTrueTeleport as boolean
-// var isTrueSlash as boolean
 
 func createSprite override as Sprite
 {
@@ -36,13 +27,6 @@ func createSprite override as Sprite
     playerSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, imgPlayer, 0.09 * layer.getReferenceWidth(), 0.09 * layer.getReferenceHeight()) 
 	playerSprite.move(bgWallSprite.getWidth() * 0.415 - (playerSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 0.85 - (playerSprite.getHeight() * 0.5))
     
-    // wallWidth = 0.6 * layer.getReferenceWidth()
-    x = bgWallSprite.getX()
-    y = bgWallSprite.getY()
-
-    // audioManager = AudioManager.forApplication(context)
-
-
     return(playerSprite)
 }
 
@@ -51,11 +35,6 @@ func setTrueTeleport
 {
     isTrueTeleport = true
 }
-
-// func setTrueSlash
-// {
-//     isTrueSlash = true
-// }
 
 func onPointerEvent(event as PointerEvent) as boolean
 {
@@ -83,18 +62,6 @@ func stopMove
 {
     playerSprite.move(playerSprite.getX(), playerSprite.getY())
 }
-
-// func isInside(xc as double, yc as double, width as double, height as double) as bool
-// {
-// 	if x >= xc && x < xc+width && y >= yc && y < yc+height:
-// 		return true
-// 	return false
-// }
-
-// func isInsideInWallBackground
-// {
-//     isInside(playerSprite.getX(), playerSprite.getY(), layer.getReferenceWidth() * 0.5 - (bgWallSprite.getWidth() * 0.5), layer.getReferenceHeight() * 0.5 - (bgWallSprite.getHeight() * 0.5))
-// }
 
 func slashSkillAnimate
 {
@@ -124,70 +91,14 @@ func isCollideToWall as boolean
     return false
 }
 
-// func checkCollision
-// {
-//     if (isCollideToWall) {
-//         stopMove()
-//     }
-// }
-
-
-
 func onKeyEvent(event as KeyEvent)
 {	
     if (event.isKey(KeyEvent.KEY_SPACE)) {
         
-        // if (audioManager != null) {
-        //     stream = audioManager.getStreamForResource("main-scene")
-            
-        //     if (stream != null) {
-        //         stream.play()
-        //         stream.setLooping(true)
-        //         PRINT "[LOG] Slash sound effect from KEY SPACE Button is working"
-        //     }
-        // }
-        // if (isTrueSlash == true) {
-            slashSkillAnimate()
-        //     battleScene.setSlashLimit()
-        //     isTrueSlash = false
-        // }
-        
+        slashSkillAnimate()
     }
 
-    
-    // if (event.isKey(KeyEvent.KEY_TAB)) {
-        
-    //     // if (audioManager != null) {
-    //     //     stream = audioManager.getStreamForResource("main-scene")
-            
-    //     //     if (stream != null) {
-    //     //         stream.play()
-    //     //         stream.setLooping(true)
-    //     //         PRINT "[LOG] Bomb sound effect from KEY TAB Button is working"
-    //     //     }
-    //     // }
-
-    //     isBombPlanted = true
-    // }
-
 	if (event.isKey(KeyEvent.KEY_UP)) {
-
-        // if (audioManager != null) {
-        //     stream = audioManager.getStreamForResource("main-scene")
-            
-        //     if (stream != null) {
-        //         stream.play()
-        //         stream.setLooping(true)
-        //         PRINT "[LOG] Walk sound effect from KEY UP Button is working"
-        //     }
-        // }
-
-        // if (isInsideInWallBackground()) {
-        // //    stopMove()
-        //     PRINT "Is inside is working!"
-        // }
-
-        // else {
 
         if (isCollide()) {
             playerSprite.move(playerSprite.getX(), playerSprite.getY() - 0.005)
@@ -199,28 +110,14 @@ func onKeyEvent(event as KeyEvent)
             stopMove()
         }
 
-        // }
-
 	}
 
 	if (event.isKey(KeyEvent.KEY_DOWN)) {
-
-        // Add walk sound effect.
-        // if (audioManager != null) {
-        //     stream = audioManager.getStreamForResource("main-scene")
-            
-        //     if (stream != null) {
-        //         stream.play()
-        //         stream.setLooping(true)
-        //         PRINT "[LOG] Walk sound effect from KEY DOWN is working"
-        //     }
-        // }
 
         if (isCollide()) {
             playerSprite.move(playerSprite.getX(), playerSprite.getY() + 0.005)
             stats()
             PRINT "It collide to background wall!"
-            // checkCollision()
         }  
         else {
             stopMove()
@@ -229,17 +126,7 @@ func onKeyEvent(event as KeyEvent)
 	}
 
 	if (event.isKey(KeyEvent.KEY_LEFT)) {
-
-        // Add walk sound effect.
-        // if (audioManager != null) {
-        //     stream = audioManager.getStreamForResource("main-scene")
-            
-        //     if (stream != null) {
-        //         stream.play()
-        //         stream.setLooping(true)
-        //         PRINT "[LOG] Walk sound effect from KEY LEFT is working"
-        //     }
-        // }    
+  
         if (isCollide()) {
             playerSprite.move(playerSprite.getX() - 0.005, playerSprite.getY())
             stats()
@@ -253,23 +140,11 @@ func onKeyEvent(event as KeyEvent)
 
 	if (event.isKey(KeyEvent.KEY_RIGHT)) {
 
-        // Add walk sound effect.
-        // if (audioManager != null) {
-        //     stream = audioManager.getStreamForResource("main-scene")
-            
-        //     if (stream != null) {
-        //         stream.play()
-        //         stream.setLooping(true)
-        //         PRINT "[LOG] Walk sound effect from KEY RIGHT is working"
-        //     }
-        // }
-
 
         if (isCollide()) {
             playerSprite.move(playerSprite.getX() + 0.005, playerSprite.getY())
             stats()
             PRINT "It collide to background wall!"
-            // checkCollision()
         }  
         else {
             stopMove()
