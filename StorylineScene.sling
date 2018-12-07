@@ -15,9 +15,39 @@ func initialize override
     addEntity(new MovingBackgroundEntity())
 
     // Add story words sprite.
-    storyWordProp = TextProperties.forText("Ninja Man, story line...")
+    storyWordProp = TextProperties.forText("Once upon a time, there was great tribulation of our world.")
 	storyWordProp.setTextColor(Color.white())
-	storyWordProp.setFontSizeRelative(0.05)
+	storyWordProp.setFontSizeRelative(0.02)
+	storyWordProp.setFontFamily("Fira Code")
+	storyWordProp.setFontIsItalic(true)
+	storyWordSprite = addTextSprite(storyWordProp)
+	storyWordSprite.setText(storyWordProp)
+	storyWordSprite.move(getReferenceWidth() * 0.5 - (storyWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.2 - (storyWordSprite.getHeight() * 0.5))
+
+    // Add story words sprite.
+    storyWordProp = TextProperties.forText("It is the dragon that wants to eliminate humanity,")
+	storyWordProp.setTextColor(Color.white())
+	storyWordProp.setFontSizeRelative(0.02)
+	storyWordProp.setFontFamily("Fira Code")
+	storyWordProp.setFontIsItalic(true)
+	storyWordSprite = addTextSprite(storyWordProp)
+	storyWordSprite.setText(storyWordProp)
+	storyWordSprite.move(getReferenceWidth() * 0.5 - (storyWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.3 - (storyWordSprite.getHeight() * 0.5))
+
+    // Add story words sprite.
+    storyWordProp = TextProperties.forText("but there is a lonely ninja that want to protect the world.")
+	storyWordProp.setTextColor(Color.white())
+	storyWordProp.setFontSizeRelative(0.02)
+	storyWordProp.setFontFamily("Fira Code")
+	storyWordProp.setFontIsItalic(true)
+	storyWordSprite = addTextSprite(storyWordProp)
+	storyWordSprite.setText(storyWordProp)
+	storyWordSprite.move(getReferenceWidth() * 0.5 - (storyWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.4 - (storyWordSprite.getHeight() * 0.5))
+
+    // Add story words sprite.
+    storyWordProp = TextProperties.forText("So he comes and fights the dragon in the top of the castle with all his life...")
+	storyWordProp.setTextColor(Color.white())
+	storyWordProp.setFontSizeRelative(0.02)
 	storyWordProp.setFontFamily("Fira Code")
 	storyWordProp.setFontIsItalic(true)
 	storyWordSprite = addTextSprite(storyWordProp)
@@ -28,7 +58,7 @@ func initialize override
     okBtnEntity = TextButtonEntity.forText("OK")
     okBtnEntity.setBackgroundColor(Color.white())
     addEntity(okBtnEntity)
-    okBtnEntity.move(getReferenceWidth() * 0.5 - (okBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.7 - (okBtnEntity.getHeight() * 0.5))
+    okBtnEntity.move(getReferenceWidth() * 0.5 - (okBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.8 - (okBtnEntity.getHeight() * 0.5))
     okBtnEntity.setClickHandler(func {
 
         // Add click sound effect.

@@ -14,27 +14,21 @@ func initialize override
 
 	addEntity(new MovingBackgroundEntity())
 
-    var congratsProp = TextProperties.forText("Congrats Man!")
+    var congratsProp = TextProperties.forText("Congrats! You defeated the dragon and now the world return to peace.")
         congratsProp.setTextColor(Color.white())
-        congratsProp.setFontSizeRelative(0.075)
+        congratsProp.setFontSizeRelative(0.02)
         congratsProp.setFontFamily("Fira Code")
         congratsSprite = addTextSprite(congratsProp)
-        congratsSprite.move(getReferenceWidth() * 0.5 - (congratsSprite.getWidth() * 0.5), getReferenceHeight() * 0.2 - (congratsSprite.getHeight() * 0.5))
+        congratsSprite.move(getReferenceWidth() * 0.5 - (congratsSprite.getWidth() * 0.5), getReferenceHeight() * 0.4 - (congratsSprite.getHeight() * 0.5))
         
 	var playAgainBtnEntity = TextButtonEntity.forText("Ok")
 	    playAgainBtnEntity.setBackgroundColor(Color.white())
 	    addEntity(playAgainBtnEntity)
-	    playAgainBtnEntity.move(getReferenceWidth() * 0.5 - (playAgainBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.7 - (playAgainBtnEntity.getHeight() * 0.5))
+	    playAgainBtnEntity.move(getReferenceWidth() * 0.5 - (playAgainBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.6 - (playAgainBtnEntity.getHeight() * 0.5))
 	    playAgainBtnEntity.setClickHandler(func {
 			PRINT "Change to Main Scene"
 			pushScene(new MainScene())
 	    })
-
-    messageProp = TextProperties.forText("You are promoted as Ninja Master!")
-	messageProp.setTextColor(Color.white())
-	messageProp.setFontSizeRelative(0.03)
-	messageProp.setFontFamily("Fira Code")
-	messageProp.setFontIsItalic(true)
 
 	messageSprite = addTextSprite(messageProp)
 	messageSprite.setText(messageProp)

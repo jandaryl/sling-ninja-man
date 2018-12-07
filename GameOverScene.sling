@@ -3,6 +3,7 @@ class is SpriteSceneWithEntities imports cape imports cave imports motion #gameO
 var scene as BattleScene
 var battleScene as BattleScene
 var gameOverSprite as Sprite
+var gameOverProp as TextProperties
 
 func initialize override
 {
@@ -12,14 +13,22 @@ func initialize override
 
 	addEntity(new MovingBackgroundEntity())
 
-    var gameOverProp = TextProperties.forText("Oops! Ninja was burned...")
-        gameOverProp.setTextColor(Color.white())
-        gameOverProp.setFontSizeRelative(0.02)
-        gameOverProp.setFontFamily("Fira Code")
-        gameOverSprite = addTextSprite(gameOverProp)
-        gameOverSprite.move(getReferenceWidth() * 0.5 - (gameOverSprite.getWidth() * 0.5), getReferenceHeight() * 0.2 - (gameOverSprite.getHeight() * 0.5))
-        
-	var playAgainBtnEntity = TextButtonEntity.forText("Revenge?")
+    gameOverProp = TextProperties.forText("The ninja failed to protect us against the dragon.")
+	gameOverProp.setTextColor(Color.white())
+	gameOverProp.setFontSizeRelative(0.02)
+	gameOverProp.setFontFamily("Fira Code")
+	gameOverSprite = addTextSprite(gameOverProp)
+	gameOverSprite.move(getReferenceWidth() * 0.5 - (gameOverSprite.getWidth() * 0.5), getReferenceHeight() * 0.2 - (gameOverSprite.getHeight() * 0.5))
+	
+	gameOverProp = TextProperties.forText("Then the era of humanity was ended.")
+	gameOverProp.setTextColor(Color.white())
+	gameOverProp.setFontSizeRelative(0.02)
+	gameOverProp.setFontFamily("Fira Code")
+	gameOverSprite = addTextSprite(gameOverProp)
+	gameOverSprite.move(getReferenceWidth() * 0.5 - (gameOverSprite.getWidth() * 0.5), getReferenceHeight() * 0.3 - (gameOverSprite.getHeight() * 0.5))
+
+
+	var playAgainBtnEntity = TextButtonEntity.forText("Fight Again")
 	    playAgainBtnEntity.setBackgroundColor(Color.white())
 	    addEntity(playAgainBtnEntity)
 	    playAgainBtnEntity.move(getReferenceWidth() * 0.4 - (playAgainBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (playAgainBtnEntity.getHeight() * 0.5))
