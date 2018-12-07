@@ -34,17 +34,6 @@ func isHitTheBoss as boolean
     return false
 }
 
-// func isHitTheBoss as boolean
-// {
-//     if (playerSlashMidSprite.getX() < bossSprite.getCurrentX() + bossSprite.getWidth() && playerSlashMidSprite.getX() + playerSlashMidSprite.getWidth() > bossSprite.getCurrentX() && playerSlashMidSprite.getY() < bossSprite.getCurrentY() + bossSprite.getHeight() && playerSlashMidSprite.getHeight() + playerSlashMidSprite.getY() > bossSprite.getCurrentY()) {
-//         return true
-// 		PRINT "It collide to the boss!"
-// 		PRINT("Boss Sprite collide to the player!")
-// 		// PRINT("Boss Sprite Y is -" .. String.asString(bossSprite.getCurrentY()))
-//     }
-//     return false
-// }
-
 func tick(gameTime as TimeValue, delta as double) override
 {
 	base.tick(gameTime, delta)

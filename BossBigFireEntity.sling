@@ -41,13 +41,11 @@ func tick(gameTime as TimeValue, delta as double) override
 
 	if (fadeTimer == 10) {
         layer.removeSprite(bossBigFireSprite)
-        // battleScene.removeEntity(bossEntity)
         
 		if (isHitThePlayer()) { 
 			battleScene.decreasePlayerHealthBy25()
 		}
 
-		// battleScene.addEntity(bossEntity = new BossEntity())
 		bossEntity.move(bossBigFireSprite.getX(), bossBigFireSprite.getY())
 		bossEntity.setAlpha(1.0)
 	}

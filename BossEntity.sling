@@ -26,7 +26,6 @@ func createSprite override as Sprite
 
 func fireSkillAnimate
 {
-    // layer.removeSprite(bossSprite)
     bossSprite.setAlpha(0.0)
     battleScene.addEntity(smallFireEntity = new BossSmallFireEntity())
     smallFireEntity.move(bossSprite.getX(), bossSprite.getY())

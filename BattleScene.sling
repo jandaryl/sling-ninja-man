@@ -29,7 +29,7 @@ func initialize override
     audioManager = AudioManager.forApplication(context)
 
     if (audioManager != null) {
-        bgStream = audioManager.getStreamForResource("main-scene")
+        bgStream = audioManager.getStreamForResource("bg-music")
         
         if (bgStream != null) {
             bgStream.play()

@@ -8,14 +8,12 @@ var gameTitleSprite as TextSprite
 var storyBtnEntity as TextButtonEntity
 var startBtnEntity as TextButtonEntity
 var helpBtnEntity as TextButtonEntity
+var isSound = false as boolean
 
 func initialize override
 {
     base.initialize()
 
-    // Add background music.
-    backgroundMusic = false // set true will play the music but consume your memory.
-   
     // Add background image.
     addEntity(new MovingBackgroundEntity())
 
@@ -36,19 +34,8 @@ func initialize override
     storyBtnEntity.move(getReferenceWidth() * 0.5 - (storyBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (storyBtnEntity.getHeight() * 0.5))
     storyBtnEntity.setClickHandler(func {
         
-        // Add click sound effect.
-        audioManager = AudioManager.forApplication(context)
-
-        if (audioManager != null) {
-            stream = audioManager.getStreamForResource("main-scene")
-            
-            if (stream != null) {
-                stream.play()
-                stream.setLooping(true)
-                PRINT "[LOG] Click sound effect from Story Button is working"
-            }
-        }
-
+        // TODO: Add click sound effect.
+ 
         pushScene(new StorylineScene())
         PRINT "[LOG] Change to Storyline Scene"
     })
@@ -60,18 +47,7 @@ func initialize override
     startBtnEntity.move(getReferenceWidth() * 0.5 - (startBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.6 - (startBtnEntity.getHeight() * 0.5))
     startBtnEntity.setClickHandler(func {
 
-        // Add click sound effect.
-        audioManager = AudioManager.forApplication(context)
-
-        if (audioManager != null) {
-            stream = audioManager.getStreamForResource("main-scene")
-            
-            if (stream != null) {
-                stream.play()
-                stream.setLooping(true)
-                PRINT "[LOG] Click sound effect from Start Button is working"
-            }
-        }
+        // TODO: Add click sound effect.
 
         pushScene(new BattleScene())
         PRINT "[LOG] Change to Battle Scene"
@@ -84,18 +60,7 @@ func initialize override
     helpBtnEntity.move(getReferenceWidth() * 0.5 - (helpBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.7 - (helpBtnEntity.getHeight() * 0.5))
     helpBtnEntity.setClickHandler(func {
                 
-        // Add click sound effect.
-        audioManager = AudioManager.forApplication(context)
-
-        if (audioManager != null) {
-            stream = audioManager.getStreamForResource("main-scene")
-            
-            if (stream != null) {
-                stream.play()
-                stream.setLooping(true)
-                PRINT "[LOG] Click sound effect from Need Help Button is working"
-            }
-        }
+        // TODO: Add click sound effect.
 
         pushScene(new NeedHelpScene())
         PRINT "[LOG] Change to Need Help Scene from Main Scene"
@@ -108,28 +73,9 @@ func onPointerEvent(event as PointerEvent) override
     base.onPointerEvent(event)
 }
 
-func playBackGroundMusic
-{
-    audioManager = AudioManager.forApplication(context)
-
-    if (audioManager != null) {
-        stream = audioManager.getStreamForResource("main-scene")
-		
-		if (stream != null) {
-        	stream.play()
-        	stream.setLooping(true)
-            PRINT "[LOG] Background music is working"
-    	}
-    }
-}
-
 func tick(gameTime as TimeValue, delta as double) override
 {
 	base.tick(gameTime, delta)
-
-    if (backgroundMusic == true) {
-        playBackGroundMusic()
-    }
 }
 
 func cleanup override
