@@ -12,18 +12,27 @@ func initialize override
 
 	addEntity(new MovingBackgroundEntity())
 
-    var gameOverProp = TextProperties.forText("Game Over!")
+    var gameOverProp = TextProperties.forText("Oops! Ninja was burned...")
         gameOverProp.setTextColor(Color.white())
-        gameOverProp.setFontSizeRelative(0.075)
+        gameOverProp.setFontSizeRelative(0.02)
         gameOverProp.setFontFamily("Fira Code")
         gameOverSprite = addTextSprite(gameOverProp)
         gameOverSprite.move(getReferenceWidth() * 0.5 - (gameOverSprite.getWidth() * 0.5), getReferenceHeight() * 0.2 - (gameOverSprite.getHeight() * 0.5))
         
-	var playAgainBtnEntity = TextButtonEntity.forText("Play Again!")
+	var playAgainBtnEntity = TextButtonEntity.forText("Revenge?")
 	    playAgainBtnEntity.setBackgroundColor(Color.white())
 	    addEntity(playAgainBtnEntity)
-	    playAgainBtnEntity.move(getReferenceWidth() * 0.5 - (playAgainBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (playAgainBtnEntity.getHeight() * 0.5))
+	    playAgainBtnEntity.move(getReferenceWidth() * 0.4 - (playAgainBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (playAgainBtnEntity.getHeight() * 0.5))
 	    playAgainBtnEntity.setClickHandler(func {
+			PRINT "Change to Battle Scene"
+			pushScene(new BattleScene())
+	    })
+
+	var notNowBtnEntity = TextButtonEntity.forText("Not now..")
+	    notNowBtnEntity.setBackgroundColor(Color.white())
+	    addEntity(notNowBtnEntity)
+	    notNowBtnEntity.move(getReferenceWidth() * 0.6 - (notNowBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (notNowBtnEntity.getHeight() * 0.5))
+	    notNowBtnEntity.setClickHandler(func {
 			PRINT "Change to Main Scene"
 			pushScene(new MainScene())
 	    })
