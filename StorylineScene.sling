@@ -1,15 +1,23 @@
 class is SpriteSceneWithEntities imports cape imports cave imports motion #storylineScene:
 
+var audioManager as AudioManager
+var clip as AudioClip
 var storyWordProp as TextProperties
 var storyWordSprite as TextSprite
 var okBtnEntity as TextButtonEntity
-var audioManager as AudioManager
 var stream as AudioStream
 
 
 func initialize override
 {
     base.initialize()
+
+	audioManager = AudioManager.forApplication(context)
+	if (audioManager != null) {
+		clip = audioManager.getClipForResource("click")
+		onTimeToPlaySoundclip()
+        PRINT "[LOG] Click sound effect is working"
+	}
 
     // Add moving background image.
     addEntity(new MovingBackgroundEntity())
@@ -67,6 +75,13 @@ func initialize override
         PRINT "[LOG] Change to Main Scene"
     })
 
+}
+
+func onTimeToPlaySoundclip
+{
+	if(clip != null) {
+		clip.play()
+	}
 }
 
 func cleanup override

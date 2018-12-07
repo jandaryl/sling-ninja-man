@@ -1,14 +1,10 @@
 class is SpriteSceneWithEntities imports cape imports cave imports motion #mainScene:
 
-var backgroundMusic as boolean
-var audioManager as AudioManager
-var stream as AudioStream
 var gameTitleProp as TextProperties
 var gameTitleSprite as TextSprite
 var storyBtnEntity as TextButtonEntity
 var startBtnEntity as TextButtonEntity
 var helpBtnEntity as TextButtonEntity
-var isSound = false as boolean
 var playerImg as TextureSprite
 var bossImg as TextureSprite
 
@@ -43,9 +39,6 @@ func initialize override
     addEntity(storyBtnEntity)
     storyBtnEntity.move(getReferenceWidth() * 0.5 - (storyBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (storyBtnEntity.getHeight() * 0.5))
     storyBtnEntity.setClickHandler(func {
-        
-        // TODO: Add click sound effect.
- 
         pushScene(new StorylineScene())
         PRINT "[LOG] Change to Storyline Scene"
     })
@@ -56,9 +49,6 @@ func initialize override
     addEntity(startBtnEntity)
     startBtnEntity.move(getReferenceWidth() * 0.5 - (startBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.6 - (startBtnEntity.getHeight() * 0.5))
     startBtnEntity.setClickHandler(func {
-
-        // TODO: Add click sound effect.
-
         pushScene(new BattleScene())
         PRINT "[LOG] Change to Battle Scene"
     })
@@ -69,9 +59,6 @@ func initialize override
     addEntity(helpBtnEntity)
     helpBtnEntity.move(getReferenceWidth() * 0.5 - (helpBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.7 - (helpBtnEntity.getHeight() * 0.5))
     helpBtnEntity.setClickHandler(func {
-                
-        // TODO: Add click sound effect.
-
         pushScene(new NeedHelpScene())
         PRINT "[LOG] Change to Need Help Scene from Main Scene"
     })
@@ -90,10 +77,6 @@ func tick(gameTime as TimeValue, delta as double) override
 
 func cleanup override
 {
-    if (stream != null) {
-		stream.stop()
-	}
-
     removeAllEntities()
     PRINT "[LOG] Remove all entities from main scene"
     removeAllSprites()

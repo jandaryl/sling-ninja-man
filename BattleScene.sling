@@ -1,8 +1,8 @@
 class is SpriteSceneWithEntities imports cape imports cave imports motion #battleScene:
 
 var audioManager as AudioManager
-var bgStream as AudioStream
-var clickStream as AudioStream
+var clip as AudioClip
+var stream as AudioStream
 var quitBtnEntity as TextButtonEntity
 var bgWallEntity as BackgroundWallEntity
 var boundaryWall as BoundaryWallEntity
@@ -25,18 +25,16 @@ func initialize override
 {
     base.initialize()
 
-    // Add the background music.
     audioManager = AudioManager.forApplication(context)
-
     if (audioManager != null) {
-        bgStream = audioManager.getStreamForResource("bg-music")
-        
-        if (bgStream != null) {
-            bgStream.play()
-            bgStream.setLooping(true)
-            PRINT "[LOG] Background music is working"
-        }
-    }
+		clip = audioManager.getClipForResource("click")
+		stream = audioManager.getStreamForResource("bg-music")
+
+		onTimeToPlayStream()
+        PRINT "[LOG] Background music is working"
+		onTimeToPlaySoundclip()
+        PRINT "[LOG] Click sound effect is working"
+	}
 
     // Add the moving background image.
     addEntity(new MovingBackgroundEntity())
@@ -111,6 +109,7 @@ func initialize override
 	countTeleportSprite = addTextSprite(countTeleportProp)   
 	countTeleportSprite.setText(countTeleportProp)
 	countTeleportSprite.move(0.0, 0.25)
+
 }
 
 func getPlayerSpriteEntity as PlayerEntity
@@ -199,6 +198,21 @@ func gotoJumpGameOver
     pushScene(new JumpGameOverScene())
 }
 
+func onTimeToPlaySoundclip
+{
+	if(clip != null) {
+		clip.play()
+	}
+}
+
+func onTimeToPlayStream
+{
+	if(stream != null) {
+		stream.play()
+		stream.setLooping(true)
+	}
+}
+
 func onPointerEvent(event as PointerEvent) override
 {
     base.onPointerEvent(event)
@@ -206,20 +220,6 @@ func onPointerEvent(event as PointerEvent) override
 	if (event.action == PointerEvent.DOWN) {
 		
         if (event.isInside(quitBtnEntity.getX(), quitBtnEntity.getY(), quitBtnEntity.getWidth(), quitBtnEntity.getHeight())) {
-            
-            // Add click sound effect.
-            audioManager = AudioManager.forApplication(context)
-
-            if (audioManager != null) {
-                clickStream = audioManager.getStreamForResource("main-scene")
-                
-                if (clickStream != null) {
-                    clickStream.play()
-                    clickStream.setLooping(true)
-                    PRINT "[LOG] Click sound effect from Quit Button is working"
-                }
-            }
-
             pushScene(new MainScene())
             PRINT "[LOG] Change to Main Scene"
         }
@@ -269,12 +269,8 @@ func tick(gameTime as TimeValue, delta as double) override
 
 func cleanup override
 {
-    if (bgStream != null) {
-		bgStream.stop()
-	}
-
-    if (clickStream != null) {
-		clickStream.stop()
+	if(stream != null) {
+		stream.stop()
 	}
 
     removeAllEntities()

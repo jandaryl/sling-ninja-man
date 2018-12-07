@@ -1,14 +1,22 @@
 class is SpriteSceneWithEntities imports cape imports cave imports motion #battleScene:
 
-var okBtnEntity as TextButtonEntity
 var audioManager as AudioManager
-var stream as AudioStream
+var clip as AudioClip
+var okBtnEntity as TextButtonEntity
 var needHelpWordProp as TextProperties
 var needHelpWordSprite as TextSprite
 
 func initialize override
 {
     base.initialize()
+
+	audioManager = AudioManager.forApplication(context)
+
+	if(audioManager != null) {
+		clip = audioManager.getClipForResource("click")
+		onTimeToPlaySoundclip()
+        PRINT "[LOG] Click sound effect is working"
+	}
 
     // Add background moving image.
     addEntity(new MovingBackgroundEntity())
@@ -94,27 +102,26 @@ func initialize override
 	needHelpWordSprite.setText(needHelpWordProp)
 	needHelpWordSprite.move(getReferenceWidth() * 0.7 - (needHelpWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.5 - (needHelpWordSprite.getHeight() * 0.5))
 
-    // Add back button.
     okBtnEntity = TextButtonEntity.forText("Thanks!")
     okBtnEntity.setBackgroundColor(Color.white())
     addEntity(okBtnEntity)
     okBtnEntity.move(getReferenceWidth() * 0.5 - (okBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.7 - (okBtnEntity.getHeight() * 0.5))
     okBtnEntity.setClickHandler(func {
-           
-	// TODO: Add click sound effect.
-
         pushScene(new MainScene())
         PRINT "[LOG] Change to Main Scene"
     })
 
 }
 
+func onTimeToPlaySoundclip
+{
+	if(clip != null) {
+		clip.play()
+	}
+}
+
 func cleanup override
 {
-    if (stream != null) {
-		stream.stop()
-	}
-
     removeAllEntities()
     PRINT "[LOG] Remove all entities from need help scene"
     removeAllSprites()
