@@ -14,7 +14,7 @@ func initialize override
 
     var jumpGameOverProp = TextProperties.forText("Don't jump from the sky!")
         jumpGameOverProp.setTextColor(Color.white())
-        jumpGameOverProp.setFontSizeRelative(0.05)
+        jumpGameOverProp.setFontSizeRelative(0.02)
         jumpGameOverProp.setFontFamily("Fira Code")
         jumpGameOverSprite = addTextSprite(jumpGameOverProp)
         jumpGameOverSprite.move(getReferenceWidth() * 0.5 - (jumpGameOverSprite.getWidth() * 0.5), getReferenceHeight() * 0.2 - (jumpGameOverSprite.getHeight() * 0.5))
