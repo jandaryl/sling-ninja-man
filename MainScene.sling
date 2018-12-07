@@ -11,19 +11,11 @@ var bossImg as TextureSprite
 func initialize override
 {
     base.initialize()
-
-    // Add background image.
     addEntity(new MovingBackgroundEntity())
-
-    // Add the player image.
     playerImg = addTextureSpriteForSize(createTextureForImageResource("main-player"), getReferenceWidth() * 0.4, getReferenceHeight() * 0.4)
     playerImg.move(0.1, 0.25)
-
-    // Add the boss image.
     bossImg = addTextureSpriteForSize(createTextureForImageResource("main-dragon"), getReferenceWidth() * 0.4, getReferenceHeight() * 0.4)
     bossImg.move(0.6, 0.2)
-
-    // Add the title of the game.
     gameTitleProp = TextProperties.forText("Ninja Man")
 	gameTitleProp.setTextColor(Color.white())
 	gameTitleProp.setFontSizeRelative(0.1)
@@ -32,8 +24,6 @@ func initialize override
 	gameTitleSprite = addTextSprite(gameTitleProp)
 	gameTitleSprite.setText(gameTitleProp)
 	gameTitleSprite.move(getReferenceWidth() * 0.5 - (gameTitleSprite.getWidth() * 0.5), getReferenceHeight() * 0.3 - (gameTitleSprite.getHeight() * 0.5))
-
-    // Add story button.
     storyBtnEntity = TextButtonEntity.forText("Storyline")
     storyBtnEntity.setBackgroundColor(Color.white())
     addEntity(storyBtnEntity)
@@ -42,8 +32,6 @@ func initialize override
         pushScene(new StorylineScene())
         PRINT "[LOG] Change to Storyline Scene"
     })
-
-    // Add play button.
     startBtnEntity = TextButtonEntity.forText("Start")
     startBtnEntity.setBackgroundColor(Color.white())
     addEntity(startBtnEntity)
@@ -52,8 +40,6 @@ func initialize override
         pushScene(new BattleScene())
         PRINT "[LOG] Change to Battle Scene"
     })
-
-    // Add need help button.
     helpBtnEntity = TextButtonEntity.forText("Need Help?")
     helpBtnEntity.setBackgroundColor(Color.white())
     addEntity(helpBtnEntity)

@@ -10,7 +10,6 @@ var fadeTimer = 0 as int
 func createSprite override as Sprite
 {	
 	battleScene = scene
-
 	var smokeImg = scene.createTextureForImageResource("small-smoke")
 	screenHeight = layer.getReferenceHeight()
 	screenWidth = layer.getReferenceWidth()
@@ -22,14 +21,11 @@ func tick(gameTime as TimeValue, delta as double) override
 {
 	base.tick(gameTime, delta)
     fadeTimer++
-
     if (fadeTimer == 10) {
         playerSmallSmokeSprite.setAlpha(0.5)
     }   
-
     if (fadeTimer == 20) {
         layer.removeSprite(playerSmallSmokeSprite)
     }
-
 }
  

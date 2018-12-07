@@ -15,12 +15,9 @@ func createSprite override as Sprite
     battleScene = scene 
     bgWallSprite = battleScene.getBackgroundWallEntity()
     boundaryWallSprite = battleScene.getBoundaryWallEntity()
-
     var imgPlayer = scene.createTextureForImageResource("player")
-
     playerSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, imgPlayer, 0.09 * layer.getReferenceWidth(), 0.09 * layer.getReferenceHeight()) 
 	playerSprite.move(bgWallSprite.getWidth() * 0.415 - (playerSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 0.85 - (playerSprite.getHeight() * 0.5))
-    
     return(playerSprite)
 }
 
@@ -33,28 +30,22 @@ func setTrueTeleport
 func onPointerEvent(event as PointerEvent) as boolean
 {
 	if (event.action == PointerEvent.DOWN) {
-		
         if (isTrueTeleport == true) {
             var corX = event.getX() - (playerSprite.getWidth() * 0.5)
             var corY = event.getY() - (playerSprite.getHeight() * 0.5)
-            
             battleScene.addEntity(mediumSmokeEntity = new PlayerMediumSmokeEntity())
             mediumSmokeEntity.move(playerSprite.getX(), playerSprite.getY())
             battleScene.removeSprite(mediumSmokeEntity)
-
             playerSprite.move(corX, corY)
             battleScene.setTeleportLimit()
             isTrueTeleport = false
-
             if (isCollide() == false) {
                 battleScene.gotoJumpGameOver()
             }
         }
 	}
-
 	return false
 }
-
 
 func stopMove
 {
@@ -79,17 +70,12 @@ func isCollide as boolean
     return false
 }
 
-
-
 func onKeyEvent(event as KeyEvent)
 {	
     if (event.isKey(KeyEvent.KEY_SPACE)) {
-        
         slashSkillAnimate()
     }
-
 	if (event.isKey(KeyEvent.KEY_UP)) {
-
         if (isCollide()) {
             playerSprite.move(playerSprite.getX(), playerSprite.getY() - 0.005)
             stats()
@@ -98,11 +84,9 @@ func onKeyEvent(event as KeyEvent)
         else {
             battleScene.gotoJumpGameOver()
         }
-
 	}
 
 	if (event.isKey(KeyEvent.KEY_DOWN)) {
-
         if (isCollide()) {
             playerSprite.move(playerSprite.getX(), playerSprite.getY() + 0.005)
             stats()
@@ -111,11 +95,9 @@ func onKeyEvent(event as KeyEvent)
         else {
             battleScene.gotoJumpGameOver()
         }
-
 	}
 
 	if (event.isKey(KeyEvent.KEY_LEFT)) {
-  
         if (isCollide()) {
             playerSprite.move(playerSprite.getX() - 0.005, playerSprite.getY())
             stats()
@@ -127,8 +109,6 @@ func onKeyEvent(event as KeyEvent)
 	}
 
 	if (event.isKey(KeyEvent.KEY_RIGHT)) {
-
-
         if (isCollide()) {
             playerSprite.move(playerSprite.getX() + 0.005, playerSprite.getY())
             stats()
@@ -137,14 +117,11 @@ func onKeyEvent(event as KeyEvent)
         else {
             battleScene.gotoJumpGameOver()
         }
-
-  
 	}
 	else {
 		PRINT("Unhandled key event: `" .. event.getStringValue() .. "'")
 	}
 }
-
 
 func stats
 {

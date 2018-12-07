@@ -11,7 +11,6 @@ var isAnimate as  boolean
 func createSprite override as Sprite 
 {	
 	battleScene = scene
-
 	var monsterImage = scene.createTextureForImageResource("stand-up")
 	screenHeight = layer.getReferenceHeight()
 	screenWidth = layer.getReferenceWidth()
@@ -27,7 +26,6 @@ func setTrueAnimate
 func tick(gameTime as TimeValue, delta as double) override
 {
 	base.tick(gameTime, delta)
-
 	if (isAnimate == true) {
 		layer.removeSprite(playerStandUpSprite)
 		battleScene.addEntity(playerSlashTopEntity = new PlayerSlashTopEntity())
@@ -35,7 +33,4 @@ func tick(gameTime as TimeValue, delta as double) override
 		layer.removeSprite(playerSlashTopEntity)
 		isAnimate = false
 	}
-
 }
-
- 

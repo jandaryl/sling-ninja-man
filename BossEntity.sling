@@ -15,12 +15,9 @@ func createSprite override as Sprite
     battleScene = scene
     bgWallSprite = battleScene.getBackgroundWallEntity()
     playerSprite = battleScene.getPlayerSpriteEntity()
-
     var wallImage = scene.createTextureForImageResource("boss-stand")
-
     bossSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.13 * layer.getReferenceWidth(), 0.13 * layer.getReferenceHeight()) 
    	bossSprite.move(bgWallSprite.getWidth() * 1.2 - (bossSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 0.85 - (bossSprite.getHeight() * 0.5))
-  
     return(bossSprite)
 }
 
@@ -63,27 +60,17 @@ func onKeyEvent(event as KeyEvent)
 func tick(gameTime as TimeValue, delta as double) override
 {
 	base.tick(gameTime, delta)
-
-	// Get the coordinate of the first monster.
 	moveX = bossSprite.getX()
 	moveY = bossSprite.getY()
-
-	// Get the player coordinate.
 	var corX = playerSprite.getX() 
 	var corY = playerSprite.getY()
-
-	// The first monster will follow the player.
 	moveX -= (moveX - corX) * 0.008
 	moveY -= (moveY - corY) * 0.008
 	bossSprite.move(moveX, moveY)
-
 	PRINT "Boss is running.."
-    
     if (detectThePlayer()) {
-
         fireTimer++
         PRINT("Fire Timer is " .. String.asString(fireTimer))
-
         if (fireTimer == 50) {
             fireSkillAnimate()
             fireTimer =  0

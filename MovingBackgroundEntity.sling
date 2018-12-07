@@ -18,11 +18,9 @@ func tick(gameTime as TimeValue, delta as double) override
 {
     base.tick(gameTime, delta)
     var sx = sprite.getX() - delta / 5
-
     if (sx <= -width) {
         sx = 0
     }
-
     sprite.move(sx, 0.0)
     bgSprite.move(width + sx, 0.0)
 

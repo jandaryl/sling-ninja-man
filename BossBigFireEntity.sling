@@ -14,7 +14,6 @@ func createSprite override as Sprite
 	battleScene = scene
     bossEntity = battleScene.getBossSpriteEntity()
 	playerEntity = battleScene.getPlayerSpriteEntity()
-    
 	var fireImage = scene.createTextureForImageResource("big-fire")
 	screenHeight = layer.getReferenceHeight()
 	screenWidth = layer.getReferenceWidth()
@@ -34,18 +33,13 @@ func isHitThePlayer as boolean
 func tick(gameTime as TimeValue, delta as double) override
 {
 	base.tick(gameTime, delta)
-
     fadeTimer++
 	PRINT("Fade Timer is - " .. String.asString(fadeTimer))
-
-
 	if (fadeTimer == 10) {
         layer.removeSprite(bossBigFireSprite)
-        
 		if (isHitThePlayer()) { 
 			battleScene.decreasePlayerHealthBy25()
 		}
-
 		bossEntity.move(bossBigFireSprite.getX(), bossBigFireSprite.getY())
 		bossEntity.setAlpha(1.0)
 	}

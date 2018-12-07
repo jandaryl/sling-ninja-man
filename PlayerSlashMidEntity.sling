@@ -37,25 +37,19 @@ func isHitTheBoss as boolean
 func tick(gameTime as TimeValue, delta as double) override
 {
 	base.tick(gameTime, delta)
-
 	fadeTimer++
 	PRINT("Fade Timer is - " .. String.asString(fadeTimer))
-
 	PRINT("Boss Sprite dynamic Y is -" .. String.asString(bossSprite.getCurrentY()))
 	PRINT("Boss Sprite dynamic X is -" .. String.asString(bossSprite.getCurrentX()))
 	PRINT("Boss Sprite static Y is -" .. String.asString(bossSprite.getX()))
 	PRINT("Boss Sprite static X is -" .. String.asString(bossSprite.getY()))
-
 	if (fadeTimer == 10) {
 		layer.removeSprite(playerSlashMidSprite)
-
 		if (isHitTheBoss()) {
 			battleScene.decreaseBossHealthBy100()
 		}	
-
 		playerEntity.move(playerSlashMidSprite.getX(), playerSlashMidSprite.getY())
 		playerEntity.setAlpha(1.0)
 		layer.removeSprite(bossSprite)
 	}
-
 }

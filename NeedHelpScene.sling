@@ -9,19 +9,13 @@ var needHelpWordSprite as TextSprite
 func initialize override
 {
     base.initialize()
-
 	audioManager = AudioManager.forApplication(context)
-
 	if(audioManager != null) {
 		clip = audioManager.getClipForResource("click")
 		onTimeToPlaySoundclip()
         PRINT "[LOG] Click sound effect is working"
 	}
-
-    // Add background moving image.
     addEntity(new MovingBackgroundEntity())
-
-     // Add need help words sprite.
     needHelpWordProp = TextProperties.forText("Manual :")
 	needHelpWordProp.setTextColor(Color.white())
 	needHelpWordProp.setFontSizeRelative(0.02)
@@ -30,8 +24,6 @@ func initialize override
 	needHelpWordSprite = addTextSprite(needHelpWordProp)
 	needHelpWordSprite.setText(needHelpWordProp)
 	needHelpWordSprite.move(getReferenceWidth() * 0.1 - (needHelpWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.2 - (needHelpWordSprite.getHeight() * 0.5))
-
-    // Add need help words sprite.
     needHelpWordProp = TextProperties.forText("1. Use Arrow Keys to move.")
 	needHelpWordProp.setTextColor(Color.white())
 	needHelpWordProp.setFontSizeRelative(0.02)
@@ -40,8 +32,6 @@ func initialize override
 	needHelpWordSprite = addTextSprite(needHelpWordProp)
 	needHelpWordSprite.setText(needHelpWordProp)
 	needHelpWordSprite.move(getReferenceWidth() * 0.2 - (needHelpWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.3 - (needHelpWordSprite.getHeight() * 0.5))
-
-    // Add need help words sprite.
     needHelpWordProp = TextProperties.forText("2. Use Mouse Pointer to teleport.")
 	needHelpWordProp.setTextColor(Color.white())
 	needHelpWordProp.setFontSizeRelative(0.02)
@@ -50,8 +40,6 @@ func initialize override
 	needHelpWordSprite = addTextSprite(needHelpWordProp)
 	needHelpWordSprite.setText(needHelpWordProp)
 	needHelpWordSprite.move(getReferenceWidth() * 0.23 - (needHelpWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.4 - (needHelpWordSprite.getHeight() * 0.5))
-
-    // Add need help words sprite.
     needHelpWordProp = TextProperties.forText("3. Use Space Bar to attack.")
 	needHelpWordProp.setTextColor(Color.white())
 	needHelpWordProp.setFontSizeRelative(0.02)
@@ -60,8 +48,6 @@ func initialize override
 	needHelpWordSprite = addTextSprite(needHelpWordProp)
 	needHelpWordSprite.setText(needHelpWordProp)
 	needHelpWordSprite.move(getReferenceWidth() * 0.19- (needHelpWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.5 - (needHelpWordSprite.getHeight() * 0.5))
-
-    // Add need help words sprite.
     needHelpWordProp = TextProperties.forText("Keep in Mind :")
 	needHelpWordProp.setTextColor(Color.white())
 	needHelpWordProp.setFontSizeRelative(0.02)
@@ -70,8 +56,6 @@ func initialize override
 	needHelpWordSprite = addTextSprite(needHelpWordProp)
 	needHelpWordSprite.setText(needHelpWordProp)
 	needHelpWordSprite.move(getReferenceWidth() * 0.7 - (needHelpWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.2 - (needHelpWordSprite.getHeight() * 0.5))
-
-    // Add need help words sprite.
     needHelpWordProp = TextProperties.forText("1. Time is limited.")
 	needHelpWordProp.setTextColor(Color.white())
 	needHelpWordProp.setFontSizeRelative(0.02)
@@ -80,9 +64,6 @@ func initialize override
 	needHelpWordSprite = addTextSprite(needHelpWordProp)
 	needHelpWordSprite.setText(needHelpWordProp)
 	needHelpWordSprite.move(getReferenceWidth() * 0.7 - (needHelpWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.3 - (needHelpWordSprite.getHeight() * 0.5))
-
-
-    // Add need help words sprite.
     needHelpWordProp = TextProperties.forText("2. Teleport is limited.")
 	needHelpWordProp.setTextColor(Color.white())
 	needHelpWordProp.setFontSizeRelative(0.02)
@@ -91,8 +72,6 @@ func initialize override
 	needHelpWordSprite = addTextSprite(needHelpWordProp)
 	needHelpWordSprite.setText(needHelpWordProp)
 	needHelpWordSprite.move(getReferenceWidth() * 0.7 - (needHelpWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.4 - (needHelpWordSprite.getHeight() * 0.5))
-
-    // Add need help words sprite.
     needHelpWordProp = TextProperties.forText("3. Don't jump in the sky.")
 	needHelpWordProp.setTextColor(Color.white())
 	needHelpWordProp.setFontSizeRelative(0.02)
@@ -101,7 +80,6 @@ func initialize override
 	needHelpWordSprite = addTextSprite(needHelpWordProp)
 	needHelpWordSprite.setText(needHelpWordProp)
 	needHelpWordSprite.move(getReferenceWidth() * 0.7 - (needHelpWordSprite.getWidth() * 0.5), getReferenceHeight() * 0.5 - (needHelpWordSprite.getHeight() * 0.5))
-
     okBtnEntity = TextButtonEntity.forText("Thanks!")
     okBtnEntity.setBackgroundColor(Color.white())
     addEntity(okBtnEntity)
@@ -110,7 +88,6 @@ func initialize override
         pushScene(new MainScene())
         PRINT "[LOG] Change to Main Scene"
     })
-
 }
 
 func onTimeToPlaySoundclip
