@@ -9,7 +9,7 @@ var boundaryWall as BoundaryWallEntity
 var playerSprite as PlayerEntity
 var bossHealthProp as TextProperties
 var bossHealthSprite as TextSprite
-var bossHealth = 1000 as int
+var bossHealth = 10000 as int
 var playerHealthProp as TextProperties
 var playerHealthSprite as TextSprite
 var playerHealth = 100 as int
@@ -90,7 +90,7 @@ func initialize override
 	timeBattleSprite.move(getReferenceWidth() * 0.5 - (timeBattleSprite.getWidth() * 0.5), getReferenceHeight() * 0.07 - (timeBattleSprite.getHeight() * 0.5))
 
 
-    bossHealthProp = TextProperties.forText("Boss Health : 1000")
+    bossHealthProp = TextProperties.forText("Boss Health : 10000")
 	bossHealthProp.setTextColor(Color.white())
 	bossHealthProp.setFontSizeRelative(0.025)
 	bossHealthProp.setFontFamily("Fira Code")
@@ -159,7 +159,7 @@ func decreaseBossHealthBy100
 func decreasePlayerHealthBy25
 {
     if (playerHealth >= 0) {
-        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 25))
+        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 2))
 	    playerHealthSprite.setText(playerHealthProp)
     }
 
@@ -242,15 +242,15 @@ func tick(gameTime as TimeValue, delta as double) override
         pushScene(new TimeGameOverScene())
     }
 
-    if (bossHealth <= 750) {
+    if (bossHealth <= 7500) {
         bossSprite.setAlpha(0.75)
     }
 
-    if (bossHealth <= 500) {
+    if (bossHealth <= 5000) {
         bossSprite.setAlpha(0.50)
     }
 
-    if (bossHealth <= 250) {
+    if (bossHealth <= 2500) {
         bossSprite.setAlpha(0.25)
     }
 
