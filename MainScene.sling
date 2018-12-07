@@ -9,6 +9,8 @@ var storyBtnEntity as TextButtonEntity
 var startBtnEntity as TextButtonEntity
 var helpBtnEntity as TextButtonEntity
 var isSound = false as boolean
+var playerImg as TextureSprite
+var bossImg as TextureSprite
 
 func initialize override
 {
@@ -16,6 +18,14 @@ func initialize override
 
     // Add background image.
     addEntity(new MovingBackgroundEntity())
+
+    // Add the player image.
+    playerImg = addTextureSpriteForSize(createTextureForImageResource("main-player"), getReferenceWidth() * 0.4, getReferenceHeight() * 0.4)
+    playerImg.move(0.1, 0.25)
+
+    // Add the boss image.
+    bossImg = addTextureSpriteForSize(createTextureForImageResource("main-dragon"), getReferenceWidth() * 0.4, getReferenceHeight() * 0.4)
+    bossImg.move(0.6, 0.2)
 
     // Add the title of the game.
     gameTitleProp = TextProperties.forText("Ninja Man")
