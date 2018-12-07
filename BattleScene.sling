@@ -239,7 +239,7 @@ func tick(gameTime as TimeValue, delta as double) override
     }
 
     if (timer == 0) {
-        pushScene(new GameOverScene())
+        pushScene(new TimeGameOverScene())
     }
 
     if (bossHealth <= 500) {
