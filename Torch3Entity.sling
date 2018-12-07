@@ -7,10 +7,10 @@ var bgWallSprite as BackgroundWallEntity
 
 func createSprite override as Sprite
 {
-    battleScene = scene
-    bgWallSprite = battleScene.getBackgroundWallEntity()
-    var wallImage = scene.createTextureForImageResource("torch")
-    torch3Sprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.1 * layer.getReferenceWidth(), 0.1 * layer.getReferenceHeight()) 
-    torch3Sprite.move(bgWallSprite.getWidth() * 0.8 - (torch3Sprite.getWidth() * 0.5), bgWallSprite.getHeight() * 0.4 - (torch3Sprite.getHeight() * 0.5))
-    return(torch3Sprite)
+	battleScene = scene
+	bgWallSprite = battleScene.getBackgroundWallEntity()
+	var wallImage = scene.createTextureForImageResource("torch")
+	torch3Sprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.1 * layer.getReferenceWidth(), 0.1 * layer.getReferenceHeight())
+	torch3Sprite.move(bgWallSprite.getWidth() * 0.8 - (torch3Sprite.getWidth() * 0.5), bgWallSprite.getHeight() * 0.4 - (torch3Sprite.getHeight() * 0.5))
+	return(torch3Sprite)
 }

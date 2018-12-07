@@ -8,8 +8,8 @@ var scene as BattleScene
 var playerSlashTopEntity as PlayerSlashTopEntity
 var isAnimate as  boolean
 
-func createSprite override as Sprite 
-{	
+func createSprite override as Sprite
+{
 	battleScene = scene
 	var monsterImage = scene.createTextureForImageResource("stand-up")
 	screenHeight = layer.getReferenceHeight()
@@ -18,7 +18,7 @@ func createSprite override as Sprite
 	return playerStandUpSprite
 }
 
-func setTrueAnimate 
+func setTrueAnimate
 {
 	isAnimate = true
 }

@@ -8,10 +8,10 @@ var messageSprite as TextSprite
 
 func initialize override
 {
-    base.initialize()
+	base.initialize()
 	battleScene = scene
 	addEntity(new MovingBackgroundEntity())
-    var congratsProp = TextProperties.forText("Congrats! You defeated the dragon and now the world return to peace.")
+	var congratsProp = TextProperties.forText("Congrats! You defeated the dragon and now the world return to peace.")
 	congratsProp.setTextColor(Color.white())
 	congratsProp.setFontSizeRelative(0.02)
 	congratsProp.setFontFamily("Fira Code")

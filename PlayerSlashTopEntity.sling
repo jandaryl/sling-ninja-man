@@ -10,7 +10,7 @@ var playerSlashMidEntity as PlayerSlashMidEntity
 var bossSprite as BossEntity
 
 func createSprite override as Sprite
-{	
+{
 	battleScene = scene
 	bossSprite = battleScene.getBossSpriteEntity()
 	var monsterImage = scene.createTextureForImageResource("slash-top")
@@ -22,11 +22,11 @@ func createSprite override as Sprite
 
 func isHitTheBoss as boolean
 {
-    if (playerSlashTopSprite.getX() < bossSprite.getX() + bossSprite.getWidth() && playerSlashTopSprite.getX() + playerSlashTopSprite.getWidth() > bossSprite.getX() && playerSlashTopSprite.getY() < bossSprite.getY() + bossSprite.getHeight() && playerSlashTopSprite.getHeight() + playerSlashTopSprite.getY() > bossSprite.getY()) {
-        return true
+	if (playerSlashTopSprite.getX() < bossSprite.getX() + bossSprite.getWidth() && playerSlashTopSprite.getX() + playerSlashTopSprite.getWidth() > bossSprite.getX() && playerSlashTopSprite.getY() < bossSprite.getY() + bossSprite.getHeight() && playerSlashTopSprite.getHeight() + playerSlashTopSprite.getY() > bossSprite.getY()) {
+		return true
 		PRINT "It collide to the wall!"
-    }
-    return false
+	}
+	return false
 }
 
 func tick(gameTime as TimeValue, delta as double) override

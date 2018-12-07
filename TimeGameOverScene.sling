@@ -6,10 +6,10 @@ var timeGameOverSprite as Sprite
 
 func initialize override
 {
-    base.initialize()
+	base.initialize()
 	battleScene = scene
 	addEntity(new MovingBackgroundEntity())
-    var timeGameOverProp = TextProperties.forText("You run out of time! Better luck next time...")
+	var timeGameOverProp = TextProperties.forText("You run out of time! Better luck next time...")
 	timeGameOverProp.setTextColor(Color.white())
 	timeGameOverProp.setFontSizeRelative(0.02)
 	timeGameOverProp.setFontFamily("Fira Code")

@@ -23,36 +23,36 @@ var countTeleport = 7 as int
 
 func initialize override
 {
-    base.initialize()
-    audioManager = AudioManager.forApplication(context)
-    if (audioManager != null) {
+	base.initialize()
+	audioManager = AudioManager.forApplication(context)
+	if (audioManager != null) {
 		clip = audioManager.getClipForResource("click")
 		stream = audioManager.getStreamForResource("bg-music")
 		onTimeToPlayStream()
-        PRINT "[LOG] Background music is working"
+		PRINT "[LOG] Background music is working"
 		onTimeToPlaySoundclip()
-        PRINT "[LOG] Click sound effect is working"
+		PRINT "[LOG] Click sound effect is working"
 	}
-    addEntity(new MovingBackgroundEntity())
-    quitBtnEntity = TextButtonEntity.forText("Quit")
-    quitBtnEntity.setBackgroundColor(Color.white())
-    addEntity(quitBtnEntity)
-    quitBtnEntity.move(getReferenceWidth() * 0.9 - (quitBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.1 - (quitBtnEntity.getHeight() * 0.5))
-    addEntity(bgWallEntity = new BackgroundWallEntity())
-    addEntity(boundaryWall = new BoundaryWallEntity())
-    addEntity(new TorchEntity())
-    addEntity(new Torch2Entity())
-    addEntity(new Torch3Entity())
-    addEntity(new Torch4Entity())
-    addEntity(new Torch5Entity())
-    addEntity(new Torch6Entity())
-    addEntity(new Torch7Entity())
-    addEntity(new Torch8Entity())
-    addEntity(new Torch9Entity())
-    addEntity(new Torch10Entity())
-    addEntity(playerSprite = new PlayerEntity())
-    addEntity(bossSprite = new BossEntity())
-    playerHealthProp = TextProperties.forText("Player Health : 100")
+	addEntity(new MovingBackgroundEntity())
+	quitBtnEntity = TextButtonEntity.forText("Quit")
+	quitBtnEntity.setBackgroundColor(Color.white())
+	addEntity(quitBtnEntity)
+	quitBtnEntity.move(getReferenceWidth() * 0.9 - (quitBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.1 - (quitBtnEntity.getHeight() * 0.5))
+	addEntity(bgWallEntity = new BackgroundWallEntity())
+	addEntity(boundaryWall = new BoundaryWallEntity())
+	addEntity(new TorchEntity())
+	addEntity(new Torch2Entity())
+	addEntity(new Torch3Entity())
+	addEntity(new Torch4Entity())
+	addEntity(new Torch5Entity())
+	addEntity(new Torch6Entity())
+	addEntity(new Torch7Entity())
+	addEntity(new Torch8Entity())
+	addEntity(new Torch9Entity())
+	addEntity(new Torch10Entity())
+	addEntity(playerSprite = new PlayerEntity())
+	addEntity(bossSprite = new BossEntity())
+	playerHealthProp = TextProperties.forText("Player Health : 100")
 	playerHealthProp.setTextColor(Color.white())
 	playerHealthProp.setFontSizeRelative(0.025)
 	playerHealthProp.setFontFamily("Fira Code")
@@ -60,7 +60,7 @@ func initialize override
 	playerHealthSprite = addTextSprite(playerHealthProp)
 	playerHealthSprite.setText(playerHealthProp)
 	playerHealthSprite.move(0.0, getReferenceHeight() - playerHealthSprite.getHeight())
-    timeBattleProp = TextProperties.forText("Time Limit 00 : 30")
+	timeBattleProp = TextProperties.forText("Time Limit 00 : 30")
 	timeBattleProp.setTextColor(Color.white())
 	timeBattleProp.setFontSizeRelative(0.02)
 	timeBattleProp.setFontFamily("Fira Code")
@@ -68,7 +68,7 @@ func initialize override
 	timeBattleSprite = addTextSprite(timeBattleProp)
 	timeBattleSprite.setText(timeBattleProp)
 	timeBattleSprite.move(getReferenceWidth() * 0.5 - (timeBattleSprite.getWidth() * 0.5), getReferenceHeight() * 0.07 - (timeBattleSprite.getHeight() * 0.5))
-    bossHealthProp = TextProperties.forText("Boss Health : 10000")
+	bossHealthProp = TextProperties.forText("Boss Health : 10000")
 	bossHealthProp.setTextColor(Color.white())
 	bossHealthProp.setFontSizeRelative(0.025)
 	bossHealthProp.setFontFamily("Fira Code")
@@ -76,95 +76,95 @@ func initialize override
 	bossHealthSprite = addTextSprite(bossHealthProp)
 	bossHealthSprite.setText(bossHealthProp)
 	bossHealthSprite.move(0.7, getReferenceHeight() - bossHealthSprite.getHeight())
-    countTeleportProp = TextProperties.forText("Teleport : 7")
+	countTeleportProp = TextProperties.forText("Teleport : 7")
 	countTeleportProp.setTextColor(Color.white())
 	countTeleportProp.setFontSizeRelative(0.02)
 	countTeleportProp.setFontFamily("Fira Code")
 	countTeleportProp.setFontIsItalic(true)
-	countTeleportSprite = addTextSprite(countTeleportProp)   
+	countTeleportSprite = addTextSprite(countTeleportProp)
 	countTeleportSprite.setText(countTeleportProp)
 	countTeleportSprite.move(0.0, 0.25)
 }
 
 func getPlayerSpriteEntity as PlayerEntity
 {
-    return playerSprite
+	return playerSprite
 }
 
 func getBackgroundWallEntity as BackgroundWallEntity
 {
-    return bgWallEntity
+	return bgWallEntity
 }
 
 func getBoundaryWallEntity as BoundaryWallEntity
 {
-    return boundaryWall
+	return boundaryWall
 }
 
 func getBossSpriteEntity as BossEntity
 {
-    return bossSprite
+	return bossSprite
 }
 
 func decreaseBossHealthBy50
 {
-    if (bossHealth >= 0) {
-        bossHealthProp.setText("Boss Health: " .. String.forInteger(bossHealth -= 50))
-	    bossHealthSprite.setText(bossHealthProp)
-    }
-    if (bossHealth <= 0) {
-        removeSprite(bossHealthSprite)
-    }
+	if (bossHealth >= 0) {
+		bossHealthProp.setText("Boss Health: " .. String.forInteger(bossHealth -= 50))
+		bossHealthSprite.setText(bossHealthProp)
+	}
+	if (bossHealth <= 0) {
+		removeSprite(bossHealthSprite)
+	}
 }
 
 func decreaseBossHealthBy100
 {
-    if (bossHealth >= 0) {
-        bossHealthProp.setText("Boss Health: " .. String.forInteger(bossHealth -= 100))
-	    bossHealthSprite.setText(bossHealthProp)
-    }
-    if (bossHealth <= 0) {
-        removeSprite(bossHealthSprite)
-    }
+	if (bossHealth >= 0) {
+		bossHealthProp.setText("Boss Health: " .. String.forInteger(bossHealth -= 100))
+		bossHealthSprite.setText(bossHealthProp)
+	}
+	if (bossHealth <= 0) {
+		removeSprite(bossHealthSprite)
+	}
 }
 
 func decreasePlayerHealthBy25
 {
-    if (playerHealth >= 0) {
-        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 2))
-	    playerHealthSprite.setText(playerHealthProp)
-    }
-    if (playerHealth <= 0) {
-        removeSprite(playerHealthSprite)
-    }
+	if (playerHealth >= 0) {
+		playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 2))
+		playerHealthSprite.setText(playerHealthProp)
+	}
+	if (playerHealth <= 0) {
+		removeSprite(playerHealthSprite)
+	}
 }
 
 func setTimeLimit
 {
-    if (timer >= 0) {
-        timeBattleProp.setText("Time Limit 00 : " .. String.forInteger((timer-- / 100) % 60))
-	    timeBattleSprite.setText(timeBattleProp)
-    }
-    if (timer <= 0) {
-        removeSprite(timeBattleSprite)
-    }
+	if (timer >= 0) {
+		timeBattleProp.setText("Time Limit 00 : " .. String.forInteger((timer-- / 100) % 60))
+		timeBattleSprite.setText(timeBattleProp)
+	}
+	if (timer <= 0) {
+		removeSprite(timeBattleSprite)
+	}
 }
 
 func setTeleportLimit
 {
-    if (countTeleport >= 0) {
-        countTeleportProp.setText("Teleport : " .. String.forInteger(countTeleport-=1))
-	    countTeleportSprite.setText(countTeleportProp)
-    }
-    if (countTeleport <= 0) {
-        countTeleportProp.setText("Teleport : 0")
-	    countTeleportSprite.setText(countTeleportProp)
-    }
+	if (countTeleport >= 0) {
+		countTeleportProp.setText("Teleport : " .. String.forInteger(countTeleport-=1))
+		countTeleportSprite.setText(countTeleportProp)
+	}
+	if (countTeleport <= 0) {
+		countTeleportProp.setText("Teleport : 0")
+		countTeleportSprite.setText(countTeleportProp)
+	}
 }
 
 func gotoJumpGameOver
 {
-    pushScene(new JumpGameOverScene())
+	pushScene(new JumpGameOverScene())
 }
 
 func onTimeToPlaySoundclip
@@ -182,69 +182,66 @@ func onTimeToPlayStream
 	}
 }
 
-func onPointerEvent(event as PointerEvent) override  
+func onPointerEvent(event as PointerEvent) override
 {
-    base.onPointerEvent(event)
+	base.onPointerEvent(event)
 	if (event.action == PointerEvent.DOWN) {
-        if (event.isInside(quitBtnEntity.getX(), quitBtnEntity.getY(), quitBtnEntity.getWidth(), quitBtnEntity.getHeight())) {
-            pushScene(new MainScene())
-            PRINT "[LOG] Change to Main Scene"
-        }
+		if (event.isInside(quitBtnEntity.getX(), quitBtnEntity.getY(), quitBtnEntity.getWidth(), quitBtnEntity.getHeight())) {
+			pushScene(new MainScene())
+			PRINT "[LOG] Change to Main Scene"
+		}
 	}
-
 }
-
 
 func tick(gameTime as TimeValue, delta as double) override
 {
 	base.tick(gameTime, delta)
-    setTimeLimit()
-    if (countTeleport > 0) {
-        playerSprite.setTrueTeleport()
-    }
-    if (timer == 0) {
-        pushScene(new TimeGameOverScene())
-    }
-    if (bossHealth <= 7500) {
-        bossSprite.setAlpha(0.75)
-    }
-    if (bossHealth <= 5000) {
-        bossSprite.setAlpha(0.50)
-    }
-    if (bossHealth <= 2500) {
-        bossSprite.setAlpha(0.25)
-    }
-    if (bossHealth <= 0) {
-        removeEntity(bossSprite)
-        pushScene(new CongratsScene())
-    }
-    if (playerHealth <= 75) {
-        playerSprite.setAlpha(0.75)
-    }
-    if (playerHealth <= 50) {
-        playerSprite.setAlpha(0.50)
-    }
-    if (playerHealth <= 25) {
-        playerSprite.setAlpha(0.25)
-    }
-    if (playerHealth <= 0) {
-        removeEntity(playerSprite)
-        pushScene(new GameOverScene())
-    }
-    PRINT("Boss Sprite static Y is - from battle scene " .. String.asString(bossSprite.getX()))
+	setTimeLimit()
+	if (countTeleport > 0) {
+		playerSprite.setTrueTeleport()
+	}
+	if (timer == 0) {
+		pushScene(new TimeGameOverScene())
+	}
+	if (bossHealth <= 7500) {
+		bossSprite.setAlpha(0.75)
+	}
+	if (bossHealth <= 5000) {
+		bossSprite.setAlpha(0.50)
+	}
+	if (bossHealth <= 2500) {
+		bossSprite.setAlpha(0.25)
+	}
+	if (bossHealth <= 0) {
+		removeEntity(bossSprite)
+		pushScene(new CongratsScene())
+	}
+	if (playerHealth <= 75) {
+		playerSprite.setAlpha(0.75)
+	}
+	if (playerHealth <= 50) {
+		playerSprite.setAlpha(0.50)
+	}
+	if (playerHealth <= 25) {
+		playerSprite.setAlpha(0.25)
+	}
+	if (playerHealth <= 0) {
+		removeEntity(playerSprite)
+		pushScene(new GameOverScene())
+	}
+	PRINT("Boss Sprite static Y is - from battle scene " .. String.asString(bossSprite.getX()))
 	PRINT("Boss Sprite static X is - from battle scene " .. String.asString(bossSprite.getY()))
-    PRINT("Player Sprite static Y is - from battle scene " .. String.asString(playerSprite.getX()))
+	PRINT("Player Sprite static Y is - from battle scene " .. String.asString(playerSprite.getX()))
 	PRINT("Player Sprite static X is - from battle scene " .. String.asString(playerSprite.getY()))
-    }
+}
 
 func cleanup override
 {
 	if(stream != null) {
 		stream.stop()
 	}
-    removeAllEntities()
-    PRINT "[LOG] Remove all entities from battle scene"
-    removeAllSprites()
-    PRINT "[LOG] Remove all sprites from battle scene"
+	removeAllEntities()
+	PRINT "[LOG] Remove all entities from battle scene"
+	removeAllSprites()
+	PRINT "[LOG] Remove all sprites from battle scene"
 }
-

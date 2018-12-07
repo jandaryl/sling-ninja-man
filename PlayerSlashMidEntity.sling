@@ -10,12 +10,10 @@ var playerEntity as PlayerEntity
 var bossSprite as BossEntity
 
 func createSprite override as Sprite
-{	
+{
 	battleScene = scene
-
 	bossSprite = battleScene.getBossSpriteEntity()
 	playerEntity = battleScene.getPlayerSpriteEntity()
-
 	var monsterImage = scene.createTextureForImageResource("slash-mid")
 	screenHeight = layer.getReferenceHeight()
 	screenWidth = layer.getReferenceWidth()
@@ -23,15 +21,14 @@ func createSprite override as Sprite
 	return playerSlashMidSprite
 }
 
-
 func isHitTheBoss as boolean
 {
-    if (playerSlashMidSprite.getX() < bossSprite.getX() + bossSprite.getWidth() && playerSlashMidSprite.getX() + playerSlashMidSprite.getWidth() > bossSprite.getX() && playerSlashMidSprite.getY() < bossSprite.getY() + bossSprite.getHeight() && playerSlashMidSprite.getHeight() + playerSlashMidSprite.getY() > bossSprite.getY()) {
-        return true
+	if (playerSlashMidSprite.getX() < bossSprite.getX() + bossSprite.getWidth() && playerSlashMidSprite.getX() + playerSlashMidSprite.getWidth() > bossSprite.getX() && playerSlashMidSprite.getY() < bossSprite.getY() + bossSprite.getHeight() && playerSlashMidSprite.getHeight() + playerSlashMidSprite.getY() > bossSprite.getY()) {
+		return true
 		PRINT "It collide to the boss!"
 		PRINT("Boss Sprite collide to the player!")
-    }
-    return false
+	}
+	return false
 }
 
 func tick(gameTime as TimeValue, delta as double) override
@@ -47,7 +44,7 @@ func tick(gameTime as TimeValue, delta as double) override
 		layer.removeSprite(playerSlashMidSprite)
 		if (isHitTheBoss()) {
 			battleScene.decreaseBossHealthBy100()
-		}	
+		}
 		playerEntity.move(playerSlashMidSprite.getX(), playerSlashMidSprite.getY())
 		playerEntity.setAlpha(1.0)
 		layer.removeSprite(bossSprite)

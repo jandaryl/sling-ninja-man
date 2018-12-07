@@ -5,23 +5,22 @@ var width as double
 
 func createSprite override as Sprite
 {
-    width = layer.getReferenceWidth()
-    var bgImage = scene.createTextureForImageResource("main-scene")
-    var bg = SpriteUtil.addTextureSpriteForSize(scene,layer, bgImage, width, layer.getReferenceHeight())
-    bg.move(0.0, 0.0)
-    bgSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, bgImage, width, layer.getReferenceHeight()) 
-    bgSprite.move(width, 0.0)
-    return(bg)
+	width = layer.getReferenceWidth()
+	var bgImage = scene.createTextureForImageResource("main-scene")
+	var bg = SpriteUtil.addTextureSpriteForSize(scene,layer, bgImage, width, layer.getReferenceHeight())
+	bg.move(0.0, 0.0)
+	bgSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, bgImage, width, layer.getReferenceHeight())
+	bgSprite.move(width, 0.0)
+	return(bg)
 }
 
 func tick(gameTime as TimeValue, delta as double) override
 {
-    base.tick(gameTime, delta)
-    var sx = sprite.getX() - delta / 5
-    if (sx <= -width) {
-        sx = 0
-    }
-    sprite.move(sx, 0.0)
-    bgSprite.move(width + sx, 0.0)
-
+	base.tick(gameTime, delta)
+	var sx = sprite.getX() - delta / 5
+	if (sx <= -width) {
+		sx = 0
+	}
+	sprite.move(sx, 0.0)
+	bgSprite.move(width + sx, 0.0)
 }

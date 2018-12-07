@@ -7,10 +7,10 @@ var gameOverProp as TextProperties
 
 func initialize override
 {
-    base.initialize()
+	base.initialize()
 	battleScene = scene
 	addEntity(new MovingBackgroundEntity())
-    gameOverProp = TextProperties.forText("The ninja failed to protect us against the dragon.")
+	gameOverProp = TextProperties.forText("The ninja failed to protect us against the dragon.")
 	gameOverProp.setTextColor(Color.white())
 	gameOverProp.setFontSizeRelative(0.02)
 	gameOverProp.setFontFamily("Fira Code")

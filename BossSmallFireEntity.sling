@@ -10,7 +10,7 @@ var isAnimate as boolean
 var playerEntity as PlayerEntity
 
 func createSprite override as Sprite
-{	
+{
 	battleScene = scene
 	playerEntity = battleScene.getPlayerSpriteEntity()
 	var fireImg = scene.createTextureForImageResource("small-fire")
@@ -22,14 +22,14 @@ func createSprite override as Sprite
 
 func isHitThePlayer as boolean
 {
-    if (bossSmallFireSprite.getX() < playerEntity.getX() + playerEntity.getWidth() && bossSmallFireSprite.getX() + bossSmallFireSprite.getWidth() > playerEntity.getX() && bossSmallFireSprite.getY() < playerEntity.getY() + playerEntity.getHeight() && bossSmallFireSprite.getHeight() + bossSmallFireSprite.getY() > playerEntity.getY()) {
-        return true
+	if (bossSmallFireSprite.getX() < playerEntity.getX() + playerEntity.getWidth() && bossSmallFireSprite.getX() + bossSmallFireSprite.getWidth() > playerEntity.getX() && bossSmallFireSprite.getY() < playerEntity.getY() + playerEntity.getHeight() && bossSmallFireSprite.getHeight() + bossSmallFireSprite.getY() > playerEntity.getY()) {
+		return true
 		PRINT "It collide to the player!"
-    }
-    return false
+	}
+	return false
 }
 
-func setTrueAnimate 
+func setTrueAnimate
 {
 	isAnimate = true
 }
@@ -44,7 +44,7 @@ func tick(gameTime as TimeValue, delta as double) override
 		layer.removeSprite(bossSmallFireSprite)
 		battleScene.addEntity(mediumFireEntity = new BossMediumFireEntity())
 		mediumFireEntity.move(bossSmallFireSprite.getX(), bossSmallFireSprite.getY())
-        layer.removeSprite(bossSmallFireSprite)
-        isAnimate = false
+		layer.removeSprite(bossSmallFireSprite)
+		isAnimate = false
 	}
 }

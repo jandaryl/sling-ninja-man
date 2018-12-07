@@ -12,111 +12,107 @@ var isTrueTeleport as boolean
 
 func createSprite override as Sprite
 {
-    battleScene = scene 
-    bgWallSprite = battleScene.getBackgroundWallEntity()
-    boundaryWallSprite = battleScene.getBoundaryWallEntity()
-    var imgPlayer = scene.createTextureForImageResource("player")
-    playerSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, imgPlayer, 0.09 * layer.getReferenceWidth(), 0.09 * layer.getReferenceHeight()) 
+	battleScene = scene
+	bgWallSprite = battleScene.getBackgroundWallEntity()
+	boundaryWallSprite = battleScene.getBoundaryWallEntity()
+	var imgPlayer = scene.createTextureForImageResource("player")
+	playerSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, imgPlayer, 0.09 * layer.getReferenceWidth(), 0.09 * layer.getReferenceHeight())
 	playerSprite.move(bgWallSprite.getWidth() * 0.415 - (playerSprite.getWidth() * 0.5), bgWallSprite.getHeight() * 0.85 - (playerSprite.getHeight() * 0.5))
-    return(playerSprite)
+	return(playerSprite)
 }
-
 
 func setTrueTeleport
 {
-    isTrueTeleport = true
+	isTrueTeleport = true
 }
 
 func onPointerEvent(event as PointerEvent) as boolean
 {
 	if (event.action == PointerEvent.DOWN) {
-        if (isTrueTeleport == true) {
-            var corX = event.getX() - (playerSprite.getWidth() * 0.5)
-            var corY = event.getY() - (playerSprite.getHeight() * 0.5)
-            battleScene.addEntity(mediumSmokeEntity = new PlayerMediumSmokeEntity())
-            mediumSmokeEntity.move(playerSprite.getX(), playerSprite.getY())
-            battleScene.removeSprite(mediumSmokeEntity)
-            playerSprite.move(corX, corY)
-            battleScene.setTeleportLimit()
-            isTrueTeleport = false
-            if (isCollide() == false) {
-                battleScene.gotoJumpGameOver()
-            }
-        }
+		if (isTrueTeleport == true) {
+			var corX = event.getX() - (playerSprite.getWidth() * 0.5)
+			var corY = event.getY() - (playerSprite.getHeight() * 0.5)
+			battleScene.addEntity(mediumSmokeEntity = new PlayerMediumSmokeEntity())
+			mediumSmokeEntity.move(playerSprite.getX(), playerSprite.getY())
+			battleScene.removeSprite(mediumSmokeEntity)
+			playerSprite.move(corX, corY)
+			battleScene.setTeleportLimit()
+			isTrueTeleport = false
+			if (isCollide() == false) {
+				battleScene.gotoJumpGameOver()
+			}
+		}
 	}
 	return false
 }
 
 func stopMove
 {
-    playerSprite.move(playerSprite.getX(), playerSprite.getY())
+	playerSprite.move(playerSprite.getX(), playerSprite.getY())
 }
 
 func slashSkillAnimate
 {
-    playerSprite.setAlpha(0.0)
-    battleScene.addEntity(playerStandUpEntity = new PlayerStandUpEntity())
-    playerStandUpEntity.move(playerSprite.getX(), playerSprite.getY())
-    playerStandUpEntity.setTrueAnimate()
-    layer.removeSprite(playerStandUpEntity)
-    PRINT "The slash skill animate is working from player entity."
+	playerSprite.setAlpha(0.0)
+	battleScene.addEntity(playerStandUpEntity = new PlayerStandUpEntity())
+	playerStandUpEntity.move(playerSprite.getX(), playerSprite.getY())
+	playerStandUpEntity.setTrueAnimate()
+	layer.removeSprite(playerStandUpEntity)
+	PRINT "The slash skill animate is working from player entity."
 }
 
 func isCollide as boolean
 {
-    if (playerSprite.getX() < boundaryWallSprite.getX() + (0.53 * layer.getReferenceWidth()) && playerSprite.getX() + playerSprite.getWidth() > boundaryWallSprite.getX() && playerSprite.getY() < boundaryWallSprite.getY() + (0.53 * layer.getReferenceHeight()) && playerSprite.getHeight() + playerSprite.getY() > boundaryWallSprite.getY()) {
-        return true
-    }
-    return false
+	if (playerSprite.getX() < boundaryWallSprite.getX() + (0.53 * layer.getReferenceWidth()) && playerSprite.getX() + playerSprite.getWidth() > boundaryWallSprite.getX() && playerSprite.getY() < boundaryWallSprite.getY() + (0.53 * layer.getReferenceHeight()) && playerSprite.getHeight() + playerSprite.getY() > boundaryWallSprite.getY()) {
+		return true
+	}
+	return false
 }
 
 func onKeyEvent(event as KeyEvent)
-{	
-    if (event.isKey(KeyEvent.KEY_SPACE)) {
-        slashSkillAnimate()
-    }
+{
+	if (event.isKey(KeyEvent.KEY_SPACE)) {
+		slashSkillAnimate()
+	}
 	if (event.isKey(KeyEvent.KEY_UP)) {
-        if (isCollide()) {
-            playerSprite.move(playerSprite.getX(), playerSprite.getY() - 0.005)
-            stats()
-            PRINT "It collide to background wall!"
-        }  
-        else {
-            battleScene.gotoJumpGameOver()
-        }
+		if (isCollide()) {
+			playerSprite.move(playerSprite.getX(), playerSprite.getY() - 0.005)
+			stats()
+			PRINT "It collide to background wall!"
+		}
+		else {
+			battleScene.gotoJumpGameOver()
+		}
 	}
-
 	if (event.isKey(KeyEvent.KEY_DOWN)) {
-        if (isCollide()) {
-            playerSprite.move(playerSprite.getX(), playerSprite.getY() + 0.005)
-            stats()
-            PRINT "It collide to background wall!"
-        }  
-        else {
-            battleScene.gotoJumpGameOver()
-        }
+		if (isCollide()) {
+			playerSprite.move(playerSprite.getX(), playerSprite.getY() + 0.005)
+			stats()
+			PRINT "It collide to background wall!"
+		}
+		else {
+			battleScene.gotoJumpGameOver()
+		}
 	}
-
 	if (event.isKey(KeyEvent.KEY_LEFT)) {
-        if (isCollide()) {
-            playerSprite.move(playerSprite.getX() - 0.005, playerSprite.getY())
-            stats()
-            PRINT "It collide to background wall!"
-        }  
-        else {
-            battleScene.gotoJumpGameOver()
-        }
+		if (isCollide()) {
+			playerSprite.move(playerSprite.getX() - 0.005, playerSprite.getY())
+			stats()
+			PRINT "It collide to background wall!"
+		}
+		else {
+			battleScene.gotoJumpGameOver()
+		}
 	}
-
 	if (event.isKey(KeyEvent.KEY_RIGHT)) {
-        if (isCollide()) {
-            playerSprite.move(playerSprite.getX() + 0.005, playerSprite.getY())
-            stats()
-            PRINT "It collide to background wall!"
-        }  
-        else {
-            battleScene.gotoJumpGameOver()
-        }
+		if (isCollide()) {
+			playerSprite.move(playerSprite.getX() + 0.005, playerSprite.getY())
+			stats()
+			PRINT "It collide to background wall!"
+		}
+		else {
+			battleScene.gotoJumpGameOver()
+		}
 	}
 	else {
 		PRINT("Unhandled key event: `" .. event.getStringValue() .. "'")
@@ -125,15 +121,15 @@ func onKeyEvent(event as KeyEvent)
 
 func stats
 {
-    PRINT("Background Wall Sprite width is - " .. String.asString(wallWidth))
-    PRINT("Background Wall Sprite width is - " .. String.asString(bgWallSprite.getWidth()))
-    PRINT("Background Wall Sprite height is - " .. String.asString(bgWallSprite.getHeight()))
-    PRINT("Background Wall Sprite X is - " .. String.asString(bgWallSprite.getX()))
-    PRINT("Background Wall Sprite Y is - " .. String.asString(bgWallSprite.getY()))
-    PRINT("Player Sprite width is - " .. String.asString(playerSprite.getWidth()))
-    PRINT("Player Sprite height is - " .. String.asString(playerSprite.getHeight()))
-    PRINT("Player Sprite X is - " .. String.asString(playerSprite.getX()))
-    PRINT("Player Sprite Y is - " .. String.asString(playerSprite.getY()))
-    PRINT("Layer Reference Height is - " .. String.asString(layer.getReferenceHeight()))
-    PRINT("Layer Reference Width is - " .. String.asString(layer.getReferenceWidth()))
+	PRINT("Background Wall Sprite width is - " .. String.asString(wallWidth))
+	PRINT("Background Wall Sprite width is - " .. String.asString(bgWallSprite.getWidth()))
+	PRINT("Background Wall Sprite height is - " .. String.asString(bgWallSprite.getHeight()))
+	PRINT("Background Wall Sprite X is - " .. String.asString(bgWallSprite.getX()))
+	PRINT("Background Wall Sprite Y is - " .. String.asString(bgWallSprite.getY()))
+	PRINT("Player Sprite width is - " .. String.asString(playerSprite.getWidth()))
+	PRINT("Player Sprite height is - " .. String.asString(playerSprite.getHeight()))
+	PRINT("Player Sprite X is - " .. String.asString(playerSprite.getX()))
+	PRINT("Player Sprite Y is - " .. String.asString(playerSprite.getY()))
+	PRINT("Layer Reference Height is - " .. String.asString(layer.getReferenceHeight()))
+	PRINT("Layer Reference Width is - " .. String.asString(layer.getReferenceWidth()))
 }

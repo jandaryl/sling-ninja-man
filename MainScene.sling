@@ -10,13 +10,13 @@ var bossImg as TextureSprite
 
 func initialize override
 {
-    base.initialize()
-    addEntity(new MovingBackgroundEntity())
-    playerImg = addTextureSpriteForSize(createTextureForImageResource("main-player"), getReferenceWidth() * 0.4, getReferenceHeight() * 0.4)
-    playerImg.move(0.1, 0.25)
-    bossImg = addTextureSpriteForSize(createTextureForImageResource("main-dragon"), getReferenceWidth() * 0.4, getReferenceHeight() * 0.4)
-    bossImg.move(0.6, 0.2)
-    gameTitleProp = TextProperties.forText("Ninja Man")
+	base.initialize()
+	addEntity(new MovingBackgroundEntity())
+	playerImg = addTextureSpriteForSize(createTextureForImageResource("main-player"), getReferenceWidth() * 0.4, getReferenceHeight() * 0.4)
+	playerImg.move(0.1, 0.25)
+	bossImg = addTextureSpriteForSize(createTextureForImageResource("main-dragon"), getReferenceWidth() * 0.4, getReferenceHeight() * 0.4)
+	bossImg.move(0.6, 0.2)
+	gameTitleProp = TextProperties.forText("Ninja Man")
 	gameTitleProp.setTextColor(Color.white())
 	gameTitleProp.setFontSizeRelative(0.1)
 	gameTitleProp.setFontFamily("Fira Code")
@@ -24,36 +24,35 @@ func initialize override
 	gameTitleSprite = addTextSprite(gameTitleProp)
 	gameTitleSprite.setText(gameTitleProp)
 	gameTitleSprite.move(getReferenceWidth() * 0.5 - (gameTitleSprite.getWidth() * 0.5), getReferenceHeight() * 0.3 - (gameTitleSprite.getHeight() * 0.5))
-    storyBtnEntity = TextButtonEntity.forText("Storyline")
-    storyBtnEntity.setBackgroundColor(Color.white())
-    addEntity(storyBtnEntity)
-    storyBtnEntity.move(getReferenceWidth() * 0.5 - (storyBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (storyBtnEntity.getHeight() * 0.5))
-    storyBtnEntity.setClickHandler(func {
-        pushScene(new StorylineScene())
-        PRINT "[LOG] Change to Storyline Scene"
-    })
-    startBtnEntity = TextButtonEntity.forText("Start")
-    startBtnEntity.setBackgroundColor(Color.white())
-    addEntity(startBtnEntity)
-    startBtnEntity.move(getReferenceWidth() * 0.5 - (startBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.6 - (startBtnEntity.getHeight() * 0.5))
-    startBtnEntity.setClickHandler(func {
-        pushScene(new BattleScene())
-        PRINT "[LOG] Change to Battle Scene"
-    })
-    helpBtnEntity = TextButtonEntity.forText("Need Help?")
-    helpBtnEntity.setBackgroundColor(Color.white())
-    addEntity(helpBtnEntity)
-    helpBtnEntity.move(getReferenceWidth() * 0.5 - (helpBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.7 - (helpBtnEntity.getHeight() * 0.5))
-    helpBtnEntity.setClickHandler(func {
-        pushScene(new NeedHelpScene())
-        PRINT "[LOG] Change to Need Help Scene from Main Scene"
-    })
-
+	storyBtnEntity = TextButtonEntity.forText("Storyline")
+	storyBtnEntity.setBackgroundColor(Color.white())
+	addEntity(storyBtnEntity)
+	storyBtnEntity.move(getReferenceWidth() * 0.5 - (storyBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.5 - (storyBtnEntity.getHeight() * 0.5))
+	storyBtnEntity.setClickHandler(func {
+		pushScene(new StorylineScene())
+		PRINT "[LOG] Change to Storyline Scene"
+	})
+	startBtnEntity = TextButtonEntity.forText("Start")
+	startBtnEntity.setBackgroundColor(Color.white())
+	addEntity(startBtnEntity)
+	startBtnEntity.move(getReferenceWidth() * 0.5 - (startBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.6 - (startBtnEntity.getHeight() * 0.5))
+	startBtnEntity.setClickHandler(func {
+		pushScene(new BattleScene())
+		PRINT "[LOG] Change to Battle Scene"
+	})
+	helpBtnEntity = TextButtonEntity.forText("Need Help?")
+	helpBtnEntity.setBackgroundColor(Color.white())
+	addEntity(helpBtnEntity)
+	helpBtnEntity.move(getReferenceWidth() * 0.5 - (helpBtnEntity.getWidth() * 0.5), getReferenceHeight() * 0.7 - (helpBtnEntity.getHeight() * 0.5))
+	helpBtnEntity.setClickHandler(func {
+		pushScene(new NeedHelpScene())
+		PRINT "[LOG] Change to Need Help Scene from Main Scene"
+	})
 }
 
 func onPointerEvent(event as PointerEvent) override
 {
-    base.onPointerEvent(event)
+	base.onPointerEvent(event)
 }
 
 func tick(gameTime as TimeValue, delta as double) override
@@ -63,8 +62,8 @@ func tick(gameTime as TimeValue, delta as double) override
 
 func cleanup override
 {
-    removeAllEntities()
-    PRINT "[LOG] Remove all entities from main scene"
-    removeAllSprites()
-    PRINT "[LOG] Remove all sprites from main scene"
+	removeAllEntities()
+	PRINT "[LOG] Remove all entities from main scene"
+	removeAllSprites()
+	PRINT "[LOG] Remove all sprites from main scene"
 }

@@ -4,8 +4,8 @@ var boundaryWallSprite as Sprite
 
 func createSprite override as Sprite
 {
-    var wallImage = scene.createTextureForImageResource("dark-bg-wall")
-    boundaryWallSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.53 * layer.getReferenceWidth(), 0.53 * layer.getReferenceHeight()) 
-    boundaryWallSprite.move(layer.getReferenceWidth() * 0.5 - (boundaryWallSprite.getWidth() * 0.5), layer.getReferenceHeight() * 0.5 - (boundaryWallSprite.getHeight() * 0.5))
-    return(boundaryWallSprite)
+	var wallImage = scene.createTextureForImageResource("dark-bg-wall")
+	boundaryWallSprite = SpriteUtil.addTextureSpriteForSize(scene, layer, wallImage, 0.53 * layer.getReferenceWidth(), 0.53 * layer.getReferenceHeight())
+	boundaryWallSprite.move(layer.getReferenceWidth() * 0.5 - (boundaryWallSprite.getWidth() * 0.5), layer.getReferenceHeight() * 0.5 - (boundaryWallSprite.getHeight() * 0.5))
+	return(boundaryWallSprite)
 }

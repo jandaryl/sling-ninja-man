@@ -6,10 +6,10 @@ var jumpGameOverSprite as Sprite
 
 func initialize override
 {
-    base.initialize()
+	base.initialize()
 	battleScene = scene
 	addEntity(new MovingBackgroundEntity())
-    var jumpGameOverProp = TextProperties.forText("Don't jump from the sky!")
+	var jumpGameOverProp = TextProperties.forText("Don't jump from the sky!")
 	jumpGameOverProp.setTextColor(Color.white())
 	jumpGameOverProp.setFontSizeRelative(0.02)
 	jumpGameOverProp.setFontFamily("Fira Code")
