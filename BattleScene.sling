@@ -12,14 +12,14 @@ var bossHealthSprite as TextSprite
 var bossHealth = 1000 as int
 var playerHealthProp as TextProperties
 var playerHealthSprite as TextSprite
-var playerHealth = 1000 as int
+var playerHealth = 100 as int
 var timeBattleProp as TextProperties
 var timeBattleSprite as TextSprite
 var timer = 3100 as int
 var bossSprite as BossEntity
 var countTeleportSprite as TextSprite
 var countTeleportProp as TextProperties
-var countTeleport = 100 as int
+var countTeleport = 7 as int
 
 func initialize override
 {
@@ -100,7 +100,7 @@ func initialize override
 	bossHealthSprite.setText(bossHealthProp)
 	bossHealthSprite.move(0.7, getReferenceHeight() - bossHealthSprite.getHeight())
 
-    countTeleportProp = TextProperties.forText("Teleport : 100")
+    countTeleportProp = TextProperties.forText("Teleport : 7")
 	countTeleportProp.setTextColor(Color.white())
 	countTeleportProp.setFontSizeRelative(0.02)
 	countTeleportProp.setFontFamily("Fira Code")
@@ -159,7 +159,7 @@ func decreaseBossHealthBy100
 func decreasePlayerHealthBy25
 {
     if (playerHealth >= 0) {
-        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 10))
+        playerHealthProp.setText("Player Health: " .. String.forInteger(playerHealth -= 25))
 	    playerHealthSprite.setText(playerHealthProp)
     }
 
@@ -213,7 +213,7 @@ func onTimeToPlayStream
 	}
 }
 
-func onPointerEvent(event as PointerEvent) override
+func onPointerEvent(event as PointerEvent) override  
 {
     base.onPointerEvent(event)
     
@@ -242,8 +242,16 @@ func tick(gameTime as TimeValue, delta as double) override
         pushScene(new TimeGameOverScene())
     }
 
+    if (bossHealth <= 750) {
+        bossSprite.setAlpha(0.75)
+    }
+
     if (bossHealth <= 500) {
         bossSprite.setAlpha(0.50)
+    }
+
+    if (bossHealth <= 250) {
+        bossSprite.setAlpha(0.25)
     }
 
     if (bossHealth <= 0) {
@@ -251,8 +259,16 @@ func tick(gameTime as TimeValue, delta as double) override
         pushScene(new CongratsScene())
     }
 
+    if (playerHealth <= 75) {
+        playerSprite.setAlpha(0.75)
+    }
+
     if (playerHealth <= 50) {
         playerSprite.setAlpha(0.50)
+    }
+
+    if (playerHealth <= 25) {
+        playerSprite.setAlpha(0.25)
     }
 
     if (playerHealth <= 0) {
