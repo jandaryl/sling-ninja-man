@@ -30,6 +30,6 @@ eqela eqela:slingbuild:r19 buildWeb src=ninja-man
 
 ## Screen Shots :
 
-[Main Scene](https://i.imgur.com/TEItJzL.png)
+![Main Scene](https://i.imgur.com/TEItJzL.png)
 
 
