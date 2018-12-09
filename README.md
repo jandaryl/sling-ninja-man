@@ -61,4 +61,4 @@ Thanks for reading! I hope this is useful...
 
 ## License
 
-Simple PHP Boilerplate is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Ninja Man Game is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
