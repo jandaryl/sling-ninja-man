@@ -34,27 +34,31 @@ eqela eqela:slingbuild:r19 buildWeb src=ninja-man
 ![Main Scene](https://i.imgur.com/TEItJzL.png)
 
 - Storyline Scene
-[Storyline Scene](https://i.imgur.com/IziB9Em.png)
+![Storyline Scene](https://i.imgur.com/IziB9Em.png)
 
 - Battle Scene
-[Battle Scene](https://i.imgur.com/y43k7Nw.png)
+![Battle Scene](https://i.imgur.com/y43k7Nw.png)
 
 - Teleport Skill
-[Teleport Skill](https://i.imgur.com/QCkT2kg.png)
+![Teleport Skill](https://i.imgur.com/QCkT2kg.png)
 
 - Slash Skill
-[Slash Skill](https://i.imgur.com/fUxySSv.png)
+![Slash Skill](https://i.imgur.com/fUxySSv.png)
 
 - Fire Skill
-[Fire Skill](https://i.imgur.com/cRILL9v.png)
+![Fire Skill](https://i.imgur.com/cRILL9v.png)
 
 - Gameover Scene
-[Gameover Scene](https://i.imgur.com/afQeP7K.png)
+![Gameover Scene](https://i.imgur.com/afQeP7K.png)
 
 - Need Help Scene
-[Need Help Scene](https://i.imgur.com/uEfBnyZ.png)
+![Need Help Scene](https://i.imgur.com/uEfBnyZ.png)
 
 - Congrats Scene
-[Congrats Scene](https://i.imgur.com/YmtiLpx.png)
+![Congrats Scene](https://i.imgur.com/YmtiLpx.png)
 
+Thanks for reading! I hope this is useful...
 
+## License
+
+Simple PHP Boilerplate is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
